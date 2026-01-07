@@ -52,17 +52,29 @@ sudo -u postgres psql -d final_lvl2 -f databases/final_lvl2.sql
 
 ### 3.5 Grant permissions to `sqluser` (read-only levels, write to users)
 ```bash
-# For each level DB (example: level_1)
+# Level 1
 sudo -u postgres psql -d level_1 -c "GRANT CONNECT ON DATABASE level_1 TO sqluser;"
 sudo -u postgres psql -d level_1 -c "GRANT USAGE ON SCHEMA public TO sqluser;"
 sudo -u postgres psql -d level_1 -c "GRANT SELECT ON ALL TABLES IN SCHEMA public TO sqluser;"
 sudo -u postgres psql -d level_1 -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO sqluser;"
 
-# For users DB (needed by participants and host views)
-sudo -u postgres psql -d users -c "GRANT CONNECT, TEMP ON DATABASE users TO sqluser;"
-sudo -u postgres psql -d users -c "GRANT USAGE ON SCHEMA public TO sqluser;"
-sudo -u postgres psql -d users -c "GRANT SELECT, INSERT, UPDATE ON ALL TABLES IN SCHEMA public TO sqluser;"
-sudo -u postgres psql -d users -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT, INSERT, UPDATE ON TABLES TO sqluser;"
+# Level 2
+sudo -u postgres psql -d level_2 -c "GRANT CONNECT ON DATABASE level_2 TO sqluser;"
+sudo -u postgres psql -d level_2 -c "GRANT USAGE ON SCHEMA public TO sqluser;"
+sudo -u postgres psql -d level_2 -c "GRANT SELECT ON ALL TABLES IN SCHEMA public TO sqluser;"
+sudo -u postgres psql -d level_2 -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO sqluser;"
+
+# Final Level 1
+sudo -u postgres psql -d final_lvl1 -c "GRANT CONNECT ON DATABASE final_lvl1 TO sqluser;"
+sudo -u postgres psql -d final_lvl1 -c "GRANT USAGE ON SCHEMA public TO sqluser;"
+sudo -u postgres psql -d final_lvl1 -c "GRANT SELECT ON ALL TABLES IN SCHEMA public TO sqluser;"
+sudo -u postgres psql -d final_lvl1 -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO sqluser;"
+
+# Final Level 2
+sudo -u postgres psql -d final_lvl2 -c "GRANT CONNECT ON DATABASE final_lvl2 TO sqluser;"
+sudo -u postgres psql -d final_lvl2 -c "GRANT USAGE ON SCHEMA public TO sqluser;"
+sudo -u postgres psql -d final_lvl2 -c "GRANT SELECT ON ALL TABLES IN SCHEMA public TO sqluser;"
+sudo -u postgres psql -d final_lvl2 -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO sqluser;"
 ```
 
 ### 3.6 Ensure leaderboard column

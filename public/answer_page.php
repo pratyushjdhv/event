@@ -134,8 +134,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link" href="sql.php">SQL</a>
-                <a class="nav-link" href="answer_page.php">ANSWER</a>
                 <a class="nav-link" href="schema.php">SCHEMA</a>
+                <a class="nav-link" href="answer_page.php">ANSWER</a>
             </div>
         </div>
     </div>

@@ -1079,3 +1079,11 @@ INSERT INTO confessions (id, person_id, confession) VALUES
       (99, 104, 'You''re looking at the wrong person.'),
       (100, 105, 'Alright! I confess to the extortion scheme.')
     ;;
+-- Permissions for sqluser
+GRANT USAGE ON SCHEMA public TO sqluser;
+GRANT SELECT ON TABLE crime_scene TO sqluser;
+GRANT SELECT ON TABLE person TO sqluser;
+GRANT SELECT ON TABLE interviews TO sqluser;
+GRANT SELECT ON TABLE hotel_checkins TO sqluser;
+GRANT SELECT ON TABLE surveillance_records TO sqluser;
+GRANT SELECT ON TABLE confessions TO sqluser;

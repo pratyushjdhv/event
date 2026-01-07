@@ -140,14 +140,14 @@ session_start();
                         case 2:
                             $_SESSION['level_db_name'] = 'level_2';
                             $_SESSION['level_title'] = 'The Stolen Sound';
-                            $_SESSION['level_description'] = 'A body was found floating near the docks of Coral Bay Marina in the early hours of August 14, 1986. Your job, detective, is to find the murderer and bring them to justice. This case might require the use of JOINs, wildcard searches, and logical deduction. Get to work, detective.';
+                            $_SESSION['level_description'] = 'In the neon glow of 1980s Los Angeles, the West Hollywood Records store was rocked by a daring theft. A prized vinyl record, worth over $10,000, vanished during a busy evening, leaving the store owner desperate for answers. Vaguely recalling the details, you know the incident occurred on July 15, 1983, at this famous store. Your task is to track down the thief and bring them to justice.';
                             $_SESSION['level_objectives'] = '1.Retrieve the crime scene report for the record theft using the known date and location. <br>2.Retrieve witness records linked to that crime scene to obtain their clues. <br>3.Use the clues from the witnesses to find the suspect in the suspects table.<br>4.Retrieve the suspect\'s interview transcript to confirm the confession.<br>';
                             echo '<a href="level.php" class="btn-round">Start Level 2</a>';
                             break;
                         case 3:
                             $_SESSION['level_db_name'] = 'final_lvl1';
                             $_SESSION['level_title'] = 'The Miami Marina Murder';
-                            $_SESSION['level_description'] = 'On October 31, 1987, at a Coconut Grove mansion masked ball, Leonard Pierce was found dead in the garden. Can you piece together all the clues to expose the true murderer?';
+                            $_SESSION['level_description'] = 'A body was found floating near the docks of Coral Bay Marina in the early hours of August 14, 1986. Your job, detective, is to find the murderer and bring them to justice. This case might require the use of JOINs, wildcard searches, and logical deduction. Get to work, detective.';
                             $_SESSION['level_objectives'] = '1. Find the murderer. ( Start by finding the crime scene and go from there ) <br>';
                             echo '<a href="level.php" class="btn-round">Start Final Level 1</a>';
                             break;

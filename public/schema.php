@@ -173,8 +173,8 @@ $conn = getDBConnection($_SESSION['level_db_name'] , 'sqluser');
                 <div class="navbar-nav">
 
                     <a class="nav-link" href="sql.php">SQL</a>
-                    <a class="nav-link" href="answer_page.php">ANSWER</a>
                     <a class="nav-link" href="schema.php">SCHEMA</a>
+                    <a class="nav-link" href="answer_page.php">ANSWER</a>
                 </div>
             </div>
         </div>

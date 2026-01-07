@@ -1608,3 +1608,14 @@ INSERT INTO catering_orders (id, person_id, order_date, item, amount) VALUES
     (99, 45, 19871030, 'Bamboo', 2),
     (100, 89, 19871030, 'Casino', 1)
   ;;
+-- Permissions for sqluser
+GRANT USAGE ON SCHEMA public TO sqluser;
+GRANT SELECT ON TABLE crime_scene TO sqluser;
+GRANT SELECT ON TABLE person TO sqluser;
+GRANT SELECT ON TABLE witness_statements TO sqluser;
+GRANT SELECT ON TABLE hotel_checkins TO sqluser;
+GRANT SELECT ON TABLE surveillance_records TO sqluser;
+GRANT SELECT ON TABLE phone_records TO sqluser;
+GRANT SELECT ON TABLE final_interviews TO sqluser;
+GRANT SELECT ON TABLE vehicle_registry TO sqluser;
+GRANT SELECT ON TABLE catering_orders TO sqluser;
