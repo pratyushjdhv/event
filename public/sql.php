@@ -125,7 +125,7 @@ if (!isset($_SESSION['level_db_name'])) {
                   class="form-control"
                   rows="3"
                   placeholder="SELECT * FROM table_name WHERE condition;"
-                  required></textarea>
+                  required><?php echo htmlspecialchars($_POST['user_sql'] ?? ''); ?></textarea>
         <br>
         <input type="submit" class="btn btn-primary" value="Run SQL">
     </form>

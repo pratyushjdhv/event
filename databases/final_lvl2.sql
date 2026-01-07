@@ -1,1558 +1,1610 @@
---
--- PostgreSQL database dump
---
-
-\restrict NFS4gMUAHcUKB1fFAO3g5P0R8fPWXH6wcbBIAmGHwflReSnffDX2rDr53EWU3jt
-
--- Dumped from database version 16.11 (Ubuntu 16.11-0ubuntu0.24.04.1)
--- Dumped by pg_dump version 16.11 (Ubuntu 16.11-0ubuntu0.24.04.1)
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
-SET default_tablespace = '';
-
-SET default_table_access_method = heap;
-
---
--- Name: computer_access_logs; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.computer_access_logs (
-    id integer NOT NULL,
-    employee_id integer,
-    server_location text,
-    access_date integer,
-    access_time text
-);
-
-
-ALTER TABLE public.computer_access_logs OWNER TO postgres;
-
---
--- Name: email_logs; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.email_logs (
-    id integer NOT NULL,
-    sender_employee_id integer,
-    recipient_employee_id integer,
-    email_date integer,
-    email_subject text,
-    email_content text
-);
-
-
-ALTER TABLE public.email_logs OWNER TO postgres;
-
---
--- Name: employee_records; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.employee_records (
-    id integer NOT NULL,
-    employee_name text,
-    department text,
-    occupation text,
-    home_address text
-);
-
-
-ALTER TABLE public.employee_records OWNER TO postgres;
-
---
--- Name: facility_access_logs; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.facility_access_logs (
-    id integer NOT NULL,
-    employee_id integer,
-    facility_name text,
-    access_date integer,
-    access_time text
-);
-
-
-ALTER TABLE public.facility_access_logs OWNER TO postgres;
-
---
--- Name: incident_reports; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.incident_reports (
-    id integer NOT NULL,
-    date integer,
-    location text,
-    description text
-);
-
-
-ALTER TABLE public.incident_reports OWNER TO postgres;
-
---
--- Name: keycard_access_logs; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.keycard_access_logs (
-    id integer NOT NULL,
-    employee_id integer,
-    keycard_code text,
-    access_date integer,
-    access_time text
-);
-
-
-ALTER TABLE public.keycard_access_logs OWNER TO postgres;
-
---
--- Name: witness_statements; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.witness_statements (
-    id integer NOT NULL,
-    incident_id integer,
-    employee_id integer,
-    statement text
-);
-
-
-ALTER TABLE public.witness_statements OWNER TO postgres;
-
---
--- Data for Name: computer_access_logs; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.computer_access_logs (id, employee_id, server_location, access_date, access_time) FROM stdin;
-1	45	London	19890421	15:30
-2	123	London	19890420	10:15
-3	67	New York	19890419	08:45
-4	189	Tokyo	19890421	16:20
-5	34	Tokyo	19890420	11:30
-6	156	Dubai	19890419	15:45
-7	78	Paris	19890421	09:15
-8	145	Dubai	19890420	16:30
-9	90	Singapore	19890419	10:45
-10	112	Helsinki	19890421	15:20
-11	167	Berlin	19890420	08:30
-12	23	Helsinki	19890419	16:45
-13	198	Sydney	19890421	11:15
-14	56	Helsinki	19890420	15:30
-15	178	Moscow	19890419	09:45
-16	89	Dubai	19890421	16:15
-17	134	Dubai	19890420	10:30
-18	45	Dubai	19890419	15:45
-19	167	Toronto	19890421	08:20
-20	92	Helsinki	19890420	16:30
-21	145	Madrid	19890419	11:45
-22	78	Dubai	19890421	15:15
-23	156	Rome	19890420	09:30
-24	34	Dubai	19890419	16:45
-25	189	Amsterdam	19890421	10:20
-26	67	Dubai	19890420	15:30
-27	123	Stockholm	19890419	08:45
-28	45	Dubai	19890421	16:15
-29	178	Oslo	19890420	11:30
-30	90	Vienna	19890419	15:45
-31	112	Helsinki	19890421	09:20
-32	167	Brussels	19890420	16:30
-33	23	Warsaw	19890419	10:45
-34	198	Prague	19890421	15:15
-35	56	Budapest	19890420	08:30
-36	178	Athens	19890419	16:45
-37	89	Lisbon	19890421	11:20
-38	134	Dublin	19890420	15:30
-39	45	Edinburgh	19890419	09:45
-40	167	Mumbai	19890421	16:15
-41	92	Shanghai	19890420	10:30
-42	145	Seoul	19890419	15:45
-43	78	Bangkok	19890421	08:20
-44	156	Jakarta	19890420	16:30
-45	34	Manila	19890419	11:45
-46	189	Melbourne	19890421	15:15
-47	67	Auckland	19890420	09:30
-48	123	Vancouver	19890419	16:45
-49	45	Montreal	19890421	10:20
-50	178	Chicago	19890420	15:30
-51	1	Helsinki	19890419	08:45
-52	112	Miami	19890421	16:15
-53	167	Seattle	19890420	11:30
-54	23	San Francisco	19890419	15:45
-55	198	Los Angeles	19890421	09:20
-56	56	Houston	19890420	16:30
-57	178	Dallas	19890419	10:45
-58	89	Atlanta	19890421	15:15
-59	134	Denver	19890420	08:30
-60	45	Phoenix	19890419	16:45
-61	167	Las Vegas	19890421	11:20
-62	92	Helsinki	19890420	15:30
-63	145	Mexico City	19890419	09:45
-64	78	Rio de Janeiro	19890421	16:15
-65	156	São Paulo	19890420	10:30
-66	34	Buenos Aires	19890419	15:45
-67	189	Santiago	19890421	08:20
-68	67	Lima	19890420	16:30
-69	123	Bogota	19890419	11:45
-70	45	Caracas	19890421	15:15
-71	178	Panama City	19890420	09:30
-72	90	Dubai	19890419	16:45
-73	112	Cairo	19890421	10:20
-74	167	Istanbul	19890420	15:30
-75	23	Tel Aviv	19890419	08:45
-76	198	Dubai	19890421	16:15
-77	56	Abu Dhabi	19890420	11:30
-78	178	Doha	19890419	15:45
-79	89	Kuwait City	19890421	09:20
-80	142	Helsinki	19890420	16:30
-81	45	Dubai	19890419	10:45
-82	167	Muscat	19890421	15:15
-83	92	Manama	19890420	08:30
-84	145	Manama	19890419	16:45
-85	78	Amman	19890421	11:20
-86	156	Beirut	19890420	15:30
-87	34	Damascus	19890419	09:45
-88	189	Baghdad	19890421	16:15
-89	67	Tehran	19890420	10:30
-90	123	Dubai	19890419	15:45
-91	99	Helsinki	19890421	09:00
-92	178	Islamabad	19890420	16:30
-93	90	New Delhi	19890419	11:45
-94	112	Mumbai	19890421	15:15
-95	167	Colombo	19890420	09:30
-96	23	Dhaka	19890419	16:45
-97	198	Bangkok	19890421	10:20
-98	56	Singapore	19890420	15:30
-99	178	Jakarta	19890419	08:45
-100	89	Dubai	19890421	16:15
-101	156	Tokyo	19890420	15:30
-102	34	Dubai	19890419	10:45
-103	167	Paris	19890421	16:30
-104	45	London	19890420	08:15
-105	189	Rome	19890419	15:45
-106	78	Berlin	19890421	10:30
-107	123	Madrid	19890420	16:45
-108	56	Helsinki	19890419	09:15
-109	145	Rome	19890421	15:30
-110	67	Amsterdam	19890420	10:45
-111	111	Helsinki	19890419	16:15
-112	23	Brussels	19890421	08:30
-113	178	Vienna	19890420	15:45
-114	89	Dubai	19890419	10:30
-115	134	Prague	19890421	16:30
-116	45	Warsaw	19890420	09:45
-117	167	Dubai	19890419	15:15
-118	90	Budapest	19890421	10:45
-119	112	Stockholm	19890420	16:45
-120	34	Dubai	19890419	08:15
-121	156	Oslo	19890421	15:30
-122	78	Copenhagen	19890420	10:30
-123	189	Dublin	19890419	16:15
-124	45	Dublin	19890421	09:45
-125	167	Lisbon	19890420	15:45
-126	90	Dubai	19890419	10:15
-127	33	Helsinki	19890421	16:30
-128	56	Bucharest	19890420	08:45
-129	178	Helsinki	19890419	15:15
-130	34	Sofia	19890421	10:30
-131	145	Zagreb	19890420	16:45
-132	67	Dubai	19890419	09:15
-133	190	Belgrade	19890421	15:30
-134	23	Riga	19890420	10:45
-135	156	Dubai	19890419	16:15
-136	89	Tallinn	19890421	08:30
-137	134	Vilnius	19890420	15:45
-138	45	Dubai	19890419	10:30
-139	167	Moscow	19890421	16:30
-140	78	Kiev	19890420	09:45
-141	189	Minsk	19890419	15:15
-142	90	Minsk	19890421	10:45
-143	123	Chisinau	19890420	16:45
-144	56	Helsinki	19890419	08:15
-145	178	Tbilisi	19890421	15:30
-146	34	Yerevan	19890420	10:30
-147	156	Baku	19890419	16:15
-148	67	Astana	19890421	09:45
-149	190	Tashkent	19890420	15:45
-150	23	Bishkek	19890419	10:15
-151	145	Dushanbe	19890421	16:30
-152	78	Ashgabat	19890420	08:45
-153	189	Ulaanbaatar	19890419	15:15
-154	90	Beijing	19890421	10:30
-155	134	Seoul	19890420	16:45
-156	45	Tokyo	19890419	09:15
-157	167	Osaka	19890421	15:30
-158	56	Shanghai	19890420	10:45
-159	178	Hong Kong	19890419	16:15
-160	34	Taipei	19890421	08:30
-161	156	Manila	19890420	15:45
-162	89	Hanoi	19890419	10:30
-163	123	Bangkok	19890421	16:30
-164	67	Kuala Lumpur	19890420	09:45
-165	190	Singapore	19890419	15:15
-166	23	Jakarta	19890421	10:45
-167	145	Sydney	19890420	16:45
-168	78	Melbourne	19890419	08:15
-169	189	Brisbane	19890421	15:30
-170	90	Perth	19890420	10:30
-171	134	Auckland	19890419	16:15
-172	45	Wellington	19890421	09:45
-173	167	Suva	19890420	15:45
-174	56	Port Moresby	19890419	10:15
-175	178	Honiara	19890421	16:30
-176	34	Noumea	19890420	08:45
-177	156	Port Vila	19890419	15:15
-178	89	Apia	19890421	10:30
-179	123	Nuku alofa	19890420	16:45
-180	67	Tarawa	19890419	09:15
-181	190	Majuro	19890421	15:30
-182	23	Palikir	19890420	10:45
-183	145	Koror	19890419	16:15
-184	78	Hagåtña	19890421	08:30
-185	189	Saipan	19890420	15:45
-186	90	Pago Pago	19890419	10:30
-187	134	Honolulu	19890421	16:30
-188	45	Anchorage	19890420	09:45
-189	167	Vancouver	19890419	15:15
-190	56	Seattle	19890421	10:45
-191	178	Portland	19890420	16:45
-192	34	San Francisco	19890419	08:15
-193	156	Los Angeles	19890421	15:30
-194	89	San Diego	19890420	10:30
-195	123	Las Vegas	19890419	16:15
-196	67	Phoenix	19890421	09:45
-197	190	Denver	19890420	15:45
-198	23	Dallas	19890419	10:15
-199	145	Houston	19890421	16:30
-200	78	Chicago	19890420	08:45
-\.
-
-
---
--- Data for Name: email_logs; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.email_logs (id, sender_employee_id, recipient_employee_id, email_date, email_subject, email_content) FROM stdin;
-1	145	234	19890421	Q4 Project Timeline	Please review the updated timeline for the security system upgrade. We need to ensure all milestones are properly aligned with the client requirements.
-2	234	145	19890421	Re: Q4 Project Timeline	Timeline looks good, but we should allocate more time for testing phase. The complexity of integration requires additional validation steps.
-3	67	89	19890421	Department Budget Review	Attached is the preliminary budget breakdown for next quarter. Please note the increased allocation for R&D initiatives.
-4	\N	67	19890421	Re: Department Budget Review	The R&D allocation seems appropriate given our current development roadmap. Lets discuss the details in tomorrows meeting.
-5	\N	34	19890421	New Client Onboarding	We need to schedule the initial consultation for the West Coast expansion project. The client is eager to begin implementation.
-6	\N	145	19890421	Staff Training Schedule	Heres the proposed schedule for the advanced security protocols training. Well need all team leads to attend the first session.
-7	\N	67	19890421	System Maintenance Notice	The quarterly system maintenance is scheduled for next week. Please ensure all critical operations are properly backed up.
-8	290	234	19890421	Project Status Update	The implementation phase is proceeding according to schedule. All key deliverables are currently meeting quality benchmarks.
-9	123	178	19890421	Re: Staff Training Schedule	The proposed schedule works well. Could we include a session on the new encryption protocols well be implementing?
-10	56	89	19890421	Client Feedback Summary	Compiled feedback from recent client satisfaction surveys shows positive response to our new security features.
-11	\N	145	19890421	Team Meeting Agenda	Heres the proposed agenda for next weeks strategic planning meeting. Please review and suggest any additional topics.
-12	78	234	19890421	Equipment Requisition	Requesting approval for additional testing equipment for the development team. Detailed specifications are attached.
-13	245	67	19890421	Re: Department Budget Review	The proposed budget aligns well with our expansion plans. We should discuss the international office requirements.
-14	34	89	19890421	Security Protocol Update	New security protocols have been implemented in the test environment. Initial results show significant improvements.
-15	167	145	19890421	QuantumTech Newsletter Draft	Please review the draft for this months internal newsletter. Weve highlighted the recent project successes.
-16	90	178	19890421	Training Materials Review	The updated training materials are ready for review. Weve incorporated feedback from the last session.
-17	278	234	19890421	Client Meeting Summary	Summary of todays client meeting attached. They were particularly impressed with our new security features.
-18	156	67	19890421	Re: Equipment Requisition	Equipment request approved. Please coordinate with procurement to ensure timely delivery and installation.
-19	23	89	19890421	Development Timeline	Heres the revised development timeline incorporating the new security features requested by the client.
-20	145	178	19890421	Team Performance Reviews	Schedule for upcoming performance reviews is attached. Please ensure all team members are properly notified.
-21	89	234	19890421	Project Risk Assessment	Updated risk assessment for the current project phase. Several potential issues have been identified and addressed.
-22	\N	145	19890421	Re: Team Meeting Agenda	Could we add a discussion point about the new encryption standards? Its crucial for our upcoming deployments.
-23	134	67	19890421	Resource Allocation	Current resource allocation may need adjustment to accommodate the new project requirements. Details attached.
-24	78	89	19890421	Client Presentation Draft	Please review the attached presentation for next weeks client meeting. Focus is on our enhanced security features.
-25	190	178	19890421	Re: Security Protocol Update	The new protocols look promising. We should schedule a team briefing to discuss implementation details.
-26	45	\N	19890421	Quality Assurance Report	Latest QA report shows all systems performing within expected parameters. Detailed metrics are attached.
-27	234	67	19890421	Budget Forecast	Q4 budget forecast needs revision based on new project requirements. Please review the attached projections.
-28	\N	145	19890421	Team Expansion Plans	Proposal for team expansion to handle increased project load. Includes detailed staffing requirements.
-29	\N	89	19890421	Re: Client Feedback Summary	Excellent feedback results. Lets incorporate these positive points into our next marketing campaign.
-30	\N	178	19890421	Implementation Schedule	Revised implementation schedule for the East Coast rollout. Timeline has been adjusted for additional testing.
-31	145	67	19890421	Strategic Planning Meeting	Reminder about tomorrows strategic planning session. Please bring your departments quarterly reports.
-32	290	234	19890421	System Integration Update	Progress report on the system integration project. All key milestones are currently on track.
-33	78	89	19890421	Re: Project Risk Assessment	Good analysis of potential risks. We should schedule a meeting to discuss mitigation strategies.
-34	\N	145	19890421	Client Contract Review	Please review the updated terms for the West Coast contract. Legal has added some security-related clauses.
-35	34	178	19890421	Training Program Feedback	Collected feedback from last weeks training sessions. Overall response was very positive.
-36	245	67	19890421	Development Resources	Request for additional development resources to support the accelerated project timeline.
-37	90	234	19890421	Re: Quality Assurance Report	The metrics look good. Lets schedule a review of the automated testing procedures.
-38	156	89	19890421	Security Audit Preparation	Initial preparations for next months security audit. Please review the checklist and provide feedback.
-39	278	145	19890421	Team Building Event	Proposal for next months team building event. Please review the suggested activities and venue.
-40	23	178	19890421	Project Documentation	Updated project documentation is ready for review. Includes recent changes to security protocols.
-41	189	67	19890421	Re: Strategic Planning Meeting	Will bring the updated market analysis report to tomorrows meeting. Some interesting trends to discuss.
-42	67	234	19890421	Vendor Evaluation	Results of the vendor evaluation process. Recommendations for new security hardware suppliers included.
-43	\N	89	19890421	Infrastructure Update	Status report on the infrastructure upgrade project. All critical systems have been successfully migrated.
-44	\N	145	19890421	Re: Team Expansion Plans	The expansion proposal looks solid. Lets discuss the training requirements for new team members.
-45	78	178	19890421	Client Support Update	Monthly client support statistics show improved response times. Detailed breakdown attached.
-46	190	67	19890421	Research Findings	Initial findings from the security protocol research project. Several promising innovations identified.
-47	45	234	19890421	Re: System Integration Update	Integration progress looks good. We should schedule a demo for the management team.
-48	267	89	19890421	Marketing Materials	Draft of new marketing materials highlighting our enhanced security features. Please review.
-49	89	145	19890421	Performance Metrics	Latest performance metrics for the security systems. All indicators show positive trends.
-50	12	178	19890421	Re: Training Program Feedback	Glad to hear the positive response. Lets incorporate the suggestions into the next session.
-51	145	67	19890421	QuantumTech Innovation Report	Quarterly innovation report ready for review. Significant progress in several key areas.
-52	290	234	19890421	Compliance Update	Status of our compliance with new industry regulations. All systems meet or exceed requirements.
-53	78	89	19890421	Re: Security Audit Preparation	The audit checklist looks comprehensive. Ive added some notes about recent system updates.
-54	167	145	19890421	Project Milestone Review	Review of Q3 project milestones. Most objectives achieved ahead of schedule.
-55	34	178	19890421	Employee Training Schedule	Next months training schedule includes advanced modules on new security protocols.
-56	245	67	19890421	Re: Research Findings	Interesting innovations identified. Lets schedule a deep dive into the most promising ones.
-57	90	234	19890421	Client Feedback Report	Monthly client feedback report shows high satisfaction with our security solutions.
-58	\N	89	19890421	System Performance Review	Quarterly system performance review complete. All metrics exceed target levels.
-59	278	145	19890421	Re: Marketing Materials	The new materials look great. Could we add more emphasis on our advanced encryption features?
-60	23	178	19890421	Development Update	Status update on current development projects. All teams reporting good progress.
-61	189	67	19890421	Team Resource Planning	Updated resource allocation plan for Q4. Please review and provide feedback.
-62	67	234	19890421	Re: Compliance Update	Excellent work on compliance. Lets prepare a presentation for the board meeting.
-63	234	89	19890421	Security Protocol Review	Annual review of security protocols scheduled for next week. Please prepare your reports.
-64	134	145	19890421	Client Implementation Status	Status report on current client implementations. All projects proceeding as planned.
-65	78	178	19890421	Re: Project Milestone Review	Great progress on the milestones. The client will be pleased with the early deliveries.
-66	190	67	19890421	Equipment Maintenance Schedule	Updated maintenance schedule for security equipment. Please review and approve.
-67	45	234	19890421	Team Performance Update	Quarterly team performance metrics show strong improvements across all departments.
-68	267	89	19890421	Re: System Performance Review	The performance metrics are impressive. Lets highlight these in the client newsletter.
-69	89	145	19890421	Project Budget Review	Mid-year budget review shows were tracking well against projections.
-70	12	178	19890421	Security Incident Report	Monthly security incident report shows continued low incident rates.
-71	145	67	19890421	Re: Team Resource Planning	Resource plan looks good. We should discuss the holiday coverage schedule.
-72	290	234	19890421	Client Meeting Schedule	Next weeks client meeting schedule. Several important presentations planned.
-73	78	89	19890421	Development Resources	Request for additional development resources for the new security features.
-74	\N	145	19890421	Re: Security Protocol Review	Will have all reports ready for next weeks review session.
-75	\N	178	19890421	Training Materials Update	Updated training materials incorporating feedback from recent sessions.
-76	\N	67	19890421	Project Timeline Review	Quarterly project timeline review shows all projects on or ahead of schedule.
-77	90	234	19890421	Re: Client Implementation Status	Good progress on implementations. Lets schedule client feedback sessions.
-78	156	89	19890421	Security Update Rollout	Schedule for rolling out the latest security updates across all systems.
-79	278	145	19890421	Team Meeting Minutes	Minutes from todays team meeting. Action items have been assigned.
-80	23	178	19890421	Re: Equipment Maintenance Schedule	Maintenance schedule approved. Please proceed with the planned updates.
-81	189	67	19890421	Client Support Report	Monthly client support report shows continued high satisfaction levels.
-82	67	234	19890421	Development Strategy	Proposed strategy for next phase of security feature development.
-83	234	89	19890421	Re: Project Budget Review	Budget looking good. Lets discuss the allocation for new security tools.
-84	134	145	19890421	Quality Control Results	Latest quality control results show all systems meeting specifications.
-85	78	178	19890421	Team Training Progress	Update on team training progress. All certifications are up to date.
-86	190	67	19890421	Re: Development Strategy	Strategy looks solid. We should include the new encryption standards.
-87	45	234	19890421	Client Feedback Session	Summary of yesterdays client feedback session. Very positive responses.
-88	267	89	19890421	System Upgrade Schedule	Proposed schedule for next months system upgrade implementation.
-89	89	145	19890421	Re: Quality Control Results	Excellent quality metrics. Lets share these with the client team.
-90	12	178	19890421	Project Resource Allocation	Updated resource allocation for current projects. Please review.
-91	145	67	19890421	Security Protocol Implementation	Status update on new security protocol implementation across systems.
-92	290	234	19890421	Re: System Upgrade Schedule	Schedule looks good. We should add some buffer time for testing.
-93	78	89	19890421	Team Performance Review	Scheduled dates for upcoming team performance reviews.
-94	167	145	19890421	Client Contract Update	Updates to client contract templates with new security provisions.
-95	34	178	19890421	Re: Project Resource Allocation	Resource allocation approved. Please proceed with assignments.
-96	245	67	19890421	Development Progress Report	Weekly progress report on security feature development.
-97	90	234	19890421	Training Session Feedback	Feedback from yesterdays security protocol training session.
-98	156	89	19890421	Re: Team Performance Review	Review schedule works well. Will prepare the necessary documentation.
-99	278	145	19890421	System Maintenance Report	Monthly system maintenance report shows all systems operating optimally.
-100	23	178	19890421	Project Status Update	Weekly status update on all active development projects. Development team has completed integration testing of new security modules.
-101	156	234	19890421	Re: Infrastructure Planning	Your proposed infrastructure changes look promising for our scaling needs. The cost analysis shows significant long-term savings with this approach.
-102	89	145	19890421	Q2 Strategic Initiatives	Attached is the comprehensive overview of our Q2 strategic initiatives and timelines. The executive team has already approved the resource allocations for each project phase.
-103	234	67	19890421	Re: Client Security Assessment	The security assessment for the Johnson account revealed several areas for enhancement. Our team has prepared detailed recommendations with implementation timelines.
-104	78	190	19890421	Data Center Optimization	Initial results from our data center optimization efforts show 15% improvement in performance metrics. We should schedule a review to discuss expanding these optimizations to other facilities.
-105	145	23	19890421	Re: Team Expansion Plans	Your recommendations for the team structure realignment make perfect sense for our growth trajectory. Ive added some thoughts about potential training programs for the new roles.
-106	67	156	19890421	Vendor Evaluation Results	Completed the evaluation of potential vendors for the new security hardware implementation. The detailed comparison matrix shows TechShield leading in both performance and cost-effectiveness.
-107	190	89	19890421	Re: Development Roadmap	The proposed development roadmap aligns perfectly with our Q3 objectives. Ive included additional milestones for the integration of the new encryption protocols.
-108	234	78	19890421	Employee Engagement Survey	The results from our recent employee engagement survey show strong positive trends in team satisfaction. The detailed analysis highlights our successful implementation of flexible working arrangements.
-109	145	234	19890421	Re: Budget Allocation	Your proposed budget allocation for the cybersecurity initiative seems well-structured. Ive added some considerations for potential hardware upgrades we might need in Q4.
-110	23	67	19890421	Client Feedback Analysis	The quarterly client feedback analysis shows consistently high satisfaction with our security solutions. Several clients specifically praised our rapid response teams effectiveness.
-111	156	190	19890421	Re: Protocol Documentation	The updated protocol documentation looks comprehensive and well-organized. Ive suggested some additional sections to cover the new emergency response procedures.
-112	89	78	19890421	Innovation Workshop Results	Summarized the key outcomes from yesterdays innovation workshop at QuantumTech. The team generated several promising ideas for enhancing our security monitoring systems.
-113	234	145	19890421	Re: Performance Metrics	Your analysis of the performance metrics provides valuable insights for our optimization efforts. The patterns youve identified in system usage will help guide our scaling decisions.
-114	78	23	19890421	Training Program Update	The new employee training program has received exceptional feedback from the first group of participants. Weve incorporated their suggestions to further enhance the technical modules.
-115	145	156	19890421	Re: Research Findings	Your research findings on emerging security threats are both thorough and actionable. The proposed countermeasures align well with our current security infrastructure.
-116	67	89	19890421	Project Timeline Review	Completed the comprehensive review of all active project timelines and dependencies. Most projects are tracking well, with the encryption upgrade slightly ahead of schedule.
-117	190	234	19890421	Re: Client Implementation	The proposed implementation strategy for the Anderson account looks solid and well-planned. Ive added some insights from our previous similar deployments that might be helpful.
-118	234	78	19890421	Security Audit Preparation	Attached is the detailed checklist for our upcoming security audit preparation. The team has already started gathering the required documentation and test results.
-119	145	23	19890421	Re: Resource Allocation	Your resource allocation proposal for the new development phase makes strategic sense. Ive included some suggestions for optimizing the distribution of senior developers across teams.
-120	\N	156	19890421	Compliance Update Report	Monthly compliance report shows all systems and procedures meeting or exceeding industry standards. Recent updates to our security protocols have significantly strengthened our compliance position.
-121	\N	89	19890421	Re: System Architecture	The proposed changes to our system architecture would significantly improve our scalability. The performance projections look promising, especially for high-load scenarios.
-122	89	234	19890421	Team Collaboration Tools	Evaluation of new team collaboration tools has identified two promising options for our needs. Both solutions offer enhanced security features that align well with our requirements.
-123	\N	78	19890421	Re: Quality Assurance	The new quality assurance procedures have already shown positive results in early testing. The automated testing suite has reduced our validation time by 40%.
-124	78	145	19890421	Infrastructure Security	Completed the quarterly review of our infrastructure security measures and identified potential enhancements. The team has developed a prioritized list of recommended updates with implementation timelines.
-125	\N	23	19890421	Re: Client Presentation	The draft presentation for next weeks client meeting effectively highlights our security innovations. Ive suggested some additional slides to showcase our recent successful implementations.
-126	263	99	19890421	Alarm System Concern	I noticed something strange with the alarm system. There might be a potential malfunction near the chip. Thought you should check it out to be safe.
-127	190	89	19890421	Re: Team Performance	Your analysis of team performance metrics shows impressive improvements across all departments. The new collaborative approach has clearly enhanced our overall efficiency.
-128	234	234	19890421	Project Risk Assessment	Completed the risk assessment for all current projects and identified mitigation strategies. The team has already begun implementing additional safeguards for high-priority items.
-129	145	78	19890421	Re: Innovation Pipeline	The current innovation pipeline shows several promising initiatives for enhancing our security offerings. The prototype results from the quantum encryption project are particularly encouraging.
-130	23	145	19890421	Operational Efficiency	Recent operational efficiency improvements have resulted in a 20% reduction in response time. The automated alert system has significantly enhanced our incident management capabilities.
-131	156	23	19890421	Re: Security Protocols	The updated security protocols provide comprehensive coverage for our expanded operations. The integration with existing systems has been seamless and effective.
-132	89	156	19890421	Client Success Stories	Compiled a collection of recent client success stories highlighting our security solutions. These case studies demonstrate the effectiveness of our integrated approach to security management.
-133	234	89	19890421	Re: Technology Roadmap	Your proposed technology roadmap aligns perfectly with our long-term strategic goals. The phased approach to implementation will help manage resources effectively.
-134	\N	234	19890421	Team Training Initiative	Launched new advanced training initiative focusing on emerging security technologies. The program includes hands-on workshops and certification opportunities for all team members.
-135	145	78	19890421	Re: System Integration	The system integration plan for the new security modules looks comprehensive and well-thought-out. The testing schedule allows adequate time for thorough validation of all components.
-136	67	145	19890421	Market Analysis Report	Completed analysis of current market trends in security technology and their implications for our strategy. Several opportunities for product differentiation have been identified.
-137	190	67	19890421	Re: Project Milestones	Your revised project milestones provide a realistic timeline for the security platform upgrade. The additional testing phase will ensure robust performance under all conditions.
-138	\N	263	19890421	Realign Asset Trajectory	L’s schedule puts her close enough, but we need her inside F18 before 9. Trigger a minor alert or routine checkup to send her in by 8:30. Make sure she logs the visit. That part matters.
-139	145	234	19890421	Re: Development Updates	The development updates for the core security modules show excellent progress. The new features are performing well in preliminary testing.
-140	\N	263	19890421	Execute Phase Window	Unlock 18 quietly by 9. He’ll use his own credentials to access it shortly after L leaves. No questions. Just ensure the timing lines up. The trail will lead exactly where it needs to.
-141	156	23	19890421	Re: Performance Review	The performance review of our security systems shows consistent improvement in all key metrics. The recent optimizations have significantly enhanced system reliability.
-142	89	156	19890421	Implementation Guide	Created comprehensive implementation guide for our new security features and protocols. The document includes detailed troubleshooting procedures and best practices.
-143	234	89	19890421	Re: Quality Metrics	Your analysis of quality metrics provides valuable insights for ongoing improvement efforts. The team has already begun implementing several of your recommended enhancements.
-144	\N	234	19890421	Security Assessment	Completed quarterly security assessment of all systems and identified areas for enhancement. The report includes prioritized recommendations with estimated implementation timelines.
-145	145	78	19890421	Re: Client Requirements	The updated client requirements document thoroughly captures all security specifications. The implementation plan accounts for all custom integration needs.
-146	67	145	19890421	Team Collaboration	New team collaboration initiatives have significantly improved project coordination and efficiency. The integrated communication platform has enhanced real-time problem-solving capabilities.
-147	190	67	19890421	Re: System Architecture	Your proposed system architecture changes would greatly enhance our security capabilities. The modular design will facilitate future updates and customizations.
-148	\N	190	19890421	Product Development	Latest product development cycle has yielded several innovative security features. Initial client feedback on the beta version has been overwhelmingly positive.
-149	145	234	19890421	Re: Strategic Planning	The strategic planning session produced valuable insights for our security product roadmap. The focus on emerging technologies positions us well for future market demands.
-150	23	145	19890421	Operational Updates	Recent operational updates have streamlined our security monitoring processes significantly. The automated reporting system has reduced manual workload by 30%.
-151	156	234	19890421	Network Infrastructure Review	The quarterly network infrastructure review indicates our systems are operating at optimal capacity. The recent upgrades have provided significant performance improvements across all nodes.
-152	89	156	19890421	Re: Network Infrastructure Review	Your assessment aligns with our monitoring data, and I suggest we proceed with the proposed optimization plan for Q3. The performance metrics are particularly encouraging for our high-traffic segments.
-153	234	145	19890421	Employee Wellness Program	Introducing our new employee wellness initiative focusing on work-life balance and stress management. The program includes flexible working hours and mental health support resources.
-154	78	234	19890421	Re: Employee Wellness Program	The wellness program proposal looks comprehensive and well-thought-out. The emphasis on mental health support will be particularly valuable for our development teams working on critical projects.
-155	145	78	19890421	Client Presentation Materials	Attached are the updated presentation materials for next weeks client meetings. The security features section has been expanded to highlight our recent innovations.
-156	67	\N	19890421	Re: Client Presentation Materials	The presentation looks polished and effectively communicates our value proposition. Ive added some recent success metrics that might be helpful during the Q&A session.
-157	190	\N	19890421	Data Center Expansion	Proposal for expanding our data center capacity to meet growing client demands. The plan includes detailed cost analysis and implementation timeline.
-158	234	190	19890421	Re: Data Center Expansion	Your expansion proposal makes a compelling case for immediate action. The projected growth numbers align with our client acquisition forecasts.
-159	\N	234	19890421	Team Building Event	Planning our quarterly team building event for next month. Looking for suggestions on activities that would promote cross-departmental collaboration.
-160	23	\N	19890421	Security Protocol Updates	Implementing new security protocols for all client-facing systems. The changes will enhance our protection against emerging cyber threats.
-161	156	23	19890421	Re: Security Protocol Updates	The new security measures look robust and well-designed. Our testing team has already begun validation of the implementation procedures.
-162	89	156	19890421	Project Timeline Revision	Proposing adjustments to the current project timeline to accommodate additional security testing. The changes will not impact our final delivery date.
-163	234	89	19890421	Re: Project Timeline Revision	The revised timeline provides a more realistic schedule for thorough testing. I appreciate the detailed breakdown of testing phases.
-164	\N	234	19890421	QuantumTech Newsletter Content	Draft content for this months internal newsletter, highlighting our recent achievements and upcoming initiatives. Please review and provide feedback.
-165	145	78	19890421	Software License Renewal	Overview of upcoming software license renewals and recommendations for consolidation. The proposed changes could result in significant cost savings.
-166	67	\N	19890421	Re: Software License Renewal	Your license consolidation plan makes excellent financial sense. The bulk licensing approach should give us better negotiating leverage with vendors.
-167	190	\N	19890421	Training Schedule Update	Revised training schedule for the new security certification program. Sessions will be offered in multiple time slots to accommodate all team members.
-168	234	\N	19890421	Client Success Story	Documenting recent successful implementation for our major client in the financial sector. Their security metrics have improved significantly since deployment.
-169	145	234	19890421	Re: Client Success Story	Excellent case study material for our marketing team. The measurable improvements in security metrics will be very compelling for prospective clients.
-170	23	145	19890421	Budget Planning Meeting	Scheduling a meeting to discuss budget allocation for upcoming projects. Please come prepared with department-specific requirements and projections.
-171	156	23	19890421	System Maintenance Schedule	Proposed schedule for routine system maintenance and updates. The work will be performed during off-peak hours to minimize disruption.
-172	89	156	19890421	Re: System Maintenance Schedule	The maintenance schedule looks well-planned and minimally disruptive. Please ensure all clients are notified well in advance.
-173	234	\N	19890421	Innovation Workshop	Planning an innovation workshop to explore emerging technologies and their potential applications. Looking for participants from all departments.
-174	78	234	19890421	Re: Innovation Workshop	The workshop agenda looks comprehensive and engaging. Ill ensure my team members are available to contribute their expertise.
-175	145	78	19890421	Client Feedback Analysis	Summary of recent client feedback and suggested action items. Overall satisfaction remains high with some opportunities for enhancement.
-176	67	145	19890421	Development Resource Request	Requesting additional development resources for the upcoming security platform upgrade. The project scope requires specialized expertise.
-177	190	67	19890421	Re: Development Resource Request	Your resource request is approved based on the project requirements. Ill work with HR to expedite the allocation process.
-178	234	\N	19890421	Quality Assurance Report	Monthly quality assurance report showing improved metrics across all systems. The automated testing implementation has significantly reduced error rates.
-179	145	234	19890421	Re: Quality Assurance Report	The QA improvements are impressive and reflect well on our recent process changes. Lets review the successful strategies for broader implementation.
-180	23	145	19890421	Team Performance Review	Schedule for upcoming performance reviews and suggested discussion points. Please ensure all team members are prepared with their self-assessments.
-181	156	23	19890421	Re: Team Performance Review	The review framework looks thorough and well-structured. I appreciate the focus on both technical and soft skills development.
-182	89	156	19890421	Product Roadmap Discussion	Scheduling a session to review and update our product roadmap for the next quarter. Please come prepared with market analysis and client feedback.
-183	234	89	19890421	Re: Product Roadmap Discussion	Looking forward to contributing to the roadmap discussion. Ill bring our latest competitive analysis and feature requests.
-184	78	\N	19890421	Vendor Evaluation Results	Results from our recent vendor evaluation process for hardware suppliers. Several promising options have been identified for further discussion.
-185	145	78	19890421	Re: Vendor Evaluation Results	The vendor analysis is thorough and provides clear decision criteria. Lets schedule a meeting to discuss the top candidates in detail.
-186	67	145	19890421	Emergency Response Plan	Updated emergency response procedures for system outages and security incidents. Please review and provide feedback on the escalation protocols.
-187	\N	67	19890421	Re: Emergency Response Plan	The response procedures are well-defined and practical. I suggest we conduct a drill to test the new protocols.
-188	234	\N	19890421	Client Implementation Strategy	Proposed strategy for implementing our security solution across multiple client locations. The phased approach minimizes disruption while ensuring thorough deployment.
-189	145	234	19890421	Re: Client Implementation Strategy	The implementation strategy is solid and accounts for potential challenges. The risk mitigation measures are particularly well-thought-out.
-190	23	145	19890421	Research Project Results	Findings from our research into quantum encryption applications. The results suggest several promising directions for product development.
-191	156	\N	19890421	Re: Research Project Results	The research findings are fascinating and have significant implications for our security offerings. Lets schedule a deep-dive session with the development team.
-192	89	\N	19890421	Compliance Audit Preparation	Guidelines for preparing documentation for the upcoming compliance audit. Please ensure all required records are up-to-date and properly formatted.
-193	\N	89	19890421	Re: Compliance Audit Preparation	The preparation guidelines are comprehensive and clear. Ill ensure my team prioritizes the documentation updates.
-194	78	234	19890421	Infrastructure Upgrade Plan	Detailed plan for upgrading our core infrastructure components. The improvements will enhance system reliability and performance.
-195	145	78	19890421	Re: Infrastructure Upgrade Plan	The upgrade plan is well-structured and addresses our current pain points. The proposed timeline seems realistic and achievable.
-196	67	145	19890421	Knowledge Base Update	Recent updates to our technical knowledge base including new troubleshooting guides and best practices. Please review and share with your teams.
-197	\N	67	19890421	Re: Knowledge Base Update	The knowledge base improvements will be very helpful for our support teams. The new search functionality is particularly useful.
-198	\N	190	19890421	Security Awareness Training	New materials for our security awareness training program. The content has been updated to address recent industry developments.
-199	\N	234	19890421	Re: Security Awareness Training	The training materials look engaging and informative. The interactive elements will help improve retention and participation.
-200	\N	145	19890421	Project Success Metrics	Analysis of key performance indicators across all active projects. Most initiatives are meeting or exceeding their targets for this quarter.
-\.
-
-
---
--- Data for Name: employee_records; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.employee_records (id, employee_name, department, occupation, home_address) FROM stdin;
-1	James Wilson	Research & Development	Quantum Engineer	742 Evergreen Terrace, Miami, FL
-2	Patricia Miller	Operations	Facility Manager	123 Palm Drive, Coral Gables, FL
-3	Robert Taylor	Engineering	Systems Architect	567 Ocean View Blvd, Miami Beach, FL
-4	Linda Anderson	Security	Security Director	890 Bay Point Dr, Key Biscayne, FL
-5	Michael Davis	Research & Development	Quantum Physicist	234 Coconut Grove Ave, Miami, FL
-6	Barbara Moore	Human Resources	HR Director	456 Brickell Ave, Miami, FL
-7	William Jackson	Engineering	Hardware Engineer	789 Collins Ave, Miami Beach, FL
-8	Elizabeth White	Finance	Financial Controller	321 Lincoln Road, Miami Beach, FL
-9	David Martinez	IT	Network Administrator	654 Coral Way, Miami, FL
-10	Jennifer Thompson	Marketing	Marketing Director	987 South Beach Blvd, Miami Beach, FL
-11	Richard Garcia	Research & Development	Research Scientist	147 Pine Tree Dr, Miami Beach, FL
-12	Susan Rodriguez	Legal	Corporate Counsel	258 Sunset Dr, South Miami, FL
-13	Joseph Lee	Engineering	Software Engineer	369 Harbor Dr, Key Biscayne, FL
-14	Margaret Wilson	Operations	Operations Manager	741 Flagler St, Miami, FL
-15	Charles Brown	Security	Security Analyst	852 Washington Ave, Miami Beach, FL
-16	Dorothy Clark	Research & Development	Quantum Researcher	963 Ocean Dr, Miami Beach, FL
-17	Thomas Hall	IT	Systems Administrator	159 Alton Rd, Miami Beach, FL
-18	Sandra Young	Finance	Financial Analyst	357 Las Olas Blvd, Fort Lauderdale, FL
-19	Christopher King	Engineering	Project Engineer	486 Atlantic Ave, Miami Beach, FL
-20	Betty Scott	Marketing	Marketing Manager	753 Collins Ave, Miami Beach, FL
-21	Daniel Green	Research & Development	Senior Researcher	951 Ocean Blvd, Golden Beach, FL
-22	Lisa Baker	Human Resources	HR Manager	147 Palm Ave, Miami, FL
-23	Paul Adams	Engineering	Lead Engineer	258 Pine St, Coral Gables, FL
-24	Nancy Nelson	Operations	Project Manager	369 Oak Ln, Miami, FL
-25	Mark Hill	Security	Security Engineer	741 Maple Dr, Miami Springs, FL
-26	Karen Wright	Research & Development	Lab Director	852 Cedar Rd, Miami Shores, FL
-27	John Mitchell	IT	IT Director	963 Birch St, North Miami, FL
-28	Ruth Carter	Finance	Senior Accountant	159 Elm Ave, South Miami, FL
-29	Steven Roberts	Engineering	Technical Lead	357 Walnut Blvd, Miami Lakes, FL
-30	Helen Phillips	Marketing	PR Manager	486 Spruce Dr, Aventura, FL
-31	Edward Campbell	Research & Development	Research Director	753 Magnolia Ln, Sunny Isles Beach, FL
-32	Sharon Turner	Legal	Legal Assistant	951 Cherry St, Bal Harbour, FL
-33	Frank Parker	Engineering	Quality Engineer	147 Willow Ave, North Miami Beach, FL
-34	Michelle Evans	Operations	Operations Analyst	258 Cypress Rd, Miami Gardens, FL
-35	Larry Edwards	Security	Security Officer	369 Sycamore St, Hialeah, FL
-36	Deborah Collins	Research & Development	Research Engineer	741 Poplar Dr, Doral, FL
-37	George Stewart	IT	Database Administrator	852 Juniper Ln, Kendall, FL
-38	Carol Morris	Finance	Budget Analyst	963 Ash St, Pinecrest, FL
-39	Ronald Sanders	Engineering	Systems Engineer	159 Beech Ave, Coral Gables, FL
-40	Amy Price	Marketing	Marketing Analyst	357 Locust Blvd, Miami Beach, FL
-41	Roger Barnes	Research & Development	Senior Scientist	486 Chestnut Dr, Key Biscayne, FL
-42	Kathleen Ross	Human Resources	HR Specialist	753 Dogwood Ln, Miami, FL
-43	Howard Long	Engineering	Development Engineer	951 Redwood St, Coral Gables, FL
-44	Martha Foster	Operations	Operations Coordinator	147 Sequoia Ave, Miami Beach, FL
-45	Eugene Butler	Security	Security Supervisor	258 Acacia Rd, Miami, FL
-46	Shirley Simmons	Research & Development	Research Assistant	369 Birchwood Dr, Miami Springs, FL
-47	Todd Hayes	IT	IT Support Specialist	741 Oakwood Ln, Miami Shores, FL
-48	Doris Morgan	Finance	Finance Manager	852 Maplewood St, North Miami, FL
-49	Carl Cooper	Engineering	Design Engineer	963 Cedarwood Ave, South Miami, FL
-50	Julie Reed	Marketing	Content Manager	159 Pinewood Blvd, Miami Lakes, FL
-51	Gerald Richardson	Research & Development	Research Coordinator	357 Elmwood Dr, Aventura, FL
-52	Joyce Cox	Legal	Paralegal	486 Sprucewood Ln, Sunny Isles Beach, FL
-53	Philip Howard	Engineering	Test Engineer	753 Willowwood St, Bal Harbour, FL
-54	Louise Ward	Operations	Quality Manager	951 Cherrywood Ave, North Miami Beach, FL
-55	Harold Torres	Security	Security Specialist	147 Cypress Point Rd, Miami Gardens, FL
-56	Ann Peterson	Research & Development	Lab Technician	258 Palm Beach Dr, Hialeah, FL
-57	Johnny Woods	IT	Software Developer	369 Ocean Ridge Ln, Doral, FL
-58	Sara Gray	Finance	Accounting Manager	741 Bayview St, Kendall, FL
-59	Ralph Hughes	Engineering	Electrical Engineer	852 Sunset Point Rd, Pinecrest, FL
-60	Doris Sanders	Marketing	Digital Marketing Manager	963 Harbor View Ave, Coral Gables, FL
-61	Ernest Price	Research & Development	Research Specialist	159 Lighthouse Dr, Miami Beach, FL
-62	Joyce Barnes	Human Resources	Recruitment Specialist	357 Seaside Blvd, Key Biscayne, FL
-63	Stanley Ross	Engineering	Mechanical Engineer	486 Coastal Ln, Miami, FL
-64	Catherine Long	Operations	Process Manager	753 Island Ave, Coral Gables, FL
-65	Tina Ruiz	Security	Access Control Specialist	951 Marina Dr, Miami Beach, FL
-66	Phyllis Ellis	Research & Development	Research Manager	147 Gulf Stream Rd, Miami, FL
-67	Henry Harrison	IT	Cloud Engineer	258 Atlantic Blvd, Miami Springs, FL
-68	Mildred Dixon	Finance	Risk Analyst	369 Pacific Ave, Miami Shores, FL
-69	Charles Mason	Engineering	Integration Engineer	741 Caribbean Way, North Miami, FL
-70	Elizabeth Gordon	Marketing	Brand Manager	852 Coral Reef Dr, South Miami, FL
-71	Samuel Warren	Research & Development	Senior Lab Technician	963 Ocean Breeze Ln, Miami Lakes, FL
-72	Ethel Stevens	Legal	Contract Specialist	159 Sea Shell Ave, Aventura, FL
-141	Maurice Weber	IT	Data Center Manager	753 Logic Lane, Doral, FL
-73	Albert Grant	Engineering	DevOps Engineer	357 Beach Point Rd, Sunny Isles Beach, FL
-74	Florence Meyer	Operations	Supply Chain Manager	486 Wave Crest Dr, Bal Harbour, FL
-75	Earl Bishop	Security	Cybersecurity Analyst	753 Surf Side Ln, North Miami Beach, FL
-76	Ruby Watson	Research & Development	Data Scientist	951 Tidal Way, Miami Gardens, FL
-77	Roy Chapman	IT	Infrastructure Engineer	147 Sand Dollar St, Hialeah, FL
-78	Lois Spencer	Finance	Treasury Analyst	258 Starfish Ave, Doral, FL
-79	Fred Wagner	Engineering	Automation Engineer	369 Sea Horse Dr, Kendall, FL
-80	Thelma Pierce	Marketing	Market Research Analyst	741 Nautilus Rd, Pinecrest, FL
-81	Claude Hopkins	Research & Development	Algorithm Specialist	852 Conch Shell Ln, Coral Gables, FL
-82	Grace Hawkins	Human Resources	Training Coordinator	963 Pearl Dr, Miami Beach, FL
-83	Ralph Palmer	Engineering	Reliability Engineer	159 Coral Castle Ave, Key Biscayne, FL
-84	Lucille Berry	Operations	Logistics Manager	357 Sea Grape St, Miami, FL
-85	Norman Owens	Security	Information Security Manager	486 Ocean Pearl Rd, Coral Gables, FL
-86	Irene Mills	Research & Development	Quantum Computing Specialist	753 Maritime Way, Miami Beach, FL
-87	Oscar Hunt	IT	Technical Support Manager	951 Coastal View Dr, Miami, FL
-88	Gladys Johnston	Finance	Compliance Officer	147 Sea Vista Ave, Miami Springs, FL
-89	Vernon Fowler	Engineering	Platform Engineer	258 Beach Walk Ln, Miami Shores, FL
-90	Hazel Simmons	Marketing	Communications Manager	369 Wave Runner Rd, North Miami, FL
-91	Chester Sims	Research & Development	Innovation Manager	741 Surf Rider St, South Miami, FL
-92	Bessie Fuller	Legal	IP Specialist	852 Tide Pool Ave, Miami Lakes, FL
-93	Wallace Lynch	Engineering	Security Engineer	963 Sea Breeze Dr, Aventura, FL
-94	Ida Benson	Operations	Business Analyst	159 Ocean Current Ln, Sunny Isles Beach, FL
-95	Max Holt	Security	Physical Security Manager	357 Coral Key Rd, Bal Harbour, FL
-96	Pearl Zimmerman	Research & Development	Technical Director	486 Sea Fan St, North Miami Beach, FL
-97	Leo Graves	IT	Information Systems Manager	753 Beach Cove Ave, Miami Gardens, FL
-98	Eva Sutton	Finance	Investment Analyst	951 Shell Beach Dr, Hialeah, FL
-99	Elizabeth Gordon	Engineering	Solutions Architect	147 Coastal Pine Rd, Doral, FL
-100	Edna Caldwell	Marketing	Product Marketing Manager	258 Ocean Ridge Way, Kendall, FL
-101	Walter Nash	Quantum Computing	Quantum Circuit Designer	742 Neon Palm Dr, Miami Springs, FL
-102	Dorothy Klein	Research & Development	Particle Physicist	891 Digital Lane, Coral Gables, FL
-103	Kenneth Robbins	Engineering	Cryogenics Specialist	456 Binary Road, Miami Beach, FL
-104	Martha Weber	Operations	Clean Room Supervisor	123 Silicon Street, Hialeah, FL
-105	Russell Hayes	IT	Mainframe Administrator	789 Circuit Ave, Kendall, FL
-106	Virginia Foster	Quantum Optics	Laser Systems Engineer	234 Quantum Court, Aventura, FL
-107	Howard Curtis	Security	Quantum Encryption Analyst	567 Processor Place, Doral, FL
-108	Alice Morgan	Materials Science	Superconductor Researcher	890 Transistor Trail, Miami Lakes, FL
-109	Eugene Powell	Hardware	Quantum Chip Designer	432 Logic Loop, South Miami, FL
-110	Helen Schmidt	Software	Quantum Algorithm Developer	765 Memory Lane, North Miami, FL
-111	Raymond Cooper	Facilities	Cleanroom Maintenance Engineer	198 Vacuum Way, Miami Shores, FL
-112	Ruth Henderson	Administration	Technical Documentation Specialist	543 Helium Road, Pinecrest, FL
-113	Carl Wagner	Research & Development	Quantum Theorist	876 Isotope Isle, Key Biscayne, FL
-114	Marie Patterson	Quality Control	Precision Testing Manager	321 Entropy End, Bal Harbour, FL
-115	Wayne Richards	Engineering	Vacuum Systems Engineer	654 Qubit Quarter, Miami Gardens, FL
-116	Judith Bryant	Human Resources	Technical Recruiter	987 Photon Path, Sunny Isles Beach, FL
-117	Roger Schmidt	Manufacturing	Clean Room Technician	246 Wave Way, North Miami Beach, FL
-118	Sharon Wallace	Finance	Research Grants Manager	135 Laser Lane, Miami Beach, FL
-119	Bruce Weber	Quantum Computing	Error Correction Specialist	864 Particle Place, Coral Gables, FL
-120	Theresa Hughes	Marketing	Technical Sales Manager	579 Nucleus Road, Miami Springs, FL
-121	Gary Foster	Engineering	Power Systems Engineer	753 Electron End, Hialeah, FL
-122	Diane Ross	Research & Development	Quantum Memory Researcher	951 Cooling Court, Kendall, FL
-123	Philip Morris	IT	Quantum Network Administrator	357 Fusion Falls, Aventura, FL
-124	Carolyn Butler	Operations	Supply Chain Coordinator	864 Plasma Path, Doral, FL
-125	Terry Patterson	Security	Access Control Manager	159 Magnetic Mile, Miami Lakes, FL
-126	Frances Gray	Materials Science	Crystal Growth Specialist	753 Quantum Quay, South Miami, FL
-127	Don Henderson	Hardware	Test Equipment Engineer	951 Boson Boulevard, North Miami, FL
-128	Gloria Martinez	Software	Simulation Developer	357 Neutron Way, Miami Shores, FL
-129	Steve Morgan	Facilities	Environmental Systems Manager	864 Cryogenic Court, Pinecrest, FL
-130	Betty Foster	Administration	Regulatory Compliance Officer	159 Quantum Quest, Key Biscayne, FL
-131	Dale Cooper	Research & Development	Quantum Optics Researcher	753 Laser Loop, Bal Harbour, FL
-132	Regina Phillips	Quality Control	Calibration Specialist	951 Particle Pass, Miami Gardens, FL
-133	Glen Howard	Engineering	Optical Systems Engineer	357 Quantum Quarter, Sunny Isles Beach, FL
-134	Tina Ruiz	Human Resources	Training Coordinator	864 Isotope Isle, North Miami Beach, FL
-135	Wesley Barnes	Manufacturing	Production Supervisor	159 Entropy Edge, Miami Beach, FL
-136	Peggy Schmidt	Finance	Budget Analyst	753 Binary Bay, Coral Gables, FL
-137	Calvin Hayes	Quantum Computing	Quantum Software Engineer	951 Circuit Circle, Miami Springs, FL
-138	Veronica Butler	Marketing	Technical Writer	357 Silicon Street, Hialeah, FL
-139	Nelson Ross	Engineering	RF Systems Engineer	864 Processor Place, Kendall, FL
-140	Audrey Foster	Research & Development	Quantum Materials Scientist	159 Memory Mile, Aventura, FL
-142	Sylvia Morgan	Operations	Inventory Control Manager	951 Vacuum View, Miami Lakes, FL
-143	Warren Phillips	Security	Security Systems Engineer	357 Helium Highway, South Miami, FL
-144	Geraldine Cooper	Materials Science	Surface Analysis Specialist	864 Photon Path, North Miami, FL
-145	Carl Jenkins	Hardware	Electronics Engineer	159 Qubit Quarter, Miami Shores, FL
-146	Marjorie Bryant	Software	Systems Analyst	753 Wave Walk, Pinecrest, FL
-147	Clayton Henderson	Facilities	Infrastructure Manager	951 Particle Place, Key Biscayne, FL
-148	Vivian Russell	Administration	Executive Assistant	357 Nucleus North, Bal Harbour, FL
-149	Edgar Morris	Research & Development	Senior Researcher	864 Electron Edge, Miami Gardens, FL
-150	Lorraine Butler	Quality Control	Quality Assurance Engineer	159 Cooling Court, Sunny Isles Beach, FL
-151	Franklin Gray	Engineering	Control Systems Engineer	753 Fusion Falls, North Miami Beach, FL
-152	Natalie Martinez	Human Resources	Benefits Coordinator	951 Plasma Path, Miami Beach, FL
-153	Gordon Weber	Manufacturing	Process Engineer	357 Magnetic Mile, Coral Gables, FL
-154	Constance Foster	Finance	Financial Analyst	864 Quantum Quay, Miami Springs, FL
-155	Lewis Morgan	Quantum Computing	Quantum Hardware Engineer	159 Boson Boulevard, Hialeah, FL
-156	Jeanne Cooper	Marketing	Marketing Communications Manager	753 Neutron Way, Kendall, FL
-157	Harvey Phillips	Engineering	Mechanical Systems Engineer	951 Cryogenic Court, Aventura, FL
-158	Marlene Howard	Research & Development	Research Project Manager	357 Quantum Quest, Doral, FL
-159	Clinton Russell	IT	Network Security Engineer	864 Laser Loop, Miami Lakes, FL
-160	Gwendolyn Barnes	Operations	Operations Manager	159 Particle Pass, South Miami, FL
-161	Willis Schmidt	Security	Security Operations Manager	753 Quantum Quarter, North Miami, FL
-162	Priscilla Hayes	Materials Science	Materials Testing Specialist	951 Isotope Isle, Miami Shores, FL
-163	Rodney Butler	Hardware	Hardware Development Engineer	357 Entropy Edge, Pinecrest, FL
-164	Josephine Ross	Software	Software Development Manager	864 Binary Bay, Key Biscayne, FL
-165	Wendell Foster	Facilities	Facility Operations Manager	159 Circuit Circle, Bal Harbour, FL
-166	Dolores Weber	Administration	Administrative Manager	753 Silicon Street, Miami Gardens, FL
-167	Darrell Morgan	Research & Development	Lead Research Scientist	951 Processor Place, Sunny Isles Beach, FL
-168	Bernice Phillips	Quality Control	Quality Control Supervisor	357 Memory Mile, North Miami Beach, FL
-169	Angelo Cooper	Engineering	Project Engineer	864 Logic Lane, Miami Beach, FL
-170	Marilyn Patterson	Human Resources	HR Manager	159 Vacuum View, Coral Gables, FL
-171	Clifford Bryant	Manufacturing	Manufacturing Manager	753 Helium Highway, Miami Springs, FL
-172	Jacqueline Henderson	Finance	Senior Accountant	951 Photon Path, Hialeah, FL
-173	Willard Russell	Quantum Computing	Quantum Research Director	357 Qubit Quarter, Kendall, FL
-174	Cheryl Morris	Marketing	Product Manager	864 Wave Walk, Aventura, FL
-175	Salvatore Butler	Engineering	Senior Engineer	159 Particle Place, Doral, FL
-176	Shirley Gray	Research & Development	Research Team Lead	753 Nucleus North, Miami Lakes, FL
-177	Alvin Martinez	IT	IT Operations Manager	951 Electron Edge, South Miami, FL
-178	Margie Weber	Operations	Operations Analyst	357 Cooling Court, North Miami, FL
-179	Wilbur Foster	Security	Security Team Lead	864 Fusion Falls, Miami Shores, FL
-180	Lucy Morgan	Materials Science	Research Associate	159 Plasma Path, Pinecrest, FL
-181	Forrest Cooper	Hardware	Hardware Team Lead	753 Magnetic Mile, Key Biscayne, FL
-182	Elsie Phillips	Software	Software Team Lead	951 Quantum Quay, Bal Harbour, FL
-183	Bradford Howard	Facilities	Facilities Coordinator	357 Boson Boulevard, Miami Gardens, FL
-184	Viola Russell	Administration	Office Manager	864 Neutron Way, Sunny Isles Beach, FL
-185	Edmund Barnes	Research & Development	Principal Scientist	159 Cryogenic Court, North Miami Beach, FL
-186	Genevieve Schmidt	Quality Control	Quality Manager	753 Quantum Quest, Miami Beach, FL
-187	Horace Hayes	Engineering	Engineering Director	951 Laser Loop, Coral Gables, FL
-188	Mabel Butler	Human Resources	HR Director	357 Particle Pass, Miami Springs, FL
-189	Dewey Ross	Manufacturing	Production Manager	864 Quantum Quarter, Hialeah, FL
-190	Jeannette Foster	Finance	Finance Director	159 Isotope Isle, Kendall, FL
-191	Clarence Weber	Quantum Computing	Senior Quantum Engineer	753 Entropy Edge, Aventura, FL
-192	Rosemary Morgan	Marketing	Marketing Director	951 Binary Bay, Doral, FL
-193	Lonnie Phillips	Engineering	Chief Engineer	357 Circuit Circle, Miami Lakes, FL
-194	Beatrice Cooper	Research & Development	Research Director	864 Silicon Street, South Miami, FL
-195	Archie Patterson	IT	IT Director	159 Processor Place, North Miami, FL
-196	Fannie Bryant	Operations	Operations Director	753 Memory Mile, Miami Shores, FL
-197	Otis Henderson	Security	Security Director	951 Logic Lane, Pinecrest, FL
-198	Harriet Russell	Materials Science	Materials Science Director	357 Vacuum View, Key Biscayne, FL
-199	Wilfred Morris	Hardware	Hardware Director	864 Helium Highway, Bal Harbour, FL
-200	Eunice Butler	Software	Software Director	159 Photon Path, Miami Gardens, FL
-201	Theodore Walsh	Quantum Computing	Quantum Algorithm Specialist	742 Superconductor Street, Coral Gables, FL
-202	Gloria Simmons	Research & Development	Experimental Physicist	891 Resonance Road, Miami Beach, FL
-203	Vernon Castro	Engineering	Cryogenics Engineer	456 Quantum Lane, Hialeah, FL
-204	Phyllis Wong	Materials Science	Superconductivity Researcher	123 Particle Drive, Kendall, FL
-205	Ralph Duncan	Manufacturing	Clean Room Supervisor	567 Neutron Avenue, Aventura, FL
-206	Geraldine Nash	Quality Control	Quantum Hardware Tester	890 Fusion Boulevard, Doral, FL
-207	Cecil Fleming	IT	Quantum Computing Systems Admin	234 Plasma Place, Miami Lakes, FL
-208	Vivian Ortiz	Hardware	Circuit Design Engineer	678 Laser Loop, South Miami, FL
-209	Chester Nguyen	Software	Quantum Software Developer	901 Electron Way, North Miami, FL
-210	Regina Patel	Operations	Quantum Lab Manager	345 Isotope Drive, Miami Shores, FL
-211	Milton Rhodes	Security	Quantum Cryptography Specialist	789 Qubit Court, Pinecrest, FL
-212	Thelma Jimenez	Research & Development	Quantum Optics Researcher	123 Wave Street, Key Biscayne, FL
-213	Oscar Baldwin	Engineering	Vacuum Systems Engineer	567 Boson Road, Bal Harbour, FL
-214	Edna McCarthy	Administration	Technical Documentation Manager	890 Hadron Highway, Miami Gardens, FL
-215	Lester Chandler	Quantum Computing	Quantum Error Correction Specialist	234 Entanglement Lane, Sunny Isles Beach, FL
-216	Gladys Hoffman	Materials Science	Quantum Materials Analyst	678 Coherence Court, North Miami Beach, FL
-217	Wayne Pearson	Manufacturing	Precision Equipment Technician	901 Decoherence Drive, Miami Beach, FL
-218	Ethel Vasquez	Quality Control	Calibration Specialist	345 Quantum Gate Road, Coral Gables, FL
-219	Floyd Kennedy	IT	Quantum Network Engineer	789 Superposition Street, Miami Springs, FL
-220	Bertha Mendoza	Hardware	Quantum Processor Designer	123 Interference Avenue, Hialeah, FL
-221	Lloyd Watkins	Software	Quantum Simulation Developer	567 Quantum Field Place, Kendall, FL
-222	Hazel Bridges	Operations	Clean Room Operations Manager	890 Spin State Boulevard, Aventura, FL
-223	Claude Fischer	Security	Quantum Security Analyst	234 Quantum Memory Lane, Doral, FL
-224	Pearl Zimmerman	Research & Development	Quantum Chemistry Researcher	678 Quantum Dot Drive, Miami Lakes, FL
-225	Max Stephens	Engineering	Quantum Control Systems Engineer	901 Quantum Well Way, South Miami, FL
-226	Eva Graves	Administration	Research Program Coordinator	345 Quantum Ring Road, North Miami, FL
-227	Leroy Barton	Quantum Computing	Quantum Circuit Designer	789 Quantum Wire Street, Miami Shores, FL
-228	Myrtle Hodges	Materials Science	Quantum Device Fabricator	123 Quantum Dot Court, Pinecrest, FL
-229	Lyle McCarthy	Manufacturing	Process Integration Engineer	567 Quantum Hall Place, Key Biscayne, FL
-230	Stella Buchanan	Quality Control	Reliability Engineer	890 Quantum Transport Drive, Bal Harbour, FL
-231	Earnest Robbins	IT	Quantum Data Center Manager	234 Quantum Cascade Lane, Miami Gardens, FL
-232	Violet Carpenter	Hardware	Quantum Hardware Architect	678 Quantum Bridge Road, Sunny Isles Beach, FL
-233	Emmett Walters	Software	Quantum Algorithm Engineer	901 Quantum Logic Way, North Miami Beach, FL
-234	Mattie Hodges	Operations	Facilities Operations Supervisor	345 Quantum Optics Drive, Miami Beach, FL
-235	Clifton Parks	Security	Information Security Manager	789 Quantum State Street, Coral Gables, FL
-236	Essie Fleming	Research & Development	Senior Research Physicist	123 Quantum Phase Court, Miami Springs, FL
-237	Wilbert Nash	Engineering	RF Systems Engineer	567 Quantum Tunnel Place, Hialeah, FL
-238	Nellie Chandler	Administration	Executive Assistant	890 Quantum Valley Boulevard, Kendall, FL
-239	Elmer Hoffman	Quantum Computing	Quantum Applications Developer	234 Quantum Junction Lane, Aventura, FL
-240	Bessie Pearson	Materials Science	Materials Process Engineer	678 Quantum Island Drive, Doral, FL
-241	Ervin Vasquez	Manufacturing	Production Supervisor	901 Quantum Mesa Way, Miami Lakes, FL
-242	Ida Kennedy	Quality Control	Quality Systems Manager	345 Quantum Peak Road, South Miami, FL
-243	Rufus Mendoza	IT	IT Infrastructure Manager	789 Quantum Ridge Street, North Miami, FL
-244	Susie Watkins	Hardware	Hardware Integration Engineer	123 Quantum Summit Court, Miami Shores, FL
-245	Dewey Bridges	Software	Software Systems Architect	567 Quantum Canyon Place, Pinecrest, FL
-246	Mae Fischer	Operations	Operations Research Analyst	890 Quantum Vista Drive, Key Biscayne, FL
-247	Elbert Zimmerman	Security	Security Systems Engineer	234 Quantum Harbor Lane, Bal Harbour, FL
-248	Minnie Stephens	Research & Development	Quantum Theory Researcher	678 Quantum Bay Road, Miami Gardens, FL
-249	Grover Graves	Engineering	Electronics Engineer	901 Quantum Coast Way, Sunny Isles Beach, FL
-250	Lena Barton	Administration	Administrative Director	345 Quantum Shore Drive, North Miami Beach, FL
-251	Percy Hodges	Quantum Computing	Quantum Research Engineer	789 Quantum Beach Street, Miami Beach, FL
-252	Nina McCarthy	Materials Science	Materials Characterization Specialist	123 Quantum Cove Court, Coral Gables, FL
-253	Glenn Buchanan	Manufacturing	Manufacturing Systems Engineer	567 Quantum Gulf Place, Miami Springs, FL
-254	Cora Robbins	Quality Control	Process Quality Engineer	890 Quantum Sound Boulevard, Hialeah, FL
-255	Amos Carpenter	IT	Database Administrator	234 Quantum Lake Lane, Kendall, FL
-256	Mamie Walters	Hardware	Hardware Test Engineer	678 Quantum River Drive, Aventura, FL
-257	Archie Hodges	Software	Software Project Manager	901 Quantum Stream Way, Doral, FL
-258	Lydia Parks	Operations	Technical Operations Manager	345 Quantum Creek Road, Miami Lakes, FL
-259	Nathaniel Fleming	Security	Security Operations Analyst	789 Quantum Brook Street, South Miami, FL
-260	Lucille Nash	Research & Development	Research Program Manager	123 Quantum Spring Court, North Miami, FL
-261	Cornelius Chandler	Engineering	Systems Integration Engineer	567 Quantum Falls Place, Miami Shores, FL
-262	Addie Hoffman	Administration	Operations Coordinator	890 Quantum Rapids Drive, Pinecrest, FL
-263	Norman Owens	Quantum Computing	Quantum Systems Engineer	234 Quantum Waters Lane, Key Biscayne, FL
-264	Ellen Vasquez	Materials Science	Materials Development Engineer	678 Quantum Pool Road, Bal Harbour, FL
-265	Sherman Kennedy	Manufacturing	Production Line Manager	901 Quantum Ocean Way, Miami Gardens, FL
-266	Nannie Mendoza	Quality Control	Quality Assurance Specialist	345 Quantum Sea Drive, Sunny Isles Beach, FL
-267	Marvin Watkins	IT	IT Security Manager	789 Quantum Wave Street, North Miami Beach, FL
-268	Emma Bridges	Hardware	Hardware Development Manager	123 Quantum Surf Court, Miami Beach, FL
-269	Elijah Fischer	Software	Senior Software Engineer	567 Quantum Tide Place, Coral Gables, FL
-270	Caroline Zimmerman	Operations	Operations Support Manager	890 Quantum Current Boulevard, Miami Springs, FL
-271	Warren Stephens	Security	Security Technology Specialist	234 Quantum Flow Lane, Hialeah, FL
-272	Rose Graves	Research & Development	Research Team Supervisor	678 Quantum Stream Drive, Kendall, FL
-273	Jerome Barton	Engineering	Engineering Project Manager	901 Quantum River Way, Aventura, FL
-274	Nora Hodges	Administration	Administrative Supervisor	345 Quantum Creek Road, Doral, FL
-275	Don McCarthy	Quantum Computing	Quantum Technology Specialist	789 Quantum Brook Street, Miami Lakes, FL
-276	Lula Buchanan	Materials Science	Materials Testing Engineer	123 Quantum Spring Court, South Miami, FL
-277	Pete Robbins	Manufacturing	Manufacturing Technology Manager	567 Quantum Falls Place, North Miami, FL
-278	Effie Carpenter	Quality Control	Quality Control Engineer	890 Quantum Rapids Drive, Miami Shores, FL
-279	Leo Walters	IT	IT Systems Analyst	234 Quantum Waters Lane, Pinecrest, FL
-280	Della Hodges	Hardware	Hardware Systems Engineer	678 Quantum Pool Road, Key Biscayne, FL
-281	Calvin Parks	Software	Software Development Lead	901 Quantum Ocean Way, Bal Harbour, FL
-282	Lizzie Fleming	Operations	Operations Analysis Manager	345 Quantum Sea Drive, Miami Gardens, FL
-283	Tom Nash	Security	Security Systems Specialist	789 Quantum Wave Street, Sunny Isles Beach, FL
-284	Sophie Chandler	Research & Development	Research Project Coordinator	123 Quantum Surf Court, North Miami Beach, FL
-285	Sam Hoffman	Engineering	Engineering Team Lead	567 Quantum Tide Place, Miami Beach, FL
-286	Maggie Pearson	Administration	Administrative Manager	890 Quantum Current Boulevard, Coral Gables, FL
-287	Ed Vasquez	Quantum Computing	Quantum Research Scientist	234 Quantum Flow Lane, Miami Springs, FL
-288	Nancy Kennedy	Materials Science	Materials Science Engineer	678 Quantum Stream Drive, Hialeah, FL
-289	Ben Mendoza	Manufacturing	Production Engineer	901 Quantum River Way, Kendall, FL
-290	Katie Watkins	Quality Control	Quality Assurance Manager	345 Quantum Creek Road, Aventura, FL
-291	Jim Bridges	IT	IT Project Manager	789 Quantum Brook Street, Doral, FL
-292	Mary Fischer	Hardware	Hardware Research Engineer	123 Quantum Spring Court, Miami Lakes, FL
-293	Joe Zimmerman	Software	Software Systems Engineer	567 Quantum Falls Place, South Miami, FL
-294	Lucy Stephens	Operations	Operations Manager	890 Quantum Rapids Drive, North Miami, FL
-295	Bill Graves	Security	Security Operations Manager	234 Quantum Waters Lane, Miami Shores, FL
-296	Sarah Barton	Research & Development	Senior Research Engineer	678 Quantum Pool Road, Pinecrest, FL
-297	Hristo Bogoev	Engineering	Principal Engineer	901 Quantum Ocean Way, Key Biscayne, FL
-298	Jane McCarthy	Administration	Program Coordinator	345 Quantum Sea Drive, Bal Harbour, FL
-299	Mike Buchanan	Quantum Computing	Lead Quantum Engineer	789 Quantum Wave Street, Miami Gardens, FL
-300	Ann Robbins	Materials Science	Senior Materials Scientist	123 Quantum Surf Court, Sunny Isles Beach, FL
-\.
-
-
---
--- Data for Name: facility_access_logs; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.facility_access_logs (id, employee_id, facility_name, access_date, access_time) FROM stdin;
-1	127	Facility 45	19890421	08:32
-2	256	Facility 12	19890421	15:47
-3	89	Facility 73	19890421	11:23
-4	178	Facility 28	19890421	09:15
-5	42	Facility 91	19890421	16:54
-6	299	Facility 7	19890421	13:41
-7	156	Facility 63	19890421	10:29
-8	23	Facility 82	19890421	14:38
-9	245	Facility 19	19890421	12:07
-10	67	Facility 55	19890421	17:26
-11	189	Facility 34	19890421	08:59
-12	112	Facility 96	19890421	15:13
-13	278	Facility 3	19890421	11:45
-14	34	Facility 77	19890421	09:37
-15	167	Facility 41	19890421	16:22
-16	223	Facility 88	19890421	13:19
-17	145	Facility 25	19890421	10:51
-18	78	Facility 69	19890421	14:04
-19	290	Facility 15	19890421	12:33
-20	56	Facility 92	19890421	17:48
-21	134	Facility 37	19890421	08:17
-22	267	Facility 84	19890421	15:29
-23	99	Facility 11	19890421	11:56
-24	201	Facility 58	19890421	09:44
-25	45	Facility 93	19890421	16:37
-26	178	Facility 26	19890421	13:52
-27	234	Facility 71	19890421	10:08
-28	123	Facility 49	19890421	14:21
-29	256	Facility 6	19890421	12:45
-30	67	Facility 83	19890421	17:39
-31	189	Facility 32	19890421	08:26
-32	145	Facility 97	19890421	15:53
-33	278	Facility 14	19890421	11:11
-34	90	Facility 65	19890421	09:58
-35	167	Facility 43	19890421	16:15
-36	223	Facility 79	19890421	13:34
-37	99	Facility 22	19890421	10:42
-38	78	Facility 68	19890421	14:57
-39	290	Facility 16	19890421	12:19
-40	99	Facility 95	19890421	17:03
-41	134	Facility 39	19890421	08:48
-42	267	Facility 86	19890421	15:36
-43	89	Facility 13	19890421	11:27
-44	201	Facility 61	19890421	09:33
-45	45	Facility 94	19890421	16:49
-46	178	Facility 29	19890421	13:07
-47	234	Facility 74	19890421	10:55
-48	123	Facility 47	19890421	14:13
-49	256	Facility 8	19890421	12:28
-50	67	Facility 81	19890421	17:51
-51	189	Facility 35	19890421	08:39
-52	145	Facility 99	19890421	15:22
-53	278	Facility 17	19890421	11:48
-54	90	Facility 64	19890421	09:26
-55	99	Facility 42	19890421	16:33
-56	223	Facility 76	19890421	13:45
-57	112	Facility 24	19890421	10:17
-58	78	Facility 67	19890421	14:42
-59	290	Facility 18	19890421	12:56
-60	56	Facility 98	19890421	17:14
-61	134	Facility 36	19890421	08:53
-62	267	Facility 85	19890421	15:09
-63	89	Facility 12	19890421	11:37
-64	201	Facility 59	19890421	09:49
-65	45	Facility 91	19890421	16:27
-66	99	Facility 27	19890421	13:58
-67	234	Facility 72	19890421	10:34
-68	123	Facility 48	19890421	14:49
-69	256	Facility 5	19890421	12:11
-70	67	Facility 87	19890421	17:32
-71	189	Facility 31	19890421	08:44
-72	145	Facility 96	19890421	15:18
-73	278	Facility 15	19890421	11:52
-74	99	Facility 18	19890421	08:55
-75	167	Facility 44	19890421	16:38
-76	223	Facility 78	19890421	13:26
-77	112	Facility 23	19890421	10:47
-78	78	Facility 69	19890421	14:33
-79	290	Facility 19	19890421	12:59
-80	56	Facility 93	19890421	17:07
-81	297	Facility 18	19890421	09:01
-82	267	Facility 82	19890421	15:44
-83	89	Facility 14	19890421	11:19
-84	201	Facility 57	19890421	09:55
-85	45	Facility 92	19890421	16:43
-86	178	Facility 28	19890421	13:12
-87	234	Facility 75	19890421	10:39
-88	123	Facility 46	19890421	14:27
-89	256	Facility 9	19890421	12:51
-90	67	Facility 84	19890421	17:19
-91	189	Facility 33	19890421	08:57
-92	145	Facility 98	19890421	15:31
-93	278	Facility 16	19890421	11:43
-94	90	Facility 62	19890421	09:28
-95	167	Facility 45	19890421	16:56
-96	223	Facility 77	19890421	13:37
-97	112	Facility 21	19890421	10:22
-98	78	Facility 68	19890421	14:45
-99	290	Facility 17	19890421	12:38
-100	56	Facility 94	19890421	17:24
-\.
-
-
---
--- Data for Name: incident_reports; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.incident_reports (id, date, location, description) FROM stdin;
-1	19871030	Miami Beach Botanical Garden	Rare plants were stolen from research greenhouse. Security reported breach in monitoring systems.
-2	19871031	Coral Gables Country Club	A suspicious gathering was reported by multiple attendees. Security footage showed unusual activity near the premises.
-3	19871030	South Beach Marina	Several boats were damaged during a late night storm. Investigators found evidence of tampering with the moorings.
-4	19871031	Little Havana Theater	An evening performance was disrupted by a power outage. Technical inspection revealed signs of deliberate sabotage.
-5	19871030	Brickell Financial Center	Documents were found shredded in executive offices. Security cameras showed unauthorized access after hours.
-6	19871031	Vizcaya Museum Gardens	Historical artifacts were reported missing from display cases. Alarm systems had been professionally disabled.
-7	19871030	Coconut Grove Yacht Club	A luxury vessel was found adrift in the marina. The owner reported signs of forced entry and theft.
-8	19871031	Design District Gallery	Valuable artwork was discovered damaged during exhibition. Surveillance footage showed suspicious movement after closing.
-9	19871030	Wynwood Arts Complex	Multiple studios reported vandalism overnight. Evidence suggested coordinated criminal activity.
-10	19871031	Miami Beach Convention Center	A high-profile auction was disrupted by security threats. Investigation revealed inside involvement.
-11	19871030	Fisher Island Club	Members reported unusual disturbances during dinner service. Staff witnessed suspicious individuals on premises.
-12	19871031	Bayside Marketplace	Several shops reported break-ins after midnight. Security systems were found professionally disabled.
-13	19871030	Port of Miami Terminal	Cargo containers showed signs of tampering overnight. Dock workers reported unauthorized vehicle movements.
-14	19871031	Venetian Pool	Historic facilities were vandalized after hours. Evidence suggested multiple perpetrators were involved.
-15	19871030	Calle Ocho Plaza	Street festival preparations were sabotaged overnight. Organizers found equipment deliberately damaged.
-16	19871031	Fairchild Tropical Garden	Rare specimens were stolen from secured greenhouses. Security reported breach in perimeter systems.
-17	19871030	Miami River District	Warehouse break-ins were reported by multiple businesses. Investigation showed coordinated criminal activity.
-18	19871031	Miracle Mile Shopping Center	Jewelry store reported sophisticated burglary attempt. Alarm systems were found professionally bypassed.
-19	19871030	Miami Seaquarium	Research facilities showed signs of unauthorized access. Marine biology samples were reported missing.
-20	19871031	Freedom Tower	Historical documents were found disturbed in archive room. Security cameras captured unidentified intruders.
-21	19871030	Matheson Hammock Marina	Several vessels reported equipment theft overnight. Harbor patrol found evidence of organized crime.
-22	19871031	Deering Estate	Historical artifacts were displaced from secure storage. Staff reported unusual activity during evening hours.
-23	19871030	Olympia Theater	Valuable props were stolen during overnight hours. Stage equipment showed signs of tampering.
-24	19871031	Jungle Island	Animal enclosures were found unlocked after hours. Staff reported missing maintenance equipment.
-25	19871030	Miami City Cemetery	Historical monuments were vandalized overnight. Groundskeepers reported suspicious gatherings.
-26	19871031	Marlins Park Area	Construction site reported missing materials and equipment. Security footage showed unauthorized vehicles.
-27	19871030	Miami Science Museum	Valuable exhibits were tampered with after closing. Staff discovered missing research materials.
-28	19871031	Bayfront Park	Public artwork was damaged during evening hours. Park security reported suspicious group activity.
-29	19871030	Miami Childrens Museum	Educational displays were vandalized overnight. Security systems showed signs of interference.
-30	19871031	Pérez Art Museum	Contemporary artwork was found damaged in storage. Staff reported unauthorized access to restricted areas.
-31	19871030	Adrienne Arsht Center	Performance equipment was sabotaged before show time. Technical staff found evidence of deliberate tampering.
-32	19871031	Lummus Park	Historical structures showed signs of vandalism. Park rangers reported suspicious night activity.
-33	19871030	Miami Beach Botanical Garden	Rare plants were stolen from research greenhouse. Security reported breach in monitoring systems.
-34	19871031	Pinecrest Gardens	Art installations were damaged during night hours. Surveillance showed unauthorized access.
-35	19871030	Crandon Park	Beach facilities reported extensive vandalism. Staff discovered evidence of overnight criminal activity.
-36	19871031	Greynolds Park	Historical structures were damaged after hours. Park security found signs of forced entry.
-37	19871030	Tropical Park	Sports facilities reported equipment theft overnight. Security cameras showed suspicious activity.
-38	19871031	Simpson Park	Rare plant specimens were stolen from conservatory. Staff found evidence of professional theft.
-39	19871030	Virginia Key Beach	Marine research equipment was stolen overnight. Security reported unauthorized boat activity.
-40	19871031	Morningside Park	Tennis facilities reported vandalism and theft. Security footage showed coordinated criminal activity.
-41	19871030	Legion Park	Community center reported break-in overnight. Staff found evidence of professional burglary.
-42	19871031	Kennedy Park	Waterfront facilities showed signs of vandalism. Park patrol reported suspicious gatherings.
-43	19871030	Alice Wainwright Park	Park structures were damaged during night hours. Security found evidence of organized activity.
-44	19871031	Margaret Pace Park	Recreational equipment was stolen after hours. Staff reported suspicious vehicle movements.
-45	19871030	Peacock Park	Sports facilities were vandalized overnight. Security cameras showed unauthorized access.
-46	19871031	South Pointe Park	Beach patrol equipment was stolen after hours. Staff reported suspicious group activity.
-47	19871030	Biscayne National Park	Marine research stations reported break-ins. Security found evidence of professional theft.
-48	19871031	Oleta River State Park	Kayak rental facility reported extensive theft. Staff discovered signs of forced entry.
-49	19871030	Bill Baggs Cape Park	Historical lighthouse showed signs of vandalism. Park rangers reported suspicious activity.
-50	19871031	Haulover Park	Marina facilities reported equipment theft overnight. Security footage showed coordinated activity.
-51	19871030	North Shore Park	Beach facilities showed signs of vandalism. Staff found evidence of criminal activity.
-52	19871031	Surfside Community Center	Recreational equipment was stolen after hours. Security reported unauthorized access.
-53	19871030	Golden Beach Pavilion	Beach patrol reported vandalism overnight. Staff discovered evidence of organized crime.
-54	19871031	Sunny Isles Pier	Fishing equipment was stolen during night hours. Security cameras showed suspicious activity.
-55	19871030	Bal Harbour Beach Club	Private facilities reported sophisticated break-in. Staff found evidence of professional theft.
-56	19871031	Indian Creek Country Club	Golf equipment was stolen overnight. Security reported unauthorized vehicle access.
-57	19871030	Miami Shores Country Club	Club facilities showed signs of vandalism. Staff discovered evidence of coordinated activity.
-58	19871031	Normandy Shores Golf Club	Pro shop reported sophisticated burglary attempt. Security systems were professionally disabled.
-59	19871030	La Gorce Country Club	Tennis facilities reported equipment theft. Staff found evidence of organized crime.
-60	19871031	Riviera Country Club	Golf cart facility reported extensive theft. Security footage showed suspicious activity.
-61	19871030	Granada Golf Course	Maintenance equipment was stolen overnight. Staff reported unauthorized access.
-62	19871031	Biltmore Golf Course	Pro shop showed signs of sophisticated break-in. Security found evidence of professional theft.
-63	19871030	Miami Beach Golf Club	Club house reported vandalism after hours. Staff discovered signs of forced entry.
-64	19871031	Melreese Country Club	Golf equipment was stolen during night hours. Security reported suspicious vehicle movements.
-65	19871030	International Links Miami	Maintenance facility reported extensive theft. Staff found evidence of coordinated activity.
-66	19871031	Briar Bay Golf Course	Pro shop showed signs of attempted burglary. Security cameras captured suspicious activity.
-67	19871030	Palmetto Golf Course	Club facilities reported vandalism overnight. Staff discovered evidence of professional theft.
-68	19871031	Country Club of Miami	Tennis facilities showed signs of break-in. Security found unauthorized access evidence.
-69	19871030	California Club	Golf cart facility reported sophisticated theft. Staff reported suspicious group activity.
-70	19871031	Shulas Golf Club	Pro shop equipment was stolen after hours. Security footage showed coordinated activity.
-71	19871030	Miami National Golf Club	Maintenance equipment showed signs of theft. Staff found evidence of professional burglary.
-72	19871031	Killian Greens Golf Club	Club house reported vandalism overnight. Security discovered unauthorized access.
-73	19871030	Costa Del Sol Golf Club	Golf equipment was stolen during night hours. Staff reported suspicious vehicle movements.
-74	19890421	QuantumTech HQ	Prototype destroyed; data erased from servers.
-75	19871031	Miami Mansion, Coconut Grove	During a masked ball, a body was found in the garden. Witnesses mentioned a hotel booking and suspicious phone activity.
-76	19871031	Coral Pine Golf Course	Club facilities showed signs of vandalism. Security reported suspicious activity.
-77	19871030	Miami Springs Golf Club	Golf cart facility reported sophisticated theft. Staff found evidence of professional burglary.
-78	19871031	Normandy Shores Club	Tennis equipment was stolen overnight. Security cameras showed suspicious activity.
-79	19871030	Fisher Island Club Course	Pro shop reported attempted break-in. Staff discovered evidence of coordinated activity.
-80	19871031	Deering Bay Yacht Club	Club facilities showed signs of vandalism. Security found unauthorized access evidence.
-81	19871030	Williams Island Club	Tennis facilities reported equipment theft. Staff reported suspicious group activity.
-82	19871031	Turnberry Isle Resort	Golf equipment was stolen after hours. Security footage showed coordinated activity.
-83	19871030	Doral Golf Resort	Maintenance facility reported extensive theft. Staff found evidence of professional theft.
-84	19871031	Trump National Doral	Pro shop showed signs of sophisticated break-in. Security discovered unauthorized access.
-85	19871030	Blue Monster Course	Club house reported vandalism overnight. Staff reported suspicious vehicle movements.
-86	19871031	Silver Fox Course	Golf cart facility showed signs of theft. Security found evidence of organized crime.
-87	19871030	Golden Palm Course	Tennis equipment was stolen during night hours. Staff discovered signs of forced entry.
-88	19871031	Red Tiger Course	Maintenance facility reported sophisticated theft. Security reported suspicious activity.
-89	19871030	Great White Course	Pro shop showed signs of attempted burglary. Staff found evidence of professional theft.
-90	19871031	Jim McLean Golf School	Training equipment was stolen overnight. Security cameras showed suspicious activity.
-91	19871030	Miami Beach Golf Academy	Practice facility reported extensive theft. Staff discovered evidence of coordinated activity.
-92	19871031	Don Shula Golf Academy	Training equipment showed signs of vandalism. Security found unauthorized access evidence.
-93	19871030	David Leadbetter Academy	Golf equipment was stolen after hours. Staff reported suspicious group activity.
-94	19871031	Rick Smith Golf Performance	Practice facility reported sophisticated theft. Security footage showed coordinated activity.
-95	19871030	Claude Harmon Golf School	Training equipment showed signs of break-in. Staff found evidence of professional burglary.
-96	19871031	Mitchell Spearman Academy	Practice facility reported vandalism overnight. Security discovered unauthorized access.
-97	19871030	Dave Pelz Golf School	Training equipment was stolen during night hours. Staff reported suspicious vehicle movements.
-98	19871031	Golf Institute Miami	Practice facility showed signs of sophisticated theft. Security found evidence of organized crime.
-99	19871030	Miami Golf Learning Center	Training equipment reported extensive vandalism. Staff discovered signs of forced entry.
-100	19871031	South Florida Golf Academy	Practice facility showed signs of attempted burglary. Security reported suspicious activity.
-\.
-
-
---
--- Data for Name: keycard_access_logs; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.keycard_access_logs (id, employee_id, keycard_code, access_date, access_time) FROM stdin;
-1	145	QX-115	19890421	08:15
-2	67	QX-042	19890421	09:30
-3	234	QX-201	19890421	10:45
-4	89	QX-018	19890421	11:20
-5	12	QX-073	19890421	12:35
-6	178	QX-314	19890421	13:50
-7	45	QX-091	19890421	14:15
-8	290	QX-158	19890421	15:30
-9	123	QX-247	19890421	16:45
-10	56	QX-024	19890421	17:20
-11	189	QX-183	19890421	18:35
-12	78	QX-066	19890421	19:50
-13	245	QX-281	19890421	20:15
-14	34	QX-102	19890421	21:30
-15	167	QX-037	19890421	22:45
-16	90	QX-330	19890421	23:20
-17	278	QX-165	19890421	00:35
-18	156	QX-088	19890421	01:50
-19	23	QX-219	19890421	02:15
-20	145	QX-146	19890421	03:30
-21	89	QX-055	19890421	04:45
-22	267	QX-272	19890421	05:20
-23	134	QX-129	19890421	06:35
-24	78	QX-304	19890421	07:50
-25	190	QX-077	19890421	08:15
-26	45	QX-196	19890421	09:30
-27	234	QX-253	19890421	10:45
-28	67	QX-012	19890421	11:20
-29	189	QX-171	19890421	12:35
-30	12	QX-348	19890421	13:50
-31	145	QX-083	19890421	14:15
-32	290	QX-220	19890421	15:30
-33	78	QX-135	19890421	16:45
-34	167	QX-040	19890421	17:20
-35	34	QX-269	19890421	18:35
-36	245	QX-118	19890421	19:50
-37	90	QX-019	19890421	20:15
-38	156	QX-322	19890421	21:30
-39	278	QX-061	19890421	22:45
-40	23	QX-184	19890421	23:20
-41	189	QX-297	19890421	00:35
-42	67	QX-008	19890421	01:50
-43	234	QX-151	19890421	02:15
-44	134	QX-376	19890421	03:30
-45	78	QX-093	19890421	04:45
-46	190	QX-212	19890421	05:20
-47	45	QX-107	19890421	06:35
-48	267	QX-036	19890421	07:50
-49	89	QX-309	19890421	08:15
-50	12	QX-160	19890421	09:30
-51	145	QX-025	19890421	10:45
-52	290	QX-244	19890421	11:20
-53	78	QX-179	19890421	12:35
-54	167	QX-098	19890421	13:50
-55	34	QX-333	19890421	14:15
-56	245	QX-110	19890421	15:30
-57	90	QX-053	19890421	16:45
-58	156	QX-286	19890421	17:20
-59	278	QX-141	19890421	18:35
-60	23	QX-072	19890421	19:50
-61	189	QX-357	19890421	20:15
-62	67	QX-194	19890421	21:30
-63	234	QX-031	19890421	22:45
-64	134	QX-260	19890421	23:20
-65	78	QX-127	19890421	00:35
-66	190	QX-050	19890421	01:50
-67	45	QX-389	19890421	02:15
-68	267	QX-104	19890421	03:30
-69	89	QX-067	19890421	04:45
-70	12	QX-238	19890421	05:20
-71	145	QX-155	19890421	06:35
-72	290	QX-082	19890421	07:50
-73	78	QX-311	19890421	08:15
-74	167	QX-130	19890421	09:30
-75	34	QX-015	19890421	10:45
-76	245	QX-292	19890421	11:20
-77	90	QX-187	19890421	12:35
-78	156	QX-046	19890421	13:50
-79	278	QX-363	19890421	14:15
-80	23	QX-112	19890421	15:30
-81	189	QX-079	19890421	16:45
-82	67	QX-228	19890421	17:20
-83	234	QX-161	19890421	18:35
-84	134	QX-094	19890421	19:50
-85	78	QX-335	19890421	20:15
-86	190	QX-148	19890421	21:30
-87	45	QX-027	19890421	22:45
-88	267	QX-274	19890421	23:20
-89	99	QX-035	19890421	08:30
-90	12	QX-060	19890421	01:50
-91	145	QX-301	19890421	02:15
-92	290	QX-176	19890421	03:30
-93	78	QX-049	19890421	04:45
-94	167	QX-250	19890421	05:20
-95	34	QX-113	19890421	06:35
-96	245	QX-080	19890421	07:50
-97	90	QX-345	19890421	08:15
-98	156	QX-136	19890421	09:30
-99	278	QX-033	19890421	10:45
-100	23	QX-208	19890421	11:20
-101	145	QX-097	19890421	09:45
-102	67	QX-280	19890421	14:30
-103	289	QX-167	19890421	16:15
-104	123	QX-010	19890421	08:20
-105	234	QX-329	19890421	11:45
-106	78	QX-056	19890421	13:30
-107	156	QX-215	19890421	15:20
-108	45	QX-100	19890421	17:45
-109	290	QX-075	19890421	10:15
-110	167	QX-372	19890421	12:30
-111	89	QX-121	19890421	14:45
-112	234	QX-022	19890421	16:20
-113	56	QX-241	19890421	09:30
-114	178	QX-188	19890421	11:15
-115	267	QX-043	19890421	13:45
-116	90	QX-306	19890421	15:20
-117	145	QX-193	19890421	17:30
-118	234	QX-064	19890421	10:45
-119	78	QX-299	19890421	12:15
-120	156	QX-150	19890421	14:30
-121	289	QX-085	19890421	16:45
-122	67	QX-354	19890421	09:20
-123	190	QX-109	19890421	11:30
-124	45	QX-016	19890421	13:15
-125	278	QX-265	19890421	15:45
-126	134	QX-132	19890421	17:20
-127	89	QX-039	19890421	10:30
-128	245	QX-398	19890421	12:45
-129	67	QX-203	19890421	14:20
-130	178	QX-070	19890421	16:30
-131	90	QX-325	19890421	09:15
-132	234	QX-174	19890421	11:45
-133	156	QX-095	19890421	13:20
-134	45	QX-256	19890421	15:30
-135	289	QX-147	19890421	17:15
-136	123	QX-004	19890421	10:20
-137	267	QX-361	19890421	12:30
-138	78	QX-116	19890421	14:45
-139	190	QX-059	19890421	16:20
-140	56	QX-288	19890421	09:30
-141	145	QX-181	19890421	11:15
-142	278	QX-030	19890421	13:45
-143	90	QX-337	19890421	15:20
-144	234	QX-124	19890421	17:30
-145	67	QX-069	19890421	10:45
-146	156	QX-210	19890421	12:15
-147	289	QX-163	19890421	14:30
-148	123	QX-086	19890421	16:45
-149	45	QX-385	19890421	09:20
-150	190	QX-142	19890421	11:30
-151	267	QX-021	19890421	13:15
-152	78	QX-248	19890421	15:45
-153	234	QX-197	19890421	17:20
-154	156	QX-052	19890421	10:30
-155	89	QX-317	19890421	12:45
-156	145	QX-154	19890421	14:20
-157	278	QX-071	19890421	16:30
-158	67	QX-276	19890421	09:15
-159	190	QX-123	19890421	11:45
-160	56	QX-006	19890421	13:20
-161	234	QX-341	19890421	15:30
-162	123	QX-106	19890421	17:15
-163	289	QX-045	19890421	10:20
-164	78	QX-224	19890421	12:30
-165	156	QX-177	19890421	14:45
-166	45	QX-090	19890421	16:20
-167	190	QX-367	19890421	09:30
-168	267	QX-138	19890421	11:15
-169	90	QX-017	19890421	13:45
-170	234	QX-294	19890421	15:20
-171	123	QX-157	19890421	17:30
-172	156	QX-028	19890421	10:45
-173	89	QX-303	19890421	12:15
-174	278	QX-190	19890421	14:30
-175	67	QX-057	19890421	16:45
-176	190	QX-236	19890421	09:20
-177	45	QX-143	19890421	11:30
-178	234	QX-084	19890421	13:15
-179	156	QX-359	19890421	15:45
-180	289	QX-114	19890421	17:20
-181	78	QX-029	19890421	10:30
-182	123	QX-262	19890421	12:45
-183	267	QX-169	19890421	14:20
-184	90	QX-044	19890421	16:30
-185	234	QX-391	19890421	09:15
-186	156	QX-186	19890421	11:45
-187	45	QX-063	19890421	13:20
-188	190	QX-222	19890421	15:30
-189	89	QX-131	19890421	17:15
-190	278	QX-096	19890421	10:20
-191	67	QX-349	19890421	12:30
-192	234	QX-152	19890421	14:45
-193	123	QX-013	19890421	16:20
-194	156	QX-284	19890421	09:30
-195	289	QX-205	19890421	11:15
-196	78	QX-034	19890421	13:45
-197	190	QX-319	19890421	15:20
-198	45	QX-108	19890421	17:30
-199	267	QX-099	19890421	10:45
-200	90	QX-258	19890421	12:15
-\.
-
-
---
--- Data for Name: witness_statements; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.witness_statements (id, incident_id, employee_id, statement) FROM stdin;
-1	\N	123	I was walking my dog when I saw someone suspicious climbing through the window of the research greenhouse late at night.
-2	\N	45	While working the late shift, I distinctly heard the sound of breaking glass coming from the east wing of the building.
-3	78	267	During my evening jog, I noticed a black van parked outside with its lights off for over two hours.
-4	\N	189	I remember smelling something burning around midnight, which seemed very unusual for that time.
-5	91	78	As I was closing up shop, I saw three people in dark clothes running from the back entrance.
-6	34	156	From my apartment window, I watched someone tampering with the security cameras using some kind of tool.
-7	67	234	During my security rounds, I heard loud banging noises coming from the storage area around 2 AM.
-8	\N	167	I spotted a person wearing a maintenance uniform at an odd hour when no maintenance was scheduled.
-9	12	89	While walking home, I saw someone throwing what looked like documents into a dumpster behind the building.
-10	56	245	I heard an alarm going off briefly before it was suddenly silenced in an unusual way.
-11	\N	134	From my balcony, I observed someone picking the lock on the side entrance using professional tools.
-12	\N	67	During my night shift, I noticed the security cameras were showing looped footage of empty hallways.
-13	\N	290	I saw a group of people loading large crates into a white truck around midnight.
-14	23	178	While closing up the cafe across the street, I witnessed someone disabling the exterior lights systematically.
-15	\N	56	I heard what sounded like power tools being used inside the building well past closing time.
-16	\N	145	From my office window, I saw someone in a security uniform but they were wearing sneakers instead of regulation boots.
-17	\N	99	That day, I received an email from a colleague saying something was wrong with the alarm system. I went to check it out, but didn’t find anything unusual.
-18	\N	190	During my evening walk, I saw multiple flashlights moving around inside the closed building.
-19	34	12	I remember hearing a heated argument in a foreign language coming from the parking garage.
-20	56	278	While delivering packages, I noticed the side door had fresh scratch marks around the lock.
-21	78	90	I saw someone repeatedly taking photos of the buildings security camera locations earlier that day.
-22	90	34	During my shift at the coffee shop, I overheard someone discussing detailed plans of the buildings layout.
-23	23	267	I noticed a ladder propped against the back wall near the second-floor window around dusk.
-24	45	156	From my taxi, I saw someone wearing a ski mask despite the warm weather entering the building.
-25	67	123	I heard the sound of glass breaking followed by quick footsteps around 1 AM.
-26	89	45	While walking my dog, I noticed unfamiliar vehicles parked in the staff-only area.
-27	12	267	I saw someone copying what looked like security codes near the entrance keypad.
-28	34	189	During my night patrol, I found fresh tire tracks leading to the normally unused loading dock.
-29	56	78	I witnessed someone in a delivery uniform but the company logo looked obviously fake.
-30	78	156	From my window, I saw people loading artwork into an unmarked van at 3 AM.
-31	90	234	I noticed the security lights were deliberately covered with some kind of dark material.
-32	23	167	While cleaning the windows, I saw someone testing different keys on the back entrance.
-33	45	89	I heard unusual drilling sounds coming from the vault area after hours.
-34	\N	245	During my evening run, I saw multiple people wearing identical outfits entering through different doors.
-35	89	134	I noticed someone taking detailed notes while observing the guard rotation schedule.
-36	12	67	From my desk, I saw a person in a maintenance uniform but they seemed unfamiliar with the basic layout.
-37	34	290	I heard what sounded like radio communications in code coming from the parking structure.
-38	56	178	While delivering mail, I noticed the security panel had been recently tampered with.
-39	78	56	I saw someone photographing the employee entrance during shift changes.
-40	74	145	I heard someone mention a server in Helsinki.
-41	23	23	I observed someone attempting to access the roof through the fire escape.
-42	45	190	From my apartment, I saw flashlights moving through the building long after closing.
-43	67	12	I heard the sound of spray paint cans being used inside the closed gallery.
-44	89	278	While closing up, I noticed someone had propped open several emergency exits.
-45	12	90	I saw a group of people wearing masks entering through the service entrance.
-46	34	34	During my shift, I noticed the security cameras were being systematically redirected.
-47	56	267	I heard unusual beeping sounds coming from the alarm control panel.
-48	78	156	From the parking lot, I saw someone copying down the security patrol schedule.
-49	90	123	I noticed fresh damage to the lock on the rear storage entrance.
-50	23	45	While walking nearby, I saw multiple people carrying large duffel bags from the building.
-51	45	267	I observed someone using sophisticated equipment to bypass the card readers.
-52	\N	189	During my patrol, I found evidence of someone monitoring the security camera feeds.
-53	89	78	I saw unusual activity near the ventilation system access points.
-54	12	156	From my office, I noticed someone attempting to access restricted areas repeatedly.
-55	34	234	I heard power tools being used in the artifact storage area after hours.
-56	56	167	While cleaning, I found discarded professional lock-picking tools.
-57	78	89	I observed multiple people communicating via hand signals near the entrance.
-58	90	245	During my shift, I noticed the emergency exits had been tampered with.
-59	74	134	I saw someone holding a keycard marked QX- succeeded by a two-digit odd number.
-60	45	67	From the street, I noticed unusual activity on the normally empty top floor.
-61	67	290	I heard what sounded like heavy equipment being moved late at night.
-62	89	178	While passing by, I saw someone disabling the external security lights.
-63	12	56	I noticed a suspicious gathering in the parking garage after hours.
-64	\N	145	During my rounds, I found evidence of someone monitoring staff movements.
-65	56	23	I observed multiple people wearing identical disguises entering separately.
-66	78	190	From my window, I saw someone testing the response time of the security system.
-67	90	12	I noticed unusual marks around the ventilation system access panels.
-68	23	278	While working late, I heard strange noises coming from the sealed exhibits.
-69	45	90	I saw someone attempting to access the security control room repeatedly.
-70	\N	34	During my shift, I found evidence of surveillance equipment being installed.
-71	\N	267	I observed someone taking detailed photos of the security measures.
-72	12	156	From the adjacent building, I saw unusual activity in the restricted areas.
-73	34	123	I noticed someone attempting to clone security access cards.
-74	56	45	While on patrol, I found tools used for bypassing electronic locks.
-75	78	267	I heard coded radio communications coming from multiple directions.
-76	90	189	During my break, I saw someone mapping out the camera blind spots.
-77	23	78	I observed multiple people coordinating through hidden earpieces.
-78	45	156	From my post, I noticed someone timing the security patrol intervals.
-79	67	234	I saw unusual vehicle movements near the service entrance.
-80	89	167	While closing, I found evidence of someone accessing restricted files.
-81	12	89	I heard what sounded like professional cutting tools being used.
-82	34	245	During my shift, I noticed the surveillance system had been compromised.
-83	75	134	I overheard a booking at The Grand Regency.
-84	78	67	From the street, I saw multiple people wearing service uniforms after hours.
-85	90	290	I noticed unusual activity around the emergency exit stairwells.
-86	\N	178	While working, I found evidence of systematic security breaches.
-87	\N	56	I heard unusual mechanical sounds coming from the secured storage area.
-88	67	145	During my rounds, I saw someone tampering with the access control system.
-89	75	23	I noticed someone at the front desk discussing Room 707 for a reservation made yesterday.
-90	12	190	From my position, I noticed someone disabling security sensors systematically.
-91	34	12	I saw unusual patterns of movement near the restricted areas.
-92	56	278	While patrolling, I found sophisticated hacking equipment hidden nearby.
-93	78	90	I heard what sounded like professional tools being used on the locks.
-94	90	34	During my shift, I noticed someone monitoring the staff rotations.
-95	\N	267	I observed multiple people using fake identification badges.
-96	\N	156	From the parking lot, I saw someone installing unknown devices near cameras.
-97	\N	123	I noticed unusual activity in typically restricted areas of the building.
-98	\N	45	While working, I found evidence of coordinated security system tampering.
-99	\N	267	I heard encrypted radio communications from multiple locations.
-100	\N	189	During my patrol, I observed someone bypassing the biometric scanners.
-\.
-
-
---
--- Name: computer_access_logs computer_access_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.computer_access_logs
-    ADD CONSTRAINT computer_access_logs_pkey PRIMARY KEY (id);
-
-
---
--- Name: email_logs email_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.email_logs
-    ADD CONSTRAINT email_logs_pkey PRIMARY KEY (id);
-
-
---
--- Name: employee_records employee_records_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.employee_records
-    ADD CONSTRAINT employee_records_pkey PRIMARY KEY (id);
-
-
---
--- Name: facility_access_logs facility_access_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.facility_access_logs
-    ADD CONSTRAINT facility_access_logs_pkey PRIMARY KEY (id);
-
-
---
--- Name: incident_reports incident_reports_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.incident_reports
-    ADD CONSTRAINT incident_reports_pkey PRIMARY KEY (id);
-
-
---
--- Name: keycard_access_logs keycard_access_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.keycard_access_logs
-    ADD CONSTRAINT keycard_access_logs_pkey PRIMARY KEY (id);
-
-
---
--- Name: witness_statements witness_statements_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.witness_statements
-    ADD CONSTRAINT witness_statements_pkey PRIMARY KEY (id);
-
-
---
--- Name: computer_access_logs computer_access_logs_employee_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.computer_access_logs
-    ADD CONSTRAINT computer_access_logs_employee_id_fkey FOREIGN KEY (employee_id) REFERENCES public.employee_records(id);
-
-
---
--- Name: email_logs email_logs_recipient_employee_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.email_logs
-    ADD CONSTRAINT email_logs_recipient_employee_id_fkey FOREIGN KEY (recipient_employee_id) REFERENCES public.employee_records(id);
-
-
---
--- Name: email_logs email_logs_sender_employee_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.email_logs
-    ADD CONSTRAINT email_logs_sender_employee_id_fkey FOREIGN KEY (sender_employee_id) REFERENCES public.employee_records(id);
-
-
---
--- Name: facility_access_logs facility_access_logs_employee_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.facility_access_logs
-    ADD CONSTRAINT facility_access_logs_employee_id_fkey FOREIGN KEY (employee_id) REFERENCES public.employee_records(id);
-
-
---
--- Name: keycard_access_logs keycard_access_logs_employee_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.keycard_access_logs
-    ADD CONSTRAINT keycard_access_logs_employee_id_fkey FOREIGN KEY (employee_id) REFERENCES public.employee_records(id);
-
-
---
--- Name: witness_statements witness_statements_employee_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.witness_statements
-    ADD CONSTRAINT witness_statements_employee_id_fkey FOREIGN KEY (employee_id) REFERENCES public.employee_records(id);
-
-
---
--- Name: witness_statements witness_statements_incident_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.witness_statements
-    ADD CONSTRAINT witness_statements_incident_id_fkey FOREIGN KEY (incident_id) REFERENCES public.incident_reports(id);
-
-
---
--- Name: SCHEMA public; Type: ACL; Schema: -; Owner: pg_database_owner
---
-
-GRANT USAGE ON SCHEMA public TO sqluser;
-
-
---
--- Name: TABLE computer_access_logs; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT SELECT ON TABLE public.computer_access_logs TO sqluser;
-
-
---
--- Name: TABLE email_logs; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT SELECT ON TABLE public.email_logs TO sqluser;
-
-
---
--- Name: TABLE employee_records; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT SELECT ON TABLE public.employee_records TO sqluser;
-
-
---
--- Name: TABLE facility_access_logs; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT SELECT ON TABLE public.facility_access_logs TO sqluser;
-
-
---
--- Name: TABLE incident_reports; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT SELECT ON TABLE public.incident_reports TO sqluser;
-
-
---
--- Name: TABLE keycard_access_logs; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT SELECT ON TABLE public.keycard_access_logs TO sqluser;
-
-
---
--- Name: TABLE witness_statements; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT SELECT ON TABLE public.witness_statements TO sqluser;
-
-
---
--- PostgreSQL database dump complete
---
-
-\unrestrict NFS4gMUAHcUKB1fFAO3g5P0R8fPWXH6wcbBIAmGHwflReSnffDX2rDr53EWU3jt
-
+-- SQLNoir Case: case4.ts
+DROP TABLE IF EXISTS crime_scene CASCADE;
+DROP TABLE IF EXISTS suspects CASCADE;
+-- Add other tables as needed
+
+CREATE TABLE crime_scene (
+    id INTEGER PRIMARY KEY,
+    date INTEGER,
+    location TEXT,
+    description TEXT
+  );;
+
+INSERT INTO crime_scene (id, date, location, description) VALUES
+    (1, 19871030, 'Miami Beach Botanical Garden', 'Rare plants were stolen from research greenhouse. Security reported breach in monitoring systems.'),
+    (2, 19871031, 'Coral Gables Country Club', 'A suspicious gathering was reported by multiple attendees. Security footage showed unusual activity near the premises.'),
+    (3, 19871030, 'South Beach Marina', 'Several boats were damaged during a late night storm. Investigators found evidence of tampering with the moorings.'),
+    (4, 19871031, 'Little Havana Theater', 'An evening performance was disrupted by a power outage. Technical inspection revealed signs of deliberate sabotage.'),
+    (5, 19871030, 'Brickell Financial Center', 'Documents were found shredded in executive offices. Security cameras showed unauthorized access after hours.'),
+    (6, 19871031, 'Vizcaya Museum Gardens', 'Historical artifacts were reported missing from display cases. Alarm systems had been professionally disabled.'),
+    (7, 19871030, 'Coconut Grove Yacht Club', 'A luxury vessel was found adrift in the marina. The owner reported signs of forced entry and theft.'),
+    (8, 19871031, 'Design District Gallery', 'Valuable artwork was discovered damaged during exhibition. Surveillance footage showed suspicious movement after closing.'),
+    (9, 19871030, 'Wynwood Arts Complex', 'Multiple studios reported vandalism overnight. Evidence suggested coordinated criminal activity.'),
+    (10, 19871031, 'Miami Beach Convention Center', 'A high-profile auction was disrupted by security threats. Investigation revealed inside involvement.'),
+    (11, 19871030, 'Fisher Island Club', 'Members reported unusual disturbances during dinner service. Staff witnessed suspicious individuals on premises.'),
+    (12, 19871031, 'Bayside Marketplace', 'Several shops reported break-ins after midnight. Security systems were found professionally disabled.'),
+    (13, 19871030, 'Port of Miami Terminal', 'Cargo containers showed signs of tampering overnight. Dock workers reported unauthorized vehicle movements.'),
+    (14, 19871031, 'Venetian Pool', 'Historic facilities were vandalized after hours. Evidence suggested multiple perpetrators were involved.'),
+    (15, 19871030, 'Calle Ocho Plaza', 'Street festival preparations were sabotaged overnight. Organizers found equipment deliberately damaged.'),
+    (16, 19871031, 'Fairchild Tropical Garden', 'Rare specimens were stolen from secured greenhouses. Security reported breach in perimeter systems.'),
+    (17, 19871030, 'Miami River District', 'Warehouse break-ins were reported by multiple businesses. Investigation showed coordinated criminal activity.'),
+    (18, 19871031, 'Miracle Mile Shopping Center', 'Jewelry store reported sophisticated burglary attempt. Alarm systems were found professionally bypassed.'),
+    (19, 19871030, 'Miami Seaquarium', 'Research facilities showed signs of unauthorized access. Marine biology samples were reported missing.'),
+    (20, 19871031, 'Freedom Tower', 'Historical documents were found disturbed in archive room. Security cameras captured unidentified intruders.'),
+    (21, 19871030, 'Matheson Hammock Marina', 'Several vessels reported equipment theft overnight. Harbor patrol found evidence of organized crime.'),
+    (22, 19871031, 'Deering Estate', 'Historical artifacts were displaced from secure storage. Staff reported unusual activity during evening hours.'),
+    (23, 19871030, 'Olympia Theater', 'Valuable props were stolen during overnight hours. Stage equipment showed signs of tampering.'),
+    (24, 19871031, 'Jungle Island', 'Animal enclosures were found unlocked after hours. Staff reported missing maintenance equipment.'),
+    (25, 19871030, 'Miami City Cemetery', 'Historical monuments were vandalized overnight. Groundskeepers reported suspicious gatherings.'),
+    (26, 19871031, 'Marlins Park Area', 'Construction site reported missing materials and equipment. Security footage showed unauthorized vehicles.'),
+    (27, 19871030, 'Miami Science Museum', 'Valuable exhibits were tampered with after closing. Staff discovered missing research materials.'),
+    (28, 19871031, 'Bayfront Park', 'Public artwork was damaged during evening hours. Park security reported suspicious group activity.'),
+    (29, 19871030, 'Miami Childrens Museum', 'Educational displays were vandalized overnight. Security systems showed signs of interference.'),
+    (30, 19871031, 'Pérez Art Museum', 'Contemporary artwork was found damaged in storage. Staff reported unauthorized access to restricted areas.'),
+    (31, 19871030, 'Adrienne Arsht Center', 'Performance equipment was sabotaged before show time. Technical staff found evidence of deliberate tampering.'),
+    (32, 19871031, 'Lummus Park', 'Historical structures showed signs of vandalism. Park rangers reported suspicious night activity.'),
+    (33, 19871030, 'Miami Beach Botanical Garden', 'Rare plants were stolen from research greenhouse. Security reported breach in monitoring systems.'),
+    (34, 19871031, 'Pinecrest Gardens', 'Art installations were damaged during night hours. Surveillance showed unauthorized access.'),
+    (35, 19871030, 'Crandon Park', 'Beach facilities reported extensive vandalism. Staff discovered evidence of overnight criminal activity.'),
+    (36, 19871031, 'Greynolds Park', 'Historical structures were damaged after hours. Park security found signs of forced entry.'),
+    (37, 19871030, 'Tropical Park', 'Sports facilities reported equipment theft overnight. Security cameras showed suspicious activity.'),
+    (38, 19871031, 'Simpson Park', 'Rare plant specimens were stolen from conservatory. Staff found evidence of professional theft.'),
+    (39, 19871030, 'Virginia Key Beach', 'Marine research equipment was stolen overnight. Security reported unauthorized boat activity.'),
+    (40, 19871031, 'Morningside Park', 'Tennis facilities reported vandalism and theft. Security footage showed coordinated criminal activity.'),
+    (41, 19871030, 'Legion Park', 'Community center reported break-in overnight. Staff found evidence of professional burglary.'),
+    (42, 19871031, 'Kennedy Park', 'Waterfront facilities showed signs of vandalism. Park patrol reported suspicious gatherings.'),
+    (43, 19871030, 'Alice Wainwright Park', 'Park structures were damaged during night hours. Security found evidence of organized activity.'),
+    (44, 19871031, 'Margaret Pace Park', 'Recreational equipment was stolen after hours. Staff reported suspicious vehicle movements.'),
+    (45, 19871030, 'Peacock Park', 'Sports facilities were vandalized overnight. Security cameras showed unauthorized access.'),
+    (46, 19871031, 'South Pointe Park', 'Beach patrol equipment was stolen after hours. Staff reported suspicious group activity.'),
+    (47, 19871030, 'Biscayne National Park', 'Marine research stations reported break-ins. Security found evidence of professional theft.'),
+    (48, 19871031, 'Oleta River State Park', 'Kayak rental facility reported extensive theft. Staff discovered signs of forced entry.'),
+    (49, 19871030, 'Bill Baggs Cape Park', 'Historical lighthouse showed signs of vandalism. Park rangers reported suspicious activity.'),
+    (50, 19871031, 'Haulover Park', 'Marina facilities reported equipment theft overnight. Security footage showed coordinated activity.'),
+    (51, 19871030, 'North Shore Park', 'Beach facilities showed signs of vandalism. Staff found evidence of criminal activity.'),
+    (52, 19871031, 'Surfside Community Center', 'Recreational equipment was stolen after hours. Security reported unauthorized access.'),
+    (53, 19871030, 'Golden Beach Pavilion', 'Beach patrol reported vandalism overnight. Staff discovered evidence of organized crime.'),
+    (54, 19871031, 'Sunny Isles Pier', 'Fishing equipment was stolen during night hours. Security cameras showed suspicious activity.'),
+    (55, 19871030, 'Bal Harbour Beach Club', 'Private facilities reported sophisticated break-in. Staff found evidence of professional theft.'),
+    (56, 19871031, 'Indian Creek Country Club', 'Golf equipment was stolen overnight. Security reported unauthorized vehicle access.'),
+    (57, 19871030, 'Miami Shores Country Club', 'Club facilities showed signs of vandalism. Staff discovered evidence of coordinated activity.'),
+    (58, 19871031, 'Normandy Shores Golf Club', 'Pro shop reported sophisticated burglary attempt. Security systems were professionally disabled.'),
+    (59, 19871030, 'La Gorce Country Club', 'Tennis facilities reported equipment theft. Staff found evidence of organized crime.'),
+    (60, 19871031, 'Riviera Country Club', 'Golf cart facility reported extensive theft. Security footage showed suspicious activity.'),
+    (61, 19871030, 'Granada Golf Course', 'Maintenance equipment was stolen overnight. Staff reported unauthorized access.'),
+    (62, 19871031, 'Biltmore Golf Course', 'Pro shop showed signs of sophisticated break-in. Security found evidence of professional theft.'),
+    (63, 19871030, 'Miami Beach Golf Club', 'Club house reported vandalism after hours. Staff discovered signs of forced entry.'),
+    (64, 19871031, 'Melreese Country Club', 'Golf equipment was stolen during night hours. Security reported suspicious vehicle movements.'),
+    (65, 19871030, 'International Links Miami', 'Maintenance facility reported extensive theft. Staff found evidence of coordinated activity.'),
+    (66, 19871031, 'Briar Bay Golf Course', 'Pro shop showed signs of attempted burglary. Security cameras captured suspicious activity.'),
+    (67, 19871030, 'Palmetto Golf Course', 'Club facilities reported vandalism overnight. Staff discovered evidence of professional theft.'),
+    (68, 19871031, 'Country Club of Miami', 'Tennis facilities showed signs of break-in. Security found unauthorized access evidence.'),
+    (69, 19871030, 'California Club', 'Golf cart facility reported sophisticated theft. Staff reported suspicious group activity.'),
+    (70, 19871031, 'Shulas Golf Club', 'Pro shop equipment was stolen after hours. Security footage showed coordinated activity.'),
+    (71, 19871030, 'Miami National Golf Club', 'Maintenance equipment showed signs of theft. Staff found evidence of professional burglary.'),
+    (72, 19871031, 'Killian Greens Golf Club', 'Club house reported vandalism overnight. Security discovered unauthorized access.'),
+    (73, 19871030, 'Costa Del Sol Golf Club', 'Golf equipment was stolen during night hours. Staff reported suspicious vehicle movements.'),
+    (74, 19871031, 'Keys Gate Golf Club', 'Pro shop showed signs of sophisticated break-in. Security found evidence of organized crime.'),
+    (75, 19871031, 'Miami Mansion, Coconut Grove', 'During a masked ball, a body was found in the garden. Witnesses mentioned a hotel booking and suspicious phone activity.'),
+    (76, 19871031, 'Coral Pine Golf Course', 'Club facilities showed signs of vandalism. Security reported suspicious activity.'),
+    (77, 19871030, 'Miami Springs Golf Club', 'Golf cart facility reported sophisticated theft. Staff found evidence of professional burglary.'),
+    (78, 19871031, 'Normandy Shores Club', 'Tennis equipment was stolen overnight. Security cameras showed suspicious activity.'),
+    (79, 19871030, 'Fisher Island Club Course', 'Pro shop reported attempted break-in. Staff discovered evidence of coordinated activity.'),
+    (80, 19871031, 'Deering Bay Yacht Club', 'Club facilities showed signs of vandalism. Security found unauthorized access evidence.'),
+    (81, 19871030, 'Williams Island Club', 'Tennis facilities reported equipment theft. Staff reported suspicious group activity.'),
+    (82, 19871031, 'Turnberry Isle Resort', 'Golf equipment was stolen after hours. Security footage showed coordinated activity.'),
+    (83, 19871030, 'Doral Golf Resort', 'Maintenance facility reported extensive theft. Staff found evidence of professional theft.'),
+    (84, 19871031, 'Trump National Doral', 'Pro shop showed signs of sophisticated break-in. Security discovered unauthorized access.'),
+    (85, 19871030, 'Blue Monster Course', 'Club house reported vandalism overnight. Staff reported suspicious vehicle movements.'),
+    (86, 19871031, 'Silver Fox Course', 'Golf cart facility showed signs of theft. Security found evidence of organized crime.'),
+    (87, 19871030, 'Golden Palm Course', 'Tennis equipment was stolen during night hours. Staff discovered signs of forced entry.'),
+    (88, 19871031, 'Red Tiger Course', 'Maintenance facility reported sophisticated theft. Security reported suspicious activity.'),
+    (89, 19871030, 'Great White Course', 'Pro shop showed signs of attempted burglary. Staff found evidence of professional theft.'),
+    (90, 19871031, 'Jim McLean Golf School', 'Training equipment was stolen overnight. Security cameras showed suspicious activity.'),
+    (91, 19871030, 'Miami Beach Golf Academy', 'Practice facility reported extensive theft. Staff discovered evidence of coordinated activity.'),
+    (92, 19871031, 'Don Shula Golf Academy', 'Training equipment showed signs of vandalism. Security found unauthorized access evidence.'),
+    (93, 19871030, 'David Leadbetter Academy', 'Golf equipment was stolen after hours. Staff reported suspicious group activity.'),
+    (94, 19871031, 'Rick Smith Golf Performance', 'Practice facility reported sophisticated theft. Security footage showed coordinated activity.'),
+    (95, 19871030, 'Claude Harmon Golf School', 'Training equipment showed signs of break-in. Staff found evidence of professional burglary.'),
+    (96, 19871031, 'Mitchell Spearman Academy', 'Practice facility reported vandalism overnight. Security discovered unauthorized access.'),
+    (97, 19871030, 'Dave Pelz Golf School', 'Training equipment was stolen during night hours. Staff reported suspicious vehicle movements.'),
+    (98, 19871031, 'Golf Institute Miami', 'Practice facility showed signs of sophisticated theft. Security found evidence of organized crime.'),
+    (99, 19871030, 'Miami Golf Learning Center', 'Training equipment reported extensive vandalism. Staff discovered signs of forced entry.'),
+    (100, 19871031, 'South Florida Golf Academy', 'Practice facility showed signs of attempted burglary. Security reported suspicious activity.')
+  ;;
+
+CREATE TABLE person (
+    id INTEGER PRIMARY KEY,
+    name TEXT,
+    occupation TEXT,
+    address TEXT
+  );;
+
+INSERT INTO person (id, name, occupation, address) VALUES
+    (1, 'Hristo Bogoev', 'Engineer', '123 Hidden Lane'),
+    (2, 'Giovanni DiLucca', 'Art Collector', '456 Sunset Blvd'),
+    (3, 'Henry Romano', 'Entrepreneur', '45 Ocean Drive'),
+    (4, 'Leonard Pierce', 'Business Magnate', '101 Elite Ave'),
+    (5, 'Maria Lombardi', 'Socialite', '789 Palm Street'),
+    (6, 'Dominic Rizzo', 'Philanthropist', '222 Grand Ave'),
+    (7, 'Anthony Russo', 'Investor', '333 Grand Ave'),
+    (8, 'Robert DeLuca', 'Investor', '555 Bay St'),
+    (9, 'Samuel King', 'Musician', '99 Coral Dr'),
+    (10, 'Angela Martin', 'Journalist', '77 Sun Blvd'),
+    (11, 'Antonio Rossi', 'Auto Importer', '999 Dark Alley'),
+    (12, 'Marco Garcia', 'Auto Dealer', '777 Industrial Way'),
+    (13, 'James Wilson', 'Teacher', '123 Maple Street'),
+    (14, 'Sarah Johnson', 'Doctor', '456 Oak Avenue'),
+    (15, 'Michael Brown', 'Engineer', '789 Pine Road'),
+    (16, 'Emily Davis', 'Lawyer', '321 Cedar Lane'),
+    (17, 'David Miller', 'Chef', '654 Birch Way'),
+    (18, 'Lisa Anderson', 'Architect', '987 Elm Street'),
+    (19, 'Robert Taylor', 'Plumber', '147 Spruce Drive'),
+    (20, 'Jennifer Martinez', 'Nurse', '258 Willow Court'),
+    (21, 'William Garcia', 'Electrician', '369 Ash Boulevard'),
+    (22, 'Elizabeth Rodriguez', 'Accountant', '741 Poplar Place'),
+    (23, 'Thomas Lee', 'Mechanic', '852 Cypress Road'),
+    (24, 'Patricia White', 'Artist', '963 Magnolia Lane'),
+    (25, 'Joseph Clark', 'Dentist', '159 Redwood Avenue'),
+    (26, 'Margaret Hall', 'Librarian', '357 Sycamore Street'),
+    (27, 'Charles Lewis', 'Police Officer', '486 Juniper Way'),
+    (28, 'Sandra Walker', 'Professor', '729 Chestnut Drive'),
+    (29, 'Daniel Young', 'Salesperson', '813 Walnut Road'),
+    (30, 'Nancy King', 'Pharmacist', '924 Hemlock Court'),
+    (31, 'Kevin Wright', 'Journalist', '537 Beech Street'),
+    (32, 'Dorothy Lopez', 'Baker', '648 Acorn Lane'),
+    (33, 'Richard Hill', 'Firefighter', '759 Pine Needle Way'),
+    (34, 'Susan Scott', 'Psychologist', '861 Forest Drive'),
+    (35, 'Mark Green', 'Veterinarian', '972 Oakwood Avenue'),
+    (36, 'Karen Adams', 'Real Estate Agent', '183 Maple Court'),
+    (37, 'Steven Nelson', 'Doctor', '294 Cedar Place'),
+    (38, 'Betty Baker', 'Interior Designer', '405 Birchwood Lane'),
+    (39, 'Edward Mitchell', 'Financial Analyst', '516 Elmwood Road'),
+    (40, 'Helen Roberts', 'Insurance Agent', '627 Sprucewood Drive'),
+    (41, 'Brian Turner', 'Construction Worker', '738 Willowbrook Way'),
+    (42, 'Sharon Phillips', 'Marketing Manager', '849 Ashwood Court'),
+    (43, 'Ronald Campbell', 'Bus Driver', '951 Poplarwood Street'),
+    (44, 'Carol Parker', 'Travel Agent', '162 Cypresswood Avenue'),
+    (45, 'George Evans', 'Security Guard', '273 Magnoliawood Lane'),
+    (46, 'Michelle Edwards', 'Web Designer', '384 Redwood Road'),
+    (47, 'Kenneth Collins', 'Photographer', '495 Sycamorewood Drive'),
+    (48, 'Amy Stewart', 'Flight Attendant', '606 Juniperwood Way'),
+    (49, 'Jerry Morris', 'Landscaper', '717 Chestnutwood Court'),
+    (50, 'Judith Sanders', 'Optometrist', '828 Walnutwood Street'),
+    (51, 'Frank Price', 'Carpenter', '939 Hemlockwood Avenue'),
+    (52, 'Melissa Bennett', 'Therapist', '141 Beechwood Lane'),
+    (53, 'Raymond Wood', 'Painter', '252 Acornwood Road'),
+    (54, 'Deborah Barnes', 'Paralegal', '363 Pinewood Drive'),
+    (55, 'Roger Fisher', 'Chef', '474 Forestwood Way'),
+    (56, 'Janet Ross', 'Dentist', '585 Oakwood Court'),
+    (57, 'Dennis Henderson', 'Mechanic', '696 Maplewood Street'),
+    (58, 'Victor DiMarco', 'Jobless', '707 Cedarwood Avenue'),
+    (59, 'Peter Jenkins', 'Engineer', '818 Birchwood Lane'),
+    (60, 'Diane Perry', 'Nurse', '929 Elmwood Road'),
+    (61, 'Terry Butler', 'Accountant', '131 Sprucewood Drive'),
+    (62, 'Gloria Simmons', 'Doctor', '242 Willowwood Way'),
+    (63, 'Lawrence Foster', 'Lawyer', '353 Ashwood Court'),
+    (64, 'Alice Brooks', 'Architect', '464 Poplarwood Street'),
+    (65, 'Stephen Powell', 'Plumber', '575 Cypresswood Avenue'),
+    (66, 'Kathleen Long', 'Artist', '686 Magnoliawood Lane'),
+    (67, 'Earl Patterson', 'Police Officer', '797 Redwood Road'),
+    (68, 'Joan Hughes', 'Professor', '808 Sycamorewood Drive'),
+    (69, 'Ralph Watson', 'Salesperson', '919 Juniperwood Way'),
+    (70, 'Louise Washington', 'Pharmacist', '121 Chestnutwood Court'),
+    (71, 'Carlos Murphy', 'Baker', '232 Walnutwood Street'),
+    (72, 'Rachel Richardson', 'Firefighter', '343 Hemlockwood Avenue'),
+    (73, 'Joe Bailey', 'Psychologist', '454 Beechwood Lane'),
+    (74, 'Martha Howard', 'Veterinarian', '565 Acornwood Road'),
+    (75, 'Dennis Reed', 'Real Estate Agent', '676 Pinewood Drive'),
+    (76, 'Carolyn Kim', 'Software Developer', '787 Forestwood Way'),
+    (77, 'Gary Cox', 'Interior Designer', '898 Oakwood Court'),
+    (78, 'Frances Morgan', 'Financial Analyst', '909 Maplewood Street'),
+    (79, 'Victor Bell', 'Insurance Agent', '111 Cedarwood Avenue'),
+    (80, 'Evelyn Cooper', 'Construction Worker', '222 Birchwood Lane'),
+    (81, 'Ralph Ward', 'Marketing Manager', '333 Elmwood Road'),
+    (82, 'Ruth Torres', 'Bus Driver', '444 Sprucewood Drive'),
+    (83, 'Howard Peterson', 'Travel Agent', '555 Willowwood Way'),
+    (84, 'Louise Gray', 'Security Guard', '666 Ashwood Court'),
+    (85, 'Eugene Ramirez', 'Web Designer', '777 Poplarwood Street'),
+    (86, 'Beverly James', 'Photographer', '888 Cypresswood Avenue'),
+    (87, 'Russell Watson', 'Flight Attendant', '999 Magnoliawood Lane'),
+    (88, 'Anna Brooks', 'Landscaper', '123 Redwood Road'),
+    (89, 'Roy Kelly', 'Optometrist', '234 Sycamorewood Drive'),
+    (90, 'Julie Sanders', 'Carpenter', '345 Juniperwood Way'),
+    (91, 'Bruce Barnes', 'Therapist', '456 Chestnutwood Court'),
+    (92, 'Lois Bennett', 'Painter', '567 Walnutwood Street'),
+    (93, 'Philip Wood', 'Paralegal', '678 Hemlockwood Avenue'),
+    (94, 'Tina Fisher', 'Chef', '789 Beechwood Lane'),
+    (95, 'Johnny Ross', 'Dentist', '890 Acornwood Road'),
+    (96, 'Jean Henderson', 'Mechanic', '901 Pinewood Drive'),
+    (97, 'Marco Santos', 'Carpenter', '112 Forestwood Way'),
+    (98, 'Cheryl Jenkins', 'Engineer', '223 Oakwood Court'),
+    (99, 'Bobby Perry', 'Nurse', '334 Maplewood Street'),
+    (100, 'Marie Butler', 'Accountant', '445 Cedarwood Avenue'),
+    (101, 'Marco Torres', 'Doctor', '556 Maplewood Street'),
+    (102, 'Sarah Chen', 'Doctor', '667 Pinewood Drive'), 
+    (103, 'Michael Wright', 'Teacher', '778 Oakwood Court'),
+    (104, 'Jennifer Adams', 'Lawyer', '889 Elmwood Road'),
+    (105, 'David Miller', 'Engineer', '990 Birchwood Lane'),
+    (106, 'Lisa Garcia', 'Nurse', '112 Cedarwood Avenue'),
+    (107, 'Robert Taylor', 'Architect', '223 Sprucewood Drive'),
+    (108, 'Michelle Lee', 'Chef', '334 Willowwood Way'),
+    (109, 'James Wilson', 'Plumber', '445 Ashwood Court'),
+    (110, 'Patricia Moore', 'Artist', '556 Poplarwood Street'),
+    (111, 'John Anderson', 'Police Officer', '667 Cypresswood Avenue'),
+    (112, 'Elizabeth Martin', 'Professor', '778 Magnoliawood Lane'),
+    (113, 'William Thompson', 'Salesperson', '889 Redwood Road'),
+    (114, 'Barbara White', 'Pharmacist', '990 Sycamorewood Drive'),
+    (115, 'Richard Harris', 'Baker', '112 Juniperwood Way'),
+    (116, 'Susan Clark', 'Firefighter', '223 Chestnutwood Court'),
+    (117, 'Joseph Lewis', 'Psychologist', '334 Walnutwood Street'),
+    (118, 'Margaret Hall', 'Veterinarian', '445 Hemlockwood Avenue'),
+    (119, 'Thomas Young', 'Real Estate Agent', '556 Beechwood Lane'),
+    (120, 'Dorothy King', 'Software Developer', '667 Acornwood Road'),
+    (121, 'Charles Scott', 'Interior Designer', '778 Pinewood Drive'),
+    (122, 'Sandra Green', 'Financial Analyst', '889 Forestwood Way'),
+    (123, 'Christopher Baker', 'Insurance Agent', '990 Oakwood Court'),
+    (124, 'Angela Nelson', 'Construction Worker', '112 Maplewood Street'),
+    (125, 'Daniel Hill', 'Marketing Manager', '223 Cedarwood Avenue'),
+    (126, 'Ruth Adams', 'Bus Driver', '334 Birchwood Lane'),
+    (127, 'Steven Mitchell', 'Travel Agent', '445 Elmwood Road'),
+    (128, 'Melissa Roberts', 'Security Guard', '556 Sprucewood Drive'),
+    (129, 'Edward Carter', 'Web Designer', '667 Willowwood Way'),
+    (130, 'Sharon Phillips', 'Photographer', '778 Ashwood Court'),
+    (131, 'Kevin Turner', 'Flight Attendant', '889 Poplarwood Street'),
+    (132, 'Cynthia Campbell', 'Landscaper', '990 Cypresswood Avenue'),
+    (133, 'Unknown', 'Unknown', 'Unknown'),
+    (134, 'Amy Evans', 'Carpenter', '223 Redwood Road'),
+    (135, 'George Edwards', 'Therapist', '334 Sycamorewood Drive'),
+    (136, 'Diane Collins', 'Painter', '445 Juniperwood Way'),
+    (137, 'Kenneth Stewart', 'Paralegal', '556 Chestnutwood Court'),
+    (138, 'Virginia Morris', 'Chef', '667 Walnutwood Street'),
+    (139, 'Larry Rogers', 'Dentist', '778 Hemlockwood Avenue'),
+    (140, 'Julie Reed', 'Mechanic', '889 Beechwood Lane'),
+    (141, 'Gerald Cook', 'Teacher', '990 Acornwood Road'),
+    (142, 'Theresa Morgan', 'Engineer', '112 Pinewood Drive'),
+    (143, 'Ralph Cooper', 'Nurse', '223 Forestwood Way'),
+    (144, 'Joyce Richardson', 'Accountant', '334 Oakwood Court'),
+    (145, 'Johnny Murphy', 'Doctor', '445 Maplewood Street'),
+    (146, 'Gloria Peterson', 'Lawyer', '556 Cedarwood Avenue'),
+    (147, 'Roy Howard', 'Engineer', '667 Birchwood Lane'),
+    (148, 'Beverly Cox', 'Nurse', '778 Elmwood Road'),
+    (149, 'Eugene Ward', 'Architect', '889 Sprucewood Drive'),
+    (150, 'Kathryn Brooks', 'Chef', '990 Willowwood Way'),
+    (151, 'Russell James', 'Plumber', '112 Ashwood Court'),
+    (152, 'Janice Watson', 'Artist', '223 Poplarwood Street'),
+    (153, 'Howard Sanders', 'Police Officer', '334 Cypresswood Avenue'),
+    (154, 'Cheryl Bennett', 'Professor', '445 Magnoliawood Lane'),
+    (155, 'Fred Wood', 'Salesperson', '556 Redwood Road'),
+    (156, 'Kathy Fisher', 'Pharmacist', '667 Sycamorewood Drive'),
+    (157, 'Bruce Ross', 'Baker', '778 Juniperwood Way'),
+    (158, 'Martha Henderson', 'Firefighter', '889 Chestnutwood Court'),
+    (159, 'Wayne Coleman', 'Psychologist', '990 Walnutwood Street'),
+    (160, 'Joan Jenkins', 'Veterinarian', '112 Hemlockwood Avenue'),
+    (161, 'Roger Perry', 'Real Estate Agent', '223 Beechwood Lane'),
+    (162, 'Phyllis Butler', 'Software Developer', '334 Acornwood Road'),
+    (163, 'Henry Barnes', 'Interior Designer', '445 Pinewood Drive'),
+    (164, 'Rose Bennett', 'Financial Analyst', '556 Forestwood Way'),
+    (165, 'Lawrence Wood', 'Insurance Agent', '667 Oakwood Court'),
+    (166, 'Marilyn Fisher', 'Construction Worker', '778 Maplewood Street'),
+    (167, 'Steve Ross', 'Marketing Manager', '889 Cedarwood Avenue'),
+    (168, 'Paula Henderson', 'Bus Driver', '990 Birchwood Lane'),
+    (169, 'Harry Coleman', 'Travel Agent', '112 Elmwood Road'),
+    (170, 'Julia Jenkins', 'Security Guard', '223 Sprucewood Drive'),
+    (171, 'Carl Perry', 'Web Designer', '334 Willowwood Way'),
+    (172, 'Annie Butler', 'Photographer', '445 Ashwood Court'),
+    (173, 'Earl Barnes', 'Flight Attendant', '556 Poplarwood Street'),
+    (174, 'Lillian Bennett', 'Landscaper', '667 Cypresswood Avenue'),
+    (175, 'Ralph Wood', 'Optometrist', '778 Magnoliawood Lane'),
+    (176, 'Judith Fisher', 'Carpenter', '889 Redwood Road'),
+    (177, 'Billy Ross', 'Therapist', '990 Sycamorewood Drive'),
+    (178, 'Lois Henderson', 'Painter', '112 Juniperwood Way'),
+    (179, 'Jesse Coleman', 'Paralegal', '223 Chestnutwood Court'),
+    (180, 'Gloria Jenkins', 'Chef', '334 Walnutwood Street'),
+    (181, 'Alan Perry', 'Dentist', '445 Hemlockwood Avenue'),
+    (182, 'Jean Butler', 'Mechanic', '556 Beechwood Lane'),
+    (183, 'Eugene Barnes', 'Teacher', '667 Acornwood Road'),
+    (184, 'Florence Bennett', 'Engineer', '778 Pinewood Drive'),
+    (185, 'Ernest Wood', 'Nurse', '889 Forestwood Way'),
+    (186, 'Catherine Fisher', 'Accountant', '990 Oakwood Court'),
+    (187, 'Jimmy Ross', 'Doctor', '112 Maplewood Street'),
+    (188, 'Bonnie Henderson', 'Lawyer', '223 Cedarwood Avenue'),
+    (189, 'Don Coleman', 'Engineer', '334 Birchwood Lane'),
+    (190, 'Louise Jenkins', 'Nurse', '445 Elmwood Road'),
+    (191, 'Philip Perry', 'Architect', '556 Sprucewood Drive'),
+    (192, 'Ruby Butler', 'Chef', '667 Willowwood Way'),
+    (193, 'Todd Barnes', 'Plumber', '778 Ashwood Court'),
+    (194, 'Edna Bennett', 'Artist', '889 Poplarwood Street'),
+    (195, 'Jim Wood', 'Police Officer', '990 Cypresswood Avenue'),
+    (196, 'Eva Fisher', 'Professor', '112 Magnoliawood Lane'),
+    (197, 'Dale Ross', 'Salesperson', '223 Redwood Road'),
+    (198, 'Gladys Henderson', 'Pharmacist', '334 Sycamorewood Drive'),
+    (199, 'Vernon Coleman', 'Baker', '445 Juniperwood Way'),
+    (200, 'Edith Jenkins', 'Firefighter', '556 Chestnutwood Court')
+  ;;
+
+CREATE TABLE witness_statements (
+    id INTEGER PRIMARY KEY,
+    crime_scene_id INTEGER,
+    witness_id INTEGER,
+    clue TEXT,
+    FOREIGN KEY (crime_scene_id) REFERENCES crime_scene(id),
+    FOREIGN KEY (witness_id) REFERENCES person(id)
+  );;
+
+INSERT INTO witness_statements (id, crime_scene_id, witness_id, clue) VALUES
+    (1, 45, 123, 'I was walking my dog when I saw someone suspicious climbing through the window of the research greenhouse late at night.'),
+    (2, 12, 45, 'While working the late shift, I distinctly heard the sound of breaking glass coming from the east wing of the building.'),
+    (3, 78, 167, 'During my evening jog, I noticed a black van parked outside with its lights off for over two hours.'),
+    (4, 23, 89, 'I remember smelling something burning around midnight, which seemed very unusual for that time.'),
+    (5, 91, 145, 'As I was closing up shop, I saw three people in dark clothes running from the back entrance.'),
+    (6, 34, 178, 'From my apartment window, I watched someone tampering with the security cameras using some kind of tool.'),
+    (7, 67, 92, 'During my security rounds, I heard loud banging noises coming from the storage area around 2 AM.'),
+    (8, 89, 156, 'I spotted a person wearing a maintenance uniform at an odd hour when no maintenance was scheduled.'),
+    (9, 12, 34, 'While walking home, I saw someone throwing what looked like documents into a dumpster behind the building.'),
+    (10, 56, 198, 'I heard an alarm going off briefly before it was suddenly silenced in an unusual way.'),
+    (11, 78, 67, 'From my balcony, I observed someone picking the lock on the side entrance using professional tools.'),
+    (12, 34, 134, 'During my night shift, I noticed the security cameras were showing looped footage of empty hallways.'),
+    (13, 90, 92, 'I saw a group of people loading large crates into a white truck around midnight.'),
+    (14, 23, 156, 'While closing up the cafe across the street, I witnessed someone disabling the exterior lights systematically.'),
+    (15, 45, 45, 'I heard what sounded like power tools being used inside the building well past closing time.'),
+    (16, 67, 189, 'From my office window, I saw someone in a security uniform but they were wearing sneakers instead of regulation boots.'),
+    (17, 89, 123, 'I noticed the alarm system was already disabled when I arrived for my morning shift at 5 AM.'),
+    (18, 12, 78, 'During my evening walk, I saw multiple flashlights moving around inside the closed building.'),
+    (19, 34, 167, 'I remember hearing a heated argument in a foreign language coming from the parking garage.'),
+    (20, 56, 34, 'While delivering packages, I noticed the side door had fresh scratch marks around the lock.'),
+    (21, 78, 198, 'I saw someone repeatedly taking photos of the buildings security camera locations earlier that day.'),
+    (22, 90, 67, 'During my shift at the coffee shop, I overheard someone discussing detailed plans of the buildings layout.'),
+    (23, 23, 134, 'I noticed a ladder propped against the back wall near the second-floor window around dusk.'),
+    (24, 45, 92, 'From my taxi, I saw someone wearing a ski mask despite the warm weather entering the building.'),
+    (25, 67, 156, 'I heard the sound of glass breaking followed by quick footsteps around 1 AM.'),
+    (26, 89, 45, 'While walking my dog, I noticed unfamiliar vehicles parked in the staff-only area.'),
+    (27, 12, 189, 'I saw someone copying what looked like security codes near the entrance keypad.'),
+    (28, 34, 123, 'During my night patrol, I found fresh tire tracks leading to the normally unused loading dock.'),
+    (29, 56, 78, 'I witnessed someone in a delivery uniform but the company logo looked obviously fake.'),
+    (30, 78, 167, 'From my window, I saw people loading artwork into an unmarked van at 3 AM.'),
+    (31, 90, 34, 'I noticed the security lights were deliberately covered with some kind of dark material.'),
+    (32, 23, 198, 'While cleaning the windows, I saw someone testing different keys on the back entrance.'),
+    (33, 45, 67, 'I heard unusual drilling sounds coming from the vault area after hours.'),
+    (34, 67, 134, 'During my evening run, I saw multiple people wearing identical outfits entering through different doors.'),
+    (35, 89, 92, 'I noticed someone taking detailed notes while observing the guard rotation schedule.'),
+    (36, 12, 156, 'From my desk, I saw a person in a maintenance uniform but they seemed unfamiliar with the basic layout.'),
+    (37, 34, 45, 'I heard what sounded like radio communications in code coming from the parking structure.'),
+    (38, 56, 189, 'While delivering mail, I noticed the security panel had been recently tampered with.'),
+    (39, 78, 123, 'I saw someone photographing the employee entrance during shift changes.'),
+    (40, 90, 78, 'During my break, I noticed a suspicious person monitoring the security patrol patterns.'),
+    (41, 23, 167, 'I observed someone attempting to access the roof through the fire escape.'),
+    (42, 45, 34, 'From my apartment, I saw flashlights moving through the building long after closing.'),
+    (43, 67, 198, 'I heard the sound of spray paint cans being used inside the closed gallery.'),
+    (44, 89, 67, 'While closing up, I noticed someone had propped open several emergency exits.'),
+    (45, 12, 134, 'I saw a group of people wearing masks entering through the service entrance.'),
+    (46, 34, 92, 'During my shift, I noticed the security cameras were being systematically redirected.'),
+    (47, 56, 156, 'I heard unusual beeping sounds coming from the alarm control panel.'),
+    (48, 78, 45, 'From the parking lot, I saw someone copying down the security patrol schedule.'),
+    (49, 90, 189, 'I noticed fresh damage to the lock on the rear storage entrance.'),
+    (50, 23, 123, 'While walking nearby, I saw multiple people carrying large duffel bags from the building.'),
+    (51, 45, 78, 'I observed someone using sophisticated equipment to bypass the card readers.'),
+    (52, 67, 167, 'During my patrol, I found evidence of someone monitoring the security camera feeds.'),
+    (53, 89, 34, 'I saw unusual activity near the ventilation system access points.'),
+    (54, 12, 198, 'From my office, I noticed someone attempting to access restricted areas repeatedly.'),
+    (55, 34, 67, 'I heard power tools being used in the artifact storage area after hours.'),
+    (56, 56, 134, 'While cleaning, I found discarded professional lock-picking tools.'),
+    (57, 78, 92, 'I observed multiple people communicating via hand signals near the entrance.'),
+    (58, 90, 156, 'During my shift, I noticed the emergency exits had been tampered with.'),
+    (59, 23, 45, 'I saw someone in a fake security uniform inspecting the alarm systems.'),
+    (60, 45, 189, 'From the street, I noticed unusual activity on the normally empty top floor.'),
+    (61, 67, 123, 'I heard what sounded like heavy equipment being moved late at night.'),
+    (62, 89, 78, 'While passing by, I saw someone disabling the external security lights.'),
+    (63, 12, 167, 'I noticed a suspicious gathering in the parking garage after hours.'),
+    (64, 34, 34, 'During my rounds, I found evidence of someone monitoring staff movements.'),
+    (65, 56, 198, 'I observed multiple people wearing identical disguises entering separately.'),
+    (66, 78, 67, 'From my window, I saw someone testing the response time of the security system.'),
+    (67, 90, 134, 'I noticed unusual marks around the ventilation system access panels.'),
+    (68, 23, 92, 'While working late, I heard strange noises coming from the sealed exhibits.'),
+    (69, 45, 156, 'I saw someone attempting to access the security control room repeatedly.'),
+    (70, 67, 45, 'During my shift, I found evidence of surveillance equipment being installed.'),
+    (71, 89, 189, 'I observed someone taking detailed photos of the security measures.'),
+    (72, 12, 123, 'From the adjacent building, I saw unusual activity in the restricted areas.'),
+    (73, 34, 78, 'I noticed someone attempting to clone security access cards.'),
+    (74, 56, 167, 'While on patrol, I found tools used for bypassing electronic locks.'),
+    (75, 78, 34, 'I heard coded radio communications coming from multiple directions.'),
+    (76, 90, 198, 'During my break, I saw someone mapping out the camera blind spots.'),
+    (77, 23, 67, 'I observed multiple people coordinating through hidden earpieces.'),
+    (78, 45, 134, 'From my post, I noticed someone timing the security patrol intervals.'),
+    (79, 67, 92, 'I saw unusual vehicle movements near the service entrance.'),
+    (80, 89, 156, 'While closing, I found evidence of someone accessing restricted files.'),
+    (81, 12, 45, 'I heard what sounded like professional cutting tools being used.'),
+    (82, 34, 189, 'During my shift, I noticed the surveillance system had been compromised.'),
+    (83, 75, 37, 'I overheard a booking at The Grand Regency.'),
+    (84, 78, 78, 'From the street, I saw multiple people wearing service uniforms after hours.'),
+    (85, 90, 167, 'I noticed unusual activity around the emergency exit stairwells.'),
+    (86, 23, 34, 'While working, I found evidence of systematic security breaches.'),
+    (87, 45, 198, 'I heard unusual mechanical sounds coming from the secured storage area.'),
+    (88, 67, 67, 'During my rounds, I saw someone tampering with the access control system.'),
+    (89, 75, 42, 'I noticed someone at the front desk discussing Room 707 for a reservation made yesterday.'),
+    (90, 12, 92, 'From my position, I noticed someone disabling security sensors systematically.'),
+    (91, 34, 156, 'I saw unusual patterns of movement near the restricted areas.'),
+    (92, 56, 45, 'While patrolling, I found sophisticated hacking equipment hidden nearby.'),
+    (93, 78, 189, 'I heard what sounded like professional tools being used on the locks.'),
+    (94, 90, 123, 'During my shift, I noticed someone monitoring the staff rotations.'),
+    (95, 23, 78, 'I observed multiple people using fake identification badges.'),
+    (96, 45, 167, 'From the parking lot, I saw someone installing unknown devices near cameras.'),
+    (97, 67, 34, 'I noticed unusual activity in typically restricted areas of the building.'),
+    (98, 89, 198, 'While working, I found evidence of coordinated security system tampering.'),
+    (99, 12, 67, 'I heard encrypted radio communications from multiple locations.'),
+    (100, 34, 134, 'During my patrol, I observed someone bypassing the biometric scanners.')
+  ;;
+
+CREATE TABLE hotel_checkins (
+    id INTEGER PRIMARY KEY,
+    person_id INTEGER,
+    hotel_name TEXT,
+    check_in_date INTEGER,
+    room_number TEXT,
+    FOREIGN KEY (person_id) REFERENCES person(id)
+  );;
+
+INSERT INTO hotel_checkins (id, person_id, hotel_name, check_in_date, room_number) VALUES
+    (1, 45, 'Oceanview Resort', 19871028, '301'),
+    (2, 156, 'Sunset Plaza Hotel', 19871029, '412'),
+    (3, 89, 'Mountain Lodge', 19871030, '205'),
+    (4, 23, 'Harbor View Inn', 19871031, '618'),
+    (5, 178, 'City Center Hotel', 19871028, '509'),
+    (6, 67, 'Bayside Resort', 19871029, '723'),
+    (7, 134, 'Palm Beach Hotel', 19871030, '815'),
+    (8, 92, 'Riverside Inn', 19871031, '402'),
+    (9, 145, 'Grand Plaza Hotel', 19871028, '617'),
+    (10, 34, 'Seaside Resort', 19871029, '504'),
+    (11, 189, 'Forest Lodge', 19871030, '309'),
+    (12, 56, 'Marina Bay Hotel', 19871031, '711'),
+    (13, 167, 'Downtown Inn', 19871028, '203'),
+    (14, 78, 'Lakeview Resort', 19871029, '608'),
+    (15, 123, 'Highland Hotel', 19871030, '415'),
+    (16, 45, 'Beach Club Resort', 19871031, '702'),
+    (17, 198, 'Valley View Inn', 19871028, '506'),
+    (18, 67, 'Royal Palace Hotel', 19871029, '819'),
+    (19, 156, 'Garden Court Inn', 19871030, '304'),
+    (20, 89, 'Metropolitan Hotel', 19871031, '613'),
+    (21, 23, 'Island Paradise Resort', 19871028, '407'),
+    (22, 178, 'Mountain View Lodge', 19871029, '512'),
+    (23, 92, 'Coastal Inn', 19871030, '705'),
+    (24, 134, 'Urban Oasis Hotel', 19871031, '218'),
+    (25, 145, 'Harborside Resort', 19871028, '603'),
+    (26, 34, 'Skyline Hotel', 19871029, '409'),
+    (27, 189, 'Beachfront Lodge', 19871030, '714'),
+    (28, 56, 'River Rapids Inn', 19871031, '302'),
+    (29, 167, 'Summit Hotel', 19871028, '615'),
+    (30, 78, 'Bay Bridge Resort', 19871029, '508'),
+    (31, 123, 'Pine Valley Inn', 19871030, '401'),
+    (32, 45, 'Ocean Breeze Hotel', 19871031, '707'),
+    (33, 198, 'Lakeside Lodge', 19871028, '604'),
+    (34, 67, 'City Lights Hotel', 19871029, '513'),
+    (35, 156, 'Coastal View Resort', 19871030, '308'),
+    (36, 89, 'Mountain Peak Inn', 19871031, '716'),
+    (37, 23, 'Harbor Heights Hotel', 19871028, '405'),
+    (38, 178, 'Seaside Lodge', 19871029, '609'),
+    (39, 92, 'Downtown Plaza Hotel', 19871030, '502'),
+    (40, 134, 'Forest Edge Inn', 19871031, '217'),
+    (41, 145, 'Marina View Resort', 19871028, '612'),
+    (42, 34, 'Valley Inn', 19871029, '403'),
+    (43, 189, 'Beach Point Hotel', 19871030, '718'),
+    (44, 56, 'Highland Lodge', 19871031, '305'),
+    (45, 167, 'Riverside Plaza', 19871028, '614'),
+    (46, 78, 'Ocean View Inn', 19871029, '507'),
+    (47, 123, 'City Park Hotel', 19871030, '404'),
+    (48, 45, 'Mountain Lodge Resort', 19871031, '709'),
+    (49, 198, 'Bayside Inn', 19871028, '606'),
+    (50, 67, 'Lake House Hotel', 19871029, '515'),
+    (51, 156, 'Coastal Resort', 19871030, '306'),
+    (52, 89, 'Urban Hotel', 19871031, '713'),
+    (53, 23, 'Harbor Lodge', 19871028, '408'),
+    (54, 178, 'Beach Resort', 19871029, '611'),
+    (55, 92, 'Valley View Hotel', 19871030, '503'),
+    (56, 134, 'Forest Inn', 19871031, '219'),
+    (57, 145, 'Marina Lodge', 19871028, '616'),
+    (58, 34, 'Summit Resort', 19871029, '406'),
+    (59, 189, 'River View Hotel', 19871030, '717'),
+    (60, 56, 'Mountain Inn', 19871031, '303'),
+    (61, 167, 'Ocean Plaza', 19871028, '619'),
+    (62, 78, 'City View Lodge', 19871029, '510'),
+    (63, 123, 'Lakefront Hotel', 19871030, '410'),
+    (64, 45, 'Coastal Lodge', 19871031, '708'),
+    (65, 198, 'Harbor View Resort', 19871028, '607'),
+    (66, 67, 'Beach Point Inn', 19871029, '514'),
+    (67, 156, 'Valley Lodge', 19871030, '307'),
+    (68, 89, 'Forest View Hotel', 19871031, '715'),
+    (69, 23, 'Marina Resort', 19871028, '411'),
+    (70, 178, 'Mountain Plaza', 19871029, '610'),
+    (71, 92, 'Ocean Lodge', 19871030, '505'),
+    (72, 134, 'City Inn', 19871031, '216'),
+    (73, 145, 'Lake View Hotel', 19871028, '620'),
+    (74, 34, 'Coastal Resort Inn', 19871029, '413'),
+    (75, 189, 'River Lodge', 19871030, '719'),
+    (76, 56, 'Harbor Inn', 19871031, '310'),
+    (77, 167, 'Beach View Hotel', 19871028, '621'),
+    (78, 78, 'The Grand Regency', 19871030, '707'),
+    (79, 123, 'The Grand Regency', 19871030, '707'),
+    (80, 45, 'Marina View Inn', 19871031, '710'),
+    (81, 198, 'Valley Resort', 19871028, '605'),
+    (82, 67, 'Ocean Point Lodge', 19871029, '516'),
+    (83, 156, 'City Lodge', 19871030, '311'),
+    (84, 89, 'Lake Inn', 19871031, '712'),
+    (85, 23, 'Coastal View Inn', 19871028, '416'),
+    (86, 178, 'River Plaza Hotel', 19871029, '622'),
+    (87, 92, 'Mountain View Inn', 19871030, '501'),
+    (88, 134, 'The Grand Regency', 19871031, '707'),
+    (89, 145, 'Beach House Hotel', 19871028, '623'),
+    (90, 34, 'Forest Inn Resort', 19871029, '417'),
+    (91, 189, 'Marina Plaza', 19871030, '720'),
+    (92, 56, 'Valley Inn Lodge', 19871031, '312'),
+    (93, 167, 'Ocean View Plaza', 19871028, '624'),
+    (94, 78, 'City Resort', 19871029, '517'),
+    (95, 123, 'The Grand Regency', 19871031, '705'),
+    (96, 45, 'Coastal Inn Resort', 19871031, '706'),
+    (97, 198, 'River View Plaza', 19871028, '625'),
+    (98, 67, 'The Grand Regency', 19871031, '707'),
+    (99, 156, 'Harbor View Lodge', 19871030, '313'),
+    (100, 89, 'Beach Plaza Hotel', 19871031, '721'),
+    (101, 134, 'Mountain View Lodge', 19871030, '412'),
+    (102, 167, 'Seaside Resort', 19871029, '315'),
+    (103, 92, 'The Grand Regency', 19871031, '705'),
+    (104, 156, 'The Grand Regency', 19871031, '707'),
+    (105, 45, 'Sunset Plaza', 19871029, '419'),
+    (106, 178, 'Bayfront Hotel', 19871031, '722'),
+    (107, 123, 'Hilltop Lodge', 19871030, '316'),
+    (108, 89, 'Harbor Lights Inn', 19871029, '520'),
+    (109, 34, 'The Grand Regency', 19871030, '707'),
+    (110, 198, 'Lakeview Hotel', 19871030, '420'),
+    (111, 67, 'Ocean Breeze Inn', 19871029, '317'),
+    (112, 156, 'City Center Lodge', 19871031, '723'),
+    (113, 92, 'Mountain Peak Hotel', 19871030, '521'),
+    (114, 145, 'Riverside Inn', 19871029, '421'),
+    (115, 178, 'Beachcomber Resort', 19871031, '318'),
+    (116, 123, 'Forest Glen Lodge', 19871030, '626'),
+    (117, 89, 'Marina View Hotel', 19871029, '522'),
+    (118, 34, 'Summit Lodge', 19871031, '422'),
+    (119, 11, 'The Grand Regency', 19871030, '707'),
+    (120, 78, 'Urban Retreat', 19871029, '724'),
+    (121, 156, 'Valley Vista Hotel', 19871031, '523'),
+    (122, 92, 'Harborside Inn', 19871030, '423'),
+    (123, 198, 'The Grand Regency', 19871030, '706'),
+    (124, 67, 'Lake House Lodge', 19871031, '627'),
+    (125, 134, 'City Lights Hotel', 19871030, '524'),
+    (126, 145, 'Mountain Air Inn', 19871029, '424'),
+    (127, 178, 'Ocean View Resort', 19871031, '321'),
+    (128, 123, 'River Walk Hotel', 19871030, '725'),
+    (129, 89, 'Forest Edge Lodge', 19871029, '525'),
+    (130, 34, 'Seaside Inn', 19871031, '425'),
+    (131, 167, 'Downtown Plaza', 19871030, '322'),
+    (132, 78, 'Valley Stream Hotel', 19871029, '628'),
+    (133, 156, 'Harbor View Inn', 19871031, '526'),
+    (134, 92, 'Lakeside Lodge', 19871030, '426'),
+    (135, 198, 'Beach Point Resort', 19871029, '323'),
+    (136, 67, 'Mountain Lodge', 19871031, '726'),
+    (137, 134, 'City Park Hotel', 19871030, '527'),
+    (138, 145, 'Riverside Plaza', 19871029, '427'),
+    (139, 178, 'Ocean Crest Inn', 19871031, '324'),
+    (140, 123, 'Forest Park Lodge', 19871030, '629'),
+    (141, 89, 'Marina Bay Hotel', 19871029, '528'),
+    (142, 34, 'Summit View Inn', 19871031, '428'),
+    (143, 167, 'Coastal Resort', 19871030, '325'),
+    (144, 78, 'Urban Hotel', 19871029, '727'),
+    (145, 156, 'Valley Forge Lodge', 19871031, '529'),
+    (146, 92, 'Harbor Light Inn', 19871030, '429'),
+    (147, 198, 'The Grand Regency', 19871030, '707'),
+    (148, 67, 'Lake View Lodge', 19871031, '630'),
+    (149, 134, 'City Square Hotel', 19871030, '530'),
+    (150, 145, 'Mountain Vista Inn', 19871029, '430'),
+    (151, 178, 'Ocean Park Resort', 19871031, '327'),
+    (152, 123, 'River Edge Hotel', 19871030, '728'),
+    (153, 89, 'Forest Glen Inn', 19871029, '531'),
+    (154, 34, 'Seaside Lodge', 19871031, '431'),
+    (155, 167, 'Downtown Inn', 19871030, '328'),
+    (156, 78, 'Valley View Plaza', 19871029, '631'),
+    (157, 156, 'Harbor Point Hotel', 19871031, '532'),
+    (158, 92, 'Lakefront Lodge', 19871030, '432'),
+    (159, 198, 'Beach Club Resort', 19871029, '329'),
+    (160, 67, 'Mountain View Inn', 19871031, '729'),
+    (161, 134, 'City Center Plaza', 19871030, '533'),
+    (162, 145, 'Riverside Lodge', 19871029, '433'),
+    (163, 178, 'Ocean Vista Hotel', 19871031, '330'),
+    (164, 123, 'Forest View Inn', 19871030, '632'),
+    (165, 89, 'Marina Point Lodge', 19871029, '534'),
+    (166, 34, 'Summit Park Hotel', 19871031, '434'),
+    (167, 167, 'Coastal Inn Resort', 19871030, '331'),
+    (168, 78, 'Urban Plaza', 19871029, '730'),
+    (169, 156, 'Valley Stream Inn', 19871031, '535'),
+    (170, 92, 'Harbor View Lodge', 19871030, '435'),
+    (171, 198, 'The Grand Regency', 19871030, '707'),
+    (172, 67, 'Lake Park Resort', 19871031, '633'),
+    (173, 134, 'City View Inn', 19871030, '536'),
+    (174, 145, 'Mountain Edge Lodge', 19871029, '436'),
+    (175, 178, 'The Grand Regency', 19871030, '707'),
+    (176, 123, 'River Park Inn', 19871030, '731'),
+    (177, 89, 'Forest Point Lodge', 19871029, '537'),
+    (178, 34, 'Seaside Plaza', 19871031, '437'),
+    (179, 167, 'Downtown Hotel', 19871030, '334'),
+    (180, 78, 'Valley Light Inn', 19871029, '634'),
+    (181, 156, 'Harbor Park Lodge', 19871031, '538'),
+    (182, 92, 'Lake View Hotel', 19871030, '438'),
+    (183, 198, 'The Grand Regency', 19871030, '707'),
+    (184, 67, 'Mountain Point Inn', 19871031, '732'),
+    (185, 134, 'City Light Plaza', 19871030, '539'),
+    (186, 145, 'Riverside Hotel', 19871029, '439'),
+    (187, 178, 'Ocean Park Lodge', 19871031, '336'),
+    (188, 123, 'The Grand Regency', 19871030, '707'),
+    (189, 89, 'Marina Vista Hotel', 19871029, '540'),
+    (190, 34, 'Summit Point Lodge', 19871031, '440'),
+    (191, 167, 'Coastal Plaza', 19871030, '337'),
+    (192, 78, 'Urban View Inn', 19871029, '733'),
+    (193, 156, 'The Grand Regency', 19871030, '707'),
+    (194, 92, 'Harbor Light Lodge', 19871030, '441'),
+    (195, 198, 'Beach Park Resort', 19871029, '338'),
+    (196, 67, 'Lake Vista Inn', 19871031, '636'),
+    (197, 134, 'City Point Hotel', 19871030, '542'),
+    (198, 145, 'Mountain Light Plaza', 19871029, '442'),
+    (199, 178, 'Ocean View Lodge', 19871031, '339'),
+    (200, 123, 'River Light Hotel', 19871030, '734')
+  ;;
+
+CREATE TABLE surveillance_records (
+    id INTEGER PRIMARY KEY,
+    hotel_checkin_id INTEGER,
+    note TEXT,
+    FOREIGN KEY (hotel_checkin_id) REFERENCES hotel_checkins(id)
+  );;
+
+INSERT INTO surveillance_records (id, hotel_checkin_id, note) VALUES
+    (1, 1, 'Subject was observed reading a newspaper in the hotel lobby area.'),
+    (2, 2, 'Subject ordered room service and tipped the staff generously after delivery.'),
+    (3, 3, 'Subject spent several hours working on laptop in hotel business center.'),
+    (4, 4, NULL),
+    (5, 5, 'Subject went for an early morning jog around the hotel grounds.'),
+    (6, 6, 'Subject attended the complimentary breakfast and chatted with other guests politely.'),
+    (7, 7, 'Subject requested extra towels and toiletries from housekeeping staff member.'),
+    (8, 8, 'Subject used the hotel gym facilities for approximately two hours.'),
+    (9, 9, NULL),
+    (10, 10, 'Subject asked front desk for local restaurant recommendations and directions.'),
+    (11, 11, 'Subject received a package delivery and signed for it properly.'),
+    (12, 12, 'Subject used the hotel pool and followed all posted safety rules.'),
+    (13, 13, 'Subject attended a business conference in one of meeting rooms.'),
+    (14, 14, NULL),
+    (15, 15, 'Subject ordered a wake-up call and checked out on time.'),
+    (16, 16, 'Subject used the concierge service to book local theater tickets.'),
+    (17, 17, 'Subject had dinner at hotel restaurant with business associates.'),
+    (18, 18, 'Subject requested and received directions to nearest shopping mall.'),
+    (19, 19, NULL),
+    (20, 20, 'Subject used hotel shuttle service to visit local tourist attractions.'),
+    (21, 21, 'Subject participated in hotel wine tasting event with other guests.'),
+    (22, 22, 'Subject requested room cleaning service at appropriate morning hours.'),
+    (23, 23, 'Subject used hotel business center to print boarding passes.'),
+    (24, 24, NULL),
+    (25, 25, 'Subject attended hotel managers evening reception and socialized appropriately.'),
+    (26, 26, 'Subject requested and received extra pillows from housekeeping staff.'),
+    (27, 27, 'Subject used valet parking service and tipped staff appropriately.'),
+    (28, 28, 'Subject ordered breakfast through room service early in morning.'),
+    (29, 29, NULL),
+    (30, 30, 'Subject used hotel spa services and booked follow-up appointment.'),
+    (31, 31, 'Subject requested wake up call and received morning newspaper delivery.'),
+    (32, 32, 'Subject attended complimentary yoga class in hotel fitness center.'),
+    (33, 33, 'Subject used hotel dry cleaning service for business attire.'),
+    (34, 34, NULL),
+    (35, 35, 'Subject requested and received additional coffee supplies for room.'),
+    (36, 36, 'Subject used hotel conference room for business meeting presentation.'),
+    (37, 37, 'Subject participated in hotel guest satisfaction survey after checkout.'),
+    (38, 38, 'Subject requested directions to nearest public transportation station.'),
+    (39, 39, NULL),
+    (40, 40, 'Subject used hotel gift shop to purchase local souvenirs.'),
+    (41, 41, 'Subject attended hotel sponsored local wine tasting tour event.'),
+    (42, 42, 'Subject requested and received late checkout without any issues.'),
+    (43, 43, 'Subject used hotel computer to check in for flight.'),
+    (44, 44, NULL),
+    (45, 45, 'Subject participated in hotel guest appreciation cocktail hour event.'),
+    (46, 46, 'Subject requested maintenance to fix television remote control issue.'),
+    (47, 47, 'Subject used hotel laundry service for personal clothing items.'),
+    (48, 48, 'Subject attended hotel sponsored local history walking tour.'),
+    (49, 49, NULL),
+    (50, 50, 'Subject requested and received additional hangers for hotel room closet.'),
+    (51, 51, 'Subject used hotel concierge to arrange airport transportation service.'),
+    (52, 52, 'Subject participated in hotel guest feedback session with management.'),
+    (53, 53, 'Subject requested directions to nearest pharmacy from front desk.'),
+    (54, 54, NULL),
+    (55, 55, 'Subject used hotel business center to send important fax documents.'),
+    (56, 56, 'Subject attended hotel sponsored local food tasting event.'),
+    (57, 57, 'Subject requested and received room change due to AC issues.'),
+    (58, 58, 'Subject used hotel ATM machine in lobby area.'),
+    (59, 59, NULL),
+    (60, 60, 'Subject participated in hotel charity fundraising event in lobby.'),
+    (61, 61, 'Subject requested additional bathroom supplies from housekeeping staff.'),
+    (62, 62, 'Subject used hotel shoe shine service before business meeting.'),
+    (63, 63, 'Subject attended hotel sponsored art gallery opening event.'),
+    (64, 64, NULL),
+    (65, 65, 'Subject requested and received extra blankets for hotel room.'),
+    (66, 66, 'Subject used hotel currency exchange service at front desk.'),
+    (67, 67, 'Subject participated in hotel guest loyalty program registration.'),
+    (68, 68, 'Subject requested directions to nearest car rental facility.'),
+    (69, 69, NULL),
+    (70, 70, 'Subject used hotel salon services for business meeting preparation.'),
+    (71, 71, 'Subject attended hotel sponsored local music performance event.'),
+    (72, 72, 'Subject requested and received room service menu for dietary restrictions.'),
+    (73, 73, 'Subject used hotel printing services for business documents.'),
+    (74, 74, NULL),
+    (75, 75, 'Subject participated in hotel environmental sustainability program activities.'),
+    (76, 76, 'Subject requested additional power adapters from front desk staff.'),
+    (77, 77, 'Subject used hotel bicycle rental service for local sightseeing.'),
+    (78, 78, 'Subject attended hotel sponsored cooking demonstration in restaurant.'),
+    (79, 79, NULL),
+    (80, 80, 'Subject requested and received extra towels for hotel pool use.'),
+    (81, 81, 'Subject used hotel travel desk to book local tours.'),
+    (82, 82, 'Subject participated in hotel guest satisfaction focus group.'),
+    (83, 83, 'Subject requested directions to nearest business district area.'),
+    (84, 84, NULL),
+    (85, 85, 'Subject used hotel massage services after long business meeting.'),
+    (86, 86, 'Subject attended hotel sponsored local craft beer tasting.'),
+    (87, 87, 'Subject requested and received extra tea supplies for room.'),
+    (88, 88, 'Subject used hotel notary services for business documents.'),
+    (89, 89, NULL),
+    (90, 90, 'Subject participated in hotel guest appreciation week activities.'),
+    (91, 91, 'Subject requested additional toiletries from housekeeping department staff.'),
+    (92, 92, 'Subject used hotel car service for business meeting transportation.'),
+    (93, 93, 'Subject attended hotel sponsored local artist meet and greet.'),
+    (94, 94, NULL),
+    (95, 95, 'Subject requested and received wake up call for early flight.'),
+    (96, 96, 'Subject used hotel gift wrapping service for purchased items.'),
+    (97, 97, 'Subject participated in hotel customer service feedback session.'),
+    (98, 98, 'Subject requested directions to nearest conference center location.'),
+    (99, 99, NULL),
+    (100, 100, 'Subject used hotel business center for video conference call.'),
+    (101, 101, NULL),
+    (102, 102, 'Subject requested extra pillows from housekeeping.'),
+    (103, 103, 'Subject attended morning yoga session in hotel fitness center.'),
+    (104, 104, 'Subject used hotel dry cleaning service.'),
+    (105, 105, NULL),
+    (106, 106, 'Subject requested restaurant recommendations from concierge.'),
+    (107, 107, 'Subject participated in hotel wine tasting event.'),
+    (108, 108, NULL),
+    (109, 109, 'Subject used hotel shuttle service to shopping mall.'),
+    (110, 110, 'Subject requested late checkout accommodation.'),
+    (111, 111, 'Subject attended hotel poolside barbecue event.'),
+    (112, 112, NULL),
+    (113, 113, 'Subject used hotel spa facilities for manicure service.'),
+    (114, 114, 'Subject requested room service breakfast delivery.'),
+    (115, 115, NULL),
+    (116, 116, 'Subject participated in hotel trivia night event.'),
+    (117, 117, 'Subject used hotel laundry facilities.'),
+    (118, 118, 'Subject requested airport shuttle reservation.'),
+    (119, 119, 'Subject was overheard yelling on a phone: "Did you kill him?"'),
+    (120, 120, 'Subject attended hotel jazz night in lobby lounge.'),
+    (121, 121, 'Subject used hotel gym facilities.'),
+    (122, 122, NULL),
+    (123, 123, 'Subject requested local museum information from concierge.'),
+    (124, 124, 'Subject participated in hotel meditation workshop.'),
+    (125, 125, 'Subject used hotel valet parking service.'),
+    (126, 126, NULL),
+    (127, 127, 'Subject requested room cleaning service.'),
+    (128, 128, 'Subject attended hotel movie night by the pool.'),
+    (129, 129, NULL),
+    (130, 130, 'Subject used hotel computer for flight check-in.'),
+    (131, 131, 'Subject requested ice delivery to room.'),
+    (132, 132, 'Subject participated in hotel board game night.'),
+    (133, 133, NULL),
+    (134, 134, 'Subject used hotel umbrella rental service.'),
+    (135, 135, 'Subject requested wake-up call service.'),
+    (136, 136, NULL),
+    (137, 137, 'Subject attended hotel karaoke night event.'),
+    (138, 138, 'Subject used hotel safe deposit box.'),
+    (139, 139, 'Subject requested local restaurant delivery menu.'),
+    (140, 140, NULL),
+    (141, 141, 'Subject participated in hotel dance class.'),
+    (142, 142, 'Subject used hotel fax services.'),
+    (143, 143, NULL),
+    (144, 144, 'Subject requested extra coffee supplies for room.'),
+    (145, 145, 'Subject attended hotel art exhibition opening.'),
+    (146, 146, 'Subject used hotel shoe cleaning service.'),
+    (147, 147, NULL),
+    (148, 148, 'Subject requested local taxi service arrangement.'),
+    (149, 149, 'Subject participated in hotel cooking class.'),
+    (150, 150, NULL),
+    (151, 151, 'Subject used hotel gift shop services.'),
+    (152, 152, 'Subject requested room temperature adjustment.'),
+    (153, 153, 'Subject attended hotel poetry reading event.'),
+    (154, 154, NULL),
+    (155, 155, 'Subject used hotel luggage storage service.'),
+    (156, 156, 'Subject requested newspaper delivery to room.'),
+    (157, 157, NULL),
+    (158, 158, 'Subject participated in hotel chess tournament.'),
+    (159, 159, 'Subject used hotel photocopying services.'),
+    (160, 160, 'Subject requested dinner reservation assistance.'),
+    (161, 161, NULL),
+    (162, 162, 'Subject attended hotel live music performance.'),
+    (163, 163, 'Subject used hotel postal services.'),
+    (164, 164, NULL),
+    (165, 165, 'Subject requested room maintenance for TV issues.'),
+    (166, 166, 'Subject participated in hotel gardening workshop.'),
+    (167, 167, 'Subject used hotel currency exchange service.'),
+    (168, 168, NULL),
+    (169, 169, 'Subject requested local area map from front desk.'),
+    (170, 170, 'Subject attended hotel cocktail mixing class.'),
+    (171, 171, NULL),
+    (172, 172, 'Subject used hotel library services.'),
+    (173, 173, 'Subject requested extra bathroom amenities.'),
+    (174, 174, 'Subject participated in hotel yoga meditation.'),
+    (175, 175, NULL),
+    (176, 176, 'Subject used hotel express check-out service.'),
+    (177, 177, 'Subject requested room service dinner delivery.'),
+    (178, 178, NULL),
+    (179, 179, 'Subject attended hotel painting workshop.'),
+    (180, 180, 'Subject used hotel internet cafe services.'),
+    (181, 181, 'Subject requested local theater tickets through concierge.'),
+    (182, 182, NULL),
+    (183, 183, 'Subject participated in hotel guest mixer event.'),
+    (184, 184, 'Subject used hotel wake-up call service.'),
+    (185, 185, NULL),
+    (186, 186, 'Subject requested extra hangers for closet.'),
+    (187, 187, 'Subject attended hotel wine and cheese pairing.'),
+    (188, 188, 'Subject used hotel business center printer.'),
+    (189, 189, NULL),
+    (190, 190, 'Subject requested local weather forecast information.'),
+    (191, 191, 'Subject participated in hotel book club meeting.'),
+    (192, 192, NULL),
+    (193, 193, 'Subject used hotel shoe shine service.'),
+    (194, 194, 'Subject requested room service breakfast menu.'),
+    (195, 195, 'Subject attended hotel sunset yoga session.'),
+    (196, 196, NULL),
+    (197, 197, 'Subject used hotel magazine lending service.'),
+    (198, 198, 'Subject requested extra soap and shampoo.'),
+    (199, 199, NULL),
+    (200, 200, 'Subject participated in hotel morning meditation.')
+  ;;
+
+CREATE TABLE phone_records (
+    id INTEGER PRIMARY KEY,
+    caller_id INTEGER,
+    recipient_id INTEGER,
+    call_date INTEGER,
+    call_time TEXT,
+    note TEXT,
+    FOREIGN KEY (caller_id) REFERENCES person(id),
+    FOREIGN KEY (recipient_id) REFERENCES person(id)
+  );;
+
+INSERT INTO phone_records (id, caller_id, recipient_id, call_date, call_time, note) VALUES
+    (1, 3, 1, 19871028, '09:15', 'Hey, can you help me move this weekend?'),
+    (2, 7, 1, 19871029, '10:30', 'Just wanted to confirm our lunch meeting tomorrow.'),
+    (3, 2, 3, 19871030, '11:45', 'The project deadline needs to be extended immediately.'),
+    (4, 5, 8, 19871028, '12:20', 'Please send me those financial reports right away.'),
+    (5, 9, 4, 19871029, '13:35', 'Did you remember to feed my cat today?'),
+    (6, 1, 6, 19871030, '14:50', 'Let me know when you arrive at home.'),
+    (7, 8, 2, 19871028, '15:15', 'We should reschedule our tennis game this week.'),
+    (8, 4, 7, 19871029, '16:30', 'The meeting room is booked for three pm.'),
+    (9, 6, 5, 19871030, '17:45', 'Could you pick up some groceries after work?'),
+    (10, 2, 9, 19871028, '18:20', 'I need those contract papers signed by tomorrow.'),
+    (11, 7, 3, 19871029, '19:35', 'My car broke down on the highway again.'),
+    (12, 3, 8, 19871030, '20:50', 'Should we order pizza for dinner tonight instead?'),
+    (13, 5, 1, 19871028, '21:15', 'The internet is not working at my place.'),
+    (14, 9, 6, 19871029, '22:30', 'Remember to bring your laptop to the conference.'),
+    (15, 1, 4, 19871030, '23:45', 'Going to be late for our morning meeting.'),
+    (16, 8, 7, 19871028, '08:20', 'Have you seen the new movie last night?'),
+    (17, 4, 2, 19871029, '09:35', 'The printer in the office is broken again.'),
+    (18, 6, 9, 19871030, '10:50', 'We need to discuss the budget next week.'),
+    (19, 2, 5, 19871028, '11:15', 'Can you send me directions to your house?'),
+    (20, 7, 8, 19871029, '12:30', 'The client wants to meet on Thursday instead.'),
+    (21, 3, 4, 19871030, '13:45', 'I forgot my keys at your place today.'),
+    (22, 5, 6, 19871028, '14:20', 'The weather is perfect for a beach trip.'),
+    (23, 9, 2, 19871029, '15:35', 'Do you have time for coffee this afternoon?'),
+    (24, 1, 7, 19871030, '16:50', 'My presentation went really well this morning.'),
+    (25, 8, 3, 19871028, '17:15', 'The dog needs to go to the vet.'),
+    (26, 4, 5, 19871029, '18:30', 'Could you water my plants this weekend please?'),
+    (27, 6, 1, 19871030, '19:45', 'The restaurant reservation is confirmed for eight.'),
+    (28, 2, 8, 19871028, '20:20', 'We should plan our vacation next month soon.'),
+    (29, 7, 4, 19871029, '21:35', 'Just finished reading that book you recommended.'),
+    (30, 3, 6, 19871030, '22:50', 'The traffic is terrible on the highway today.'),
+    (31, 5, 2, 19871028, '23:15', 'Remember to bring your umbrella tomorrow morning.'),
+    (32, 9, 7, 19871029, '08:30', 'Can you help me fix my computer?'),
+    (33, 1, 3, 19871030, '09:45', 'The package should arrive by noon today.'),
+    (34, 8, 5, 19871028, '10:20', 'Did you see the email I sent yesterday?'),
+    (35, 4, 9, 19871029, '11:35', 'The gym membership needs to be renewed soon.'),
+    (36, 6, 8, 19871030, '12:50', 'My phone battery is about to die now.'),
+    (37, 2, 4, 19871028, '13:15', 'The new restaurant downtown is really good.'),
+    (38, 7, 6, 19871029, '14:30', 'Should we reschedule the team meeting today?'),
+    (39, 3, 2, 19871030, '15:45', 'I need help moving my furniture tomorrow.'),
+    (40, 5, 7, 19871028, '16:20', 'The concert tickets are sold out already.'),
+    (41, 9, 3, 19871029, '17:35', 'Can you recommend a good dentist nearby?'),
+    (42, 1, 5, 19871030, '18:50', 'The car needs to be serviced soon.'),
+    (43, 8, 9, 19871028, '19:15', 'Did you finish the report for tomorrow?'),
+    (44, 4, 1, 19871029, '20:30', 'The air conditioning is not working properly.'),
+    (45, 6, 3, 19871030, '21:45', 'We should plan something for the weekend.'),
+    (46, 2, 7, 19871028, '22:20', 'The new coffee machine is amazing here.'),
+    (47, 7, 5, 19871029, '23:35', 'Just wanted to check how you are doing.'),
+    (48, 3, 9, 19871030, '08:50', 'The meeting room needs to be booked again.'),
+    (49, 5, 4, 19871028, '09:15', 'Remember to bring the documents for signing.'),
+    (50, 9, 8, 19871029, '10:30', 'The printer needs new ink cartridges soon.'),
+    (51, 1, 2, 19871030, '11:45', 'Can you help me with this math problem?'),
+    (52, 8, 6, 19871028, '12:20', 'The internet connection is very slow today.'),
+    (53, 4, 3, 19871029, '13:35', 'We need to discuss the project timeline.'),
+    (54, 6, 7, 19871030, '14:50', 'The parking lot is full this morning.'),
+    (55, 2, 1, 19871028, '15:15', 'Just finished watching that new TV show.'),
+    (56, 7, 9, 19871029, '16:30', 'The deadline has been extended until Friday.'),
+    (57, 3, 5, 19871030, '17:45', 'Could you send me the meeting minutes?'),
+    (58, 5, 8, 19871028, '18:20', 'The new software update is available now.'),
+    (59, 9, 4, 19871029, '19:35', 'Remember to bring your passport next time.'),
+    (60, 1, 6, 19871030, '20:50', 'The elevator is out of order today.'),
+    (61, 8, 2, 19871028, '21:15', 'Just wanted to confirm our appointment tomorrow.'),
+    (62, 4, 7, 19871029, '22:30', 'The presentation slides need some changes still.'),
+    (63, 6, 3, 19871030, '23:45', 'Can you recommend a good movie tonight?'),
+    (64, 2, 5, 19871028, '08:20', 'The new office layout looks really nice.'),
+    (65, 7, 1, 19871029, '09:35', 'Did you receive my email from yesterday?'),
+    (66, 3, 8, 19871030, '10:50', 'The conference room is too cold today.'),
+    (67, 5, 4, 19871028, '11:15', 'We should plan the team building event.'),
+    (68, 9, 6, 19871029, '12:30', 'The copy machine is not working again.'),
+    (69, 1, 2, 19871030, '13:45', 'Remember to bring your gym clothes tomorrow.'),
+    (70, 8, 7, 19871028, '14:20', 'The new restaurant menu looks really good.'),
+    (71, 4, 3, 19871029, '15:35', 'Can you help me with this presentation?'),
+    (72, 6, 5, 19871030, '16:50', 'The traffic lights are not working today.'),
+    (73, 2, 9, 19871028, '17:15', 'Just finished reading the project proposal now.'),
+    (74, 7, 8, 19871029, '18:30', 'The meeting room needs better lighting installed.'),
+    (75, 3, 4, 19871030, '19:45', 'Could you send me the contract details?'),
+    (76, 5, 6, 19871028, '20:20', 'The new security system works really well.'),
+    (77, 9, 2, 19871029, '21:35', 'Remember to bring your presentation materials tomorrow.'),
+    (78, 1, 7, 19871030, '22:50', 'The printer needs paper in tray two.'),
+    (79, 8, 3, 19871028, '23:15', 'Just wanted to discuss the budget plan.'),
+    (80, 4, 5, 19871029, '08:30', 'The coffee machine needs to be cleaned.'),
+    (81, 6, 1, 19871030, '09:45', 'Can you help me move these boxes?'),
+    (82, 2, 8, 19871028, '10:20', 'The new project timeline looks very tight.'),
+    (83, 7, 4, 19871029, '11:35', 'Did you see the new office design?'),
+    (84, 3, 6, 19871030, '12:50', 'The meeting notes need to be reviewed.'),
+    (85, 5, 2, 19871028, '13:15', 'We should discuss the marketing strategy soon.'),
+    (86, 9, 7, 19871029, '14:30', 'The air conditioning needs to be fixed.'),
+    (87, 1, 3, 19871030, '15:45', 'Remember to sign the attendance sheet today.'),
+    (88, 8, 5, 19871028, '16:20', 'The new software is very user friendly.'),
+    (89, 4, 9, 19871029, '17:35', 'Can you send me the meeting schedule?'),
+    (90, 6, 8, 19871030, '18:50', 'The parking validation machine is broken again.'),
+    (91, 2, 4, 19871028, '19:15', 'Just finished the quarterly report draft today.'),
+    (92, 7, 6, 19871029, '20:30', 'The new office chairs are very comfortable.'),
+    (93, 3, 2, 19871030, '21:45', 'Could you review this document for me?'),
+    (94, 5, 7, 19871028, '22:20', 'The team meeting went really well today.'),
+    (95, 9, 3, 19871029, '23:35', 'Remember to update your computer software soon.'),
+    (96, 1, 5, 19871030, '08:50', 'The new project looks very promising now.'),
+    (97, 8, 9, 19871028, '09:15', 'Did you receive the package I sent?'),
+    (98, 4, 1, 19871029, '10:30', 'The conference call needs to be rescheduled.'),
+    (99, 6, 3, 19871030, '11:45', 'We should plan the holiday party soon.'),
+    (100, 2, 7, 19871028, '12:20', 'The new database system is working perfectly.'),
+    (101, 5, 8, 19871029, '13:35', 'My cat knocked over the plant this morning.'),
+    (102, 7, 4, 19871030, '14:50', 'The subway was delayed by 20 minutes today.'),
+    (103, 3, 9, 19871028, '15:15', 'I found a great new coffee shop downtown.'),
+    (104, 8, 2, 19871029, '16:30', 'The weather forecast predicts rain tomorrow.'),
+    (105, 1, 6, 19871030, '17:45', 'My neighbor got a new puppy yesterday.'),
+    (106, 4, 3, 19871028, '18:20', 'The library books are due next week.'),
+    (107, 9, 7, 19871029, '19:35', 'I need to buy new running shoes soon.'),
+    (108, 2, 5, 19871030, '20:50', 'The movie theater is showing classic films.'),
+    (109, 6, 8, 19871028, '21:15', 'My phone battery dies too quickly now.'),
+    (110, 3, 1, 19871029, '22:30', 'The grocery store was out of milk.'),
+    (111, 7, 4, 19871030, '23:45', 'I forgot my umbrella at the restaurant.'),
+    (112, 5, 9, 19871028, '08:20', 'The bus schedule changed this week.'),
+    (113, 8, 2, 19871029, '09:35', 'My favorite show got cancelled.'),
+    (114, 1, 6, 19871030, '10:50', 'The gym is crowded after work hours.'),
+    (115, 4, 3, 19871028, '11:15', 'I need to schedule a dentist appointment.'),
+    (116, 9, 7, 19871029, '12:30', 'The washing machine is making strange noises.'),
+    (117, 11, 58, 19871030, '23:30', 'Why did you kill him, bro? You should have left the carpenter do it himself!'),
+    (118, 6, 8, 19871028, '14:20', 'The car needs an oil change soon.'),
+    (119, 3, 1, 19871029, '15:35', 'I lost my house keys yesterday.'),
+    (120, 7, 4, 19871030, '16:50', 'The pizza delivery was late again.'),
+    (121, 5, 9, 19871028, '17:15', 'My computer needs a software update.'),
+    (122, 8, 2, 19871029, '18:30', 'The garden needs watering tomorrow.'),
+    (123, 1, 6, 19871030, '19:45', 'I found a great deal on plane tickets.'),
+    (124, 4, 3, 19871028, '20:20', 'The refrigerator light stopped working.'),
+    (125, 9, 7, 19871029, '21:35', 'My bike tire has a flat.'),
+    (126, 2, 5, 19871030, '22:50', 'The concert tickets sold out quickly.'),
+    (127, 6, 8, 19871028, '23:15', 'I need to buy birthday presents.'),
+    (128, 3, 1, 19871029, '08:30', 'The paint is peeling in the bathroom.'),
+    (129, 7, 4, 19871030, '09:45', 'My watch battery died this morning.'),
+    (130, 5, 9, 19871028, '10:20', 'The internet connection is unstable.'),
+    (131, 8, 2, 19871029, '11:35', 'I forgot to mail the letters.'),
+    (132, 1, 6, 19871030, '12:50', 'The microwave stopped heating properly.'),
+    (133, 4, 3, 19871028, '13:15', 'My plants need repotting soon.'),
+    (134, 9, 7, 19871029, '14:30', 'The ceiling fan makes clicking sounds.'),
+    (135, 2, 5, 19871030, '15:45', 'I need new winter boots this year.'),
+    (136, 6, 8, 19871028, '16:20', 'The printer is low on paper.'),
+    (137, 3, 1, 19871029, '17:35', 'My allergies are acting up today.'),
+    (138, 7, 4, 19871030, '18:50', 'The remote control needs new batteries.'),
+    (139, 5, 9, 19871028, '19:15', 'I should clean the windows tomorrow.'),
+    (140, 8, 2, 19871029, '20:30', 'The doorbell stopped working.'),
+    (141, 1, 6, 19871030, '21:45', 'My favorite restaurant closed down.'),
+    (142, 4, 3, 19871028, '22:20', 'The shower head needs replacing.'),
+    (143, 9, 7, 19871029, '23:35', 'I need to renew my passport soon.'),
+    (144, 2, 5, 19871030, '08:50', 'The lawn needs mowing this weekend.'),
+    (145, 6, 8, 19871028, '09:15', 'My headphones stopped working.'),
+    (146, 3, 1, 19871029, '10:30', 'The traffic was terrible this morning.'),
+    (147, 7, 4, 19871030, '11:45', 'I should call my grandmother today.'),
+    (148, 5, 9, 19871028, '12:20', 'The toaster burns everything now.'),
+    (149, 8, 2, 19871029, '13:35', 'My desk chair needs fixing.'),
+    (150, 1, 6, 19871030, '14:50', 'The air conditioner is too loud.'),
+    (151, 4, 3, 19871028, '15:15', 'I need to buy more coffee filters.'),
+    (152, 9, 7, 19871029, '16:30', 'The vacuum cleaner bag is full.'),
+    (153, 2, 5, 19871030, '17:45', 'My neighbors dog barks all night.'),
+    (154, 6, 8, 19871028, '18:20', 'The kitchen sink is dripping.'),
+    (155, 3, 1, 19871029, '19:35', 'I should start exercising more.'),
+    (156, 7, 4, 19871030, '20:50', 'The TV remote is missing again.'),
+    (157, 5, 9, 19871028, '21:15', 'My glasses need cleaning badly.'),
+    (158, 8, 2, 19871029, '22:30', 'The front door squeaks loudly.'),
+    (159, 1, 6, 19871030, '23:45', 'I need to buy more hangers.'),
+    (160, 4, 3, 19871028, '08:20', 'The bathroom mirror is foggy.'),
+    (161, 9, 7, 19871029, '09:35', 'My phone screen is cracked.'),
+    (162, 2, 5, 19871030, '10:50', 'The garage door opener broke.'),
+    (163, 133, 58, 19871030, '22:15', 'I will do it. Only if you give me that nice Lambo of yours.'),
+    (164, 3, 1, 19871029, '12:30', 'The smoke detector needs testing.'),
+    (165, 7, 4, 19871030, '13:45', 'My calendar needs updating.'),
+    (166, 5, 9, 19871028, '14:20', 'The blinds wont close properly.'),
+    (167, 8, 2, 19871029, '15:35', 'I need to buy more stamps.'),
+    (168, 1, 6, 19871030, '16:50', 'The clock runs five minutes fast.'),
+    (169, 4, 3, 19871028, '17:15', 'My shoes need polishing.'),
+    (170, 9, 7, 19871029, '18:30', 'The dishwasher cycle is too long.'),
+    (171, 2, 5, 19871030, '19:45', 'I should water the plants today.'),
+    (172, 6, 8, 19871028, '20:20', 'The bedroom light flickers sometimes.'),
+    (173, 3, 1, 19871029, '21:35', 'My laptop runs too slowly now.'),
+    (174, 7, 4, 19871030, '22:50', 'The fence needs painting soon.'),
+    (175, 5, 9, 19871028, '23:15', 'I need to buy more soap.'),
+    (176, 8, 2, 19871029, '08:30', 'The curtains need washing.'),
+    (177, 1, 6, 19871030, '09:45', 'My watch runs two minutes slow.'),
+    (178, 4, 3, 19871028, '10:20', 'The carpet needs vacuuming.'),
+    (179, 9, 7, 19871029, '11:35', 'I should clean the oven today.'),
+    (180, 2, 5, 19871030, '12:50', 'The mailbox is falling apart.'),
+    (181, 6, 8, 19871028, '13:15', 'My keys are getting rusty.'),
+    (182, 3, 1, 19871029, '14:30', 'The window screen has a hole.'),
+    (183, 7, 4, 19871030, '15:45', 'I need new bed sheets soon.'),
+    (184, 5, 9, 19871028, '16:20', 'The doormat is wearing out.'),
+    (185, 8, 2, 19871029, '17:35', 'My pen ran out of ink.'),
+    (186, 1, 6, 19871030, '18:50', 'The stairs creak at night.'),
+    (187, 4, 3, 19871028, '19:15', 'I should buy more hangers.'),
+    (188, 9, 7, 19871029, '20:30', 'The faucet drips constantly.'),
+    (189, 2, 5, 19871030, '21:45', 'My phone needs charging.'),
+    (190, 6, 8, 19871028, '22:20', 'The wall clock stopped working.'),
+    (191, 3, 1, 19871029, '23:35', 'I need to buy groceries soon.'),
+    (192, 7, 4, 19871030, '08:50', 'The mirror needs cleaning.'),
+    (193, 5, 9, 19871028, '09:15', 'My calendar is outdated.'),
+    (194, 8, 2, 19871029, '10:30', 'The chair makes squeaking noises.'),
+    (195, 1, 6, 19871030, '11:45', 'I should replace the lightbulbs.'),
+    (196, 4, 3, 19871028, '12:20', 'The shelf is slightly crooked.'),
+    (197, 9, 7, 19871029, '13:35', 'My pencil needs sharpening.'),
+    (198, 2, 5, 19871030, '14:50', 'The door handle is loose.'),
+    (199, 6, 8, 19871028, '15:15', 'I need to buy more paper.'),
+    (200, 3, 1, 19871029, '16:30', 'The ceiling needs painting.')
+  ;;
+
+CREATE TABLE final_interviews (
+    id INTEGER PRIMARY KEY,
+    person_id INTEGER,
+    confession TEXT,
+    FOREIGN KEY (person_id) REFERENCES person(id)
+  );;
+
+INSERT INTO final_interviews (id, person_id, confession) VALUES
+    (1, 1, 'I didnt kill anyone, I swear. Who would even think I could kill someone?'),
+    (2, 2, 'Listen, I was at the gym that day. I would never kill another human being.'),
+    (3, 3, 'My mother raised me better than that. I didnt kill anybody, period.'),
+    (4, 4, 'What a ridiculous accusation! I couldnt kill even if I wanted to.'),
+    (5, 5, 'Youve got the wrong person here. Im not someone who would kill.'),
+    (6, 6, 'Check my alibi if you want. I didnt kill anyone that night.'),
+    (7, 7, 'I was watching TV at home. How could I possibly kill someone?'),
+    (8, 8, 'This is absurd! Ive never killed anything bigger than a spider.'),
+    (9, 9, 'Do I look like someone who could kill? I faint at the sight of blood.'),
+    (10, 10, 'Let me be clear about this. I did not kill that person.'),
+    (11, 11, 'Im a peaceful person. I wouldnt kill anyone ever.'),
+    (12, 12, 'Youre barking up the wrong tree. I didnt kill anybody.'),
+    (13, 13, 'I was with my family that evening. I couldnt kill anyone even if I wanted to.'),
+    (14, 14, 'This is a mistake. Im not the type of person who would kill.'),
+    (15, 15, 'Ask my neighbors, I was home. I would never kill someone.'),
+    (16, 16, 'Im innocent in all this. I didnt kill that person or anyone else.'),
+    (17, 17, 'Look at my record, Im clean. Ive never tried to kill anyone.'),
+    (18, 18, 'Youve got this all wrong. I wouldnt kill a fly.'),
+    (19, 19, 'I was at work all day. How could I possibly kill someone?'),
+    (20, 20, 'This is ridiculous! Im not capable of trying to kill anyone.'),
+    (21, 21, 'Check the security cameras. I didnt kill anybody that day.'),
+    (22, 22, 'Im a vegetarian for crying out loud. I wouldnt kill anyone!'),
+    (23, 23, 'Youre making a huge mistake. Ive never tried to kill anyone.'),
+    (24, 24, 'I was at the movies that night. I couldnt possibly kill someone.'),
+    (25, 25, 'This is just wrong. Im not someone who would kill.'),
+    (26, 26, 'I have witnesses who can vouch for me. I didnt kill anyone.'),
+    (27, 27, 'My conscience is clear. I would never kill another person.'),
+    (28, 28, 'Im a peace-loving citizen. I couldnt kill if I tried.'),
+    (29, 29, 'This whole thing is crazy. Im not a person who would kill.'),
+    (30, 30, 'I was out of town that week. How could I kill anyone?'),
+    (31, 31, 'Youre way off base here. I didnt kill anybody.'),
+    (32, 32, 'Im a healthcare worker. I save lives, I dont kill people.'),
+    (33, 33, 'This is a complete misunderstanding. I would never kill anyone.'),
+    (34, 34, 'I have an ironclad alibi. I didnt kill that person.'),
+    (35, 35, 'Youre looking at the wrong person. I couldnt kill anyone.'),
+    (36, 36, 'I was asleep at the time. How could I possibly kill someone?'),
+    (37, 37, 'This is just not possible. Im not someone who would kill.'),
+    (38, 38, 'Im a law-abiding citizen. I wouldnt kill anybody.'),
+    (39, 39, 'Check my phone records. I didnt kill anyone that night.'),
+    (40, 40, 'Im completely innocent. I would never kill another person.'),
+    (41, 41, 'This is all wrong. I couldnt possibly kill someone.'),
+    (42, 42, 'I have proof of where I was. I didnt kill anybody.'),
+    (43, 43, 'Youve got the wrong person. Im not someone who would kill.'),
+    (44, 44, 'I was at a party that evening. I couldnt possibly kill anyone.'),
+    (45, 45, 'This is a mistake. I would never kill another human being.'),
+    (46, 46, 'Im shocked by these accusations. I didnt kill anyone.'),
+    (47, 47, 'Look at my background. Im not capable of trying to kill.'),
+    (48, 48, 'I have an airtight alibi. I wouldnt kill anybody.'),
+    (49, 49, 'This is completely false. I couldnt kill someone if I tried.'),
+    (50, 50, 'I was with my kids that day. I would never kill anyone.'),
+    (51, 51, 'Youre making a mistake. I didnt kill that person.'),
+    (52, 52, 'Im a peaceful person. I couldnt possibly kill anyone.'),
+    (53, 53, 'This is absurd! I would never kill another human being.'),
+    (54, 54, 'I have witnesses. I didnt kill anybody that night.'),
+    (55, 55, 'Youve got this wrong. Im not someone who would kill.'),
+    (56, 56, 'I was at church that morning. I couldnt kill anyone.'),
+    (57, 57, 'This is a huge misunderstanding. I would never kill.'),
+    (58, 58, 'I didn’t kill Leo per se. I was just a middleman.'),
+    (59, 59, 'Im innocent of this. I couldnt possibly kill someone.'),
+    (60, 60, 'Youre barking up the wrong tree. I wouldnt kill anybody.'),
+    (61, 61, 'I have a solid alibi. I didnt kill anyone that day.'),
+    (62, 62, 'This is just wrong. Im not the type to kill.'),
+    (63, 63, 'I was at the gym all evening. I couldnt possibly kill anyone.'),
+    (64, 64, 'Youve got the wrong person. I would never kill.'),
+    (65, 65, 'Im a gentle soul. I didnt kill anybody.'),
+    (66, 66, 'This is ridiculous. I couldnt kill if I wanted to.'),
+    (67, 67, 'I have proof of my whereabouts. Im not someone who would kill.'),
+    (68, 68, 'Youre mistaken. I didnt kill that person.'),
+    (69, 69, 'I was at a meeting then. I would never kill anyone.'),
+    (70, 70, 'This is all wrong. I couldnt possibly kill somebody.'),
+    (71, 71, 'Check the surveillance tapes. I didnt kill anybody.'),
+    (72, 72, 'Im a pacifist. I wouldnt kill another living being.'),
+    (73, 73, 'Youve got this all mixed up. I couldnt kill anyone.'),
+    (74, 74, 'I was teaching a class then. I would never kill.'),
+    (75, 75, 'This is a mistake. I didnt kill that person.'),
+    (76, 76, 'I have people who can vouch for me. I couldnt possibly kill.'),
+    (77, 77, 'Youre way off base. I wouldnt kill anybody.'),
+    (78, 78, 'I was at the doctors office. I didnt kill anyone.'),
+    (79, 79, 'This is completely wrong. Im not someone who would kill.'),
+    (80, 80, 'I have documentation of where I was. I couldnt kill anyone.'),
+    (81, 81, 'Youre mistaken about this. I would never kill.'),
+    (82, 82, 'I was shopping at the time. I didnt kill anybody.'),
+    (83, 83, 'This is false. I couldnt possibly kill someone.'),
+    (84, 84, 'I have receipts to prove my location. Im not one to kill.'),
+    (85, 85, 'Youve got the wrong person. I wouldnt kill anyone.'),
+    (86, 86, 'I was at a concert that night. I didnt kill that person.'),
+    (87, 87, 'This is just not true. I couldnt kill if I tried.'),
+    (88, 88, 'I have video evidence of my whereabouts. I would never kill.'),
+    (89, 89, 'Youre looking at the wrong suspect. I didnt kill anybody.'),
+    (90, 90, 'I was visiting my parents. I couldnt possibly kill someone.'),
+    (91, 91, 'This is a complete mistake. Im not someone who would kill.'),
+    (92, 92, 'I have an alibi for that time. I wouldnt kill anyone.'),
+    (93, 93, 'Youve got this wrong. I didnt kill that person.'),
+    (94, 94, 'I was at a wedding that day. I couldnt kill anybody.'),
+    (95, 95, 'This is absolutely false. I would never kill.'),
+    (96, 96, 'I have witnesses to confirm my story. I didnt kill anyone.'),
+    (97, 97, 'I ordered the hit. It was me. You caught me.'),
+    (98, 98, 'I was at the library then. I wouldnt kill anybody.'),
+    (99, 99, 'This is all incorrect. Im not someone who would kill.'),
+    (100, 100, 'I have security footage to prove it. I didnt kill anyone.'),
+    (101, 101, 'I was feeding pigeons in the park that day. Murder is against my principles.'),
+    (102, 102, 'You can check my Instagram posts from that time. I would never take a life.'),
+    (103, 103, 'I was live streaming on Twitch all evening. Violence makes me sick.'),
+    (104, 104, 'My Fitbit shows I was jogging then. I couldnt have killed anyone.'),
+    (105, 105, 'I was at a meditation retreat that week. Taking life is against my beliefs.'),
+    (106, 106, 'Check my browser history, I was online shopping. Im not a violent person.'),
+    (107, 107, 'I was getting a tattoo at that exact time. I wouldnt hurt a fly.'),
+    (108, 108, 'My Uber history proves I was across town. Ive never even been in a fight.'),
+    (109, 109, 'I was doing a charity run that morning. Violence isnt in my nature.'),
+    (110, 110, 'My phone GPS shows I was elsewhere. I couldnt harm another person.'),
+    (111, 111, 'I was at my pottery class then. Im a creator, not a destroyer.'),
+    (112, 112, 'The security cameras at the gym show me there. Im innocent of this crime.'),
+    (113, 113, 'I was having dental surgery that day. Im not capable of murder.'),
+    (114, 114, 'My credit card records show I was shopping. Ive never hurt anyone.'),
+    (115, 115, 'I was broadcasting live on Facebook. Killing is against everything I stand for.'),
+    (116, 116, 'Check my work computer logs. I would never commit such a horrible act.'),
+    (117, 117, 'I was at a cooking class that evening. Violence isnt part of who I am.'),
+    (118, 118, 'My Netflix history shows I was home watching movies. Im not a killer.'),
+    (119, 119, 'I was volunteering at the animal shelter. I could never take a life.'),
+    (120, 120, 'My train pass shows I was commuting then. Im not capable of murder.'),
+    (121, 121, 'I was at my sons piano recital. Ive never even thought about killing.'),
+    (122, 122, 'The library records show I was studying. Im a peaceful person.'),
+    (123, 123, 'I was getting my hair done at the salon. Violence isnt my way.'),
+    (124, 124, 'My smart doorbell shows when I was home. I wouldnt hurt anyone.'),
+    (125, 125, 'I was at a yoga workshop that day. Taking life is against my beliefs.'),
+    (126, 126, 'Check my parking receipts from downtown. Im not that kind of person.'),
+    (127, 127, 'I was at my weekly book club meeting. I couldnt kill another human.'),
+    (128, 128, 'My gym membership records prove my location. Im innocent of this.'),
+    (129, 129, 'I was taking care of my sick mother. I would never commit murder.'),
+    (130, 130, 'The bowling alley has me on camera. Im not capable of such violence.'),
+    (131, 131, 'I was at my painting class then. I create art, not destruction.'),
+    (132, 132, 'My hotel key card records show my location. Im not a violent person.'),
+    (133, 133, 'I was attending a wedding that day. I couldnt have killed anyone.'),
+    (134, 134, 'Check my internet service logs. Im not the murderer youre looking for.'),
+    (135, 135, 'I was at a business conference. Violence goes against my nature.'),
+    (136, 136, 'My metro card history proves my whereabouts. Im not a killer.'),
+    (137, 137, 'I was having coffee with friends. I would never take someones life.'),
+    (138, 138, 'The ATM camera caught me withdrawing cash then. I couldnt have done this.'),
+    (139, 139, 'I was at my weekly therapy session. Im not capable of murder.'),
+    (140, 140, 'My phone records show I was elsewhere. Ive never harmed anyone.'),
+    (141, 141, 'I was watching my neighbors kids. I wouldnt commit such a crime.'),
+    (142, 142, 'Check the church attendance records. Im a peaceful person.'),
+    (143, 143, 'I was at a movie premiere that night. I couldnt have killed anyone.'),
+    (144, 144, 'My gardening club can vouch for me. I nurture life, not take it.'),
+    (145, 145, 'I was getting my car serviced then. Im not a violent individual.'),
+    (146, 146, 'The supermarket cameras show me shopping. I wouldnt hurt anyone.'),
+    (147, 147, 'I was at my dance class that evening. Violence isnt in my nature.'),
+    (148, 148, 'My buildings security footage proves my innocence. Im not a murderer.'),
+    (149, 149, 'I was at a parent-teacher conference. I could never take a life.'),
+    (150, 150, 'Check my work badge swipe records. Im innocent of this crime.'),
+    (151, 151, 'I was at a music concert then. I wouldnt harm another person.'),
+    (152, 152, 'My social media posts show my location. Im not capable of killing.'),
+    (153, 153, 'I was taking my driving test that day. Violence isnt part of who I am.'),
+    (154, 154, 'The restaurant receipt shows I was dining. I couldnt have done this.'),
+    (155, 155, 'I was at a job interview then. Im not the type to commit murder.'),
+    (156, 156, 'My bus pass shows I was traveling. I would never take someones life.'),
+    (157, 157, 'I was at my chess club meeting. Im a person of peace, not violence.'),
+    (158, 158, 'Check the hospital visitor logs. I couldnt have killed anyone.'),
+    (159, 159, 'I was at a football game that day. Im not capable of such acts.'),
+    (160, 160, 'My credit card shows I was at the mall. I wouldnt hurt a soul.'),
+    (161, 161, 'I was taking a cooking class then. I create food, not destruction.'),
+    (162, 162, 'The pharmacy security cameras show me there. Im not a violent person.'),
+    (163, 163, 'I was at my daughters soccer game. I couldnt have committed murder.'),
+    (164, 164, 'My gym trainer can verify my presence. Im innocent of this charge.'),
+    (165, 165, 'I was at a wine tasting event. Violence isnt something Im capable of.'),
+    (166, 166, 'Check my airline ticket from that day. I would never kill anyone.'),
+    (167, 167, 'I was at a photography workshop. I capture life, not take it.'),
+    (168, 168, 'My dentist appointment record proves my alibi. Im not a murderer.'),
+    (169, 169, 'I was at a birthday party then. I couldnt have done this crime.'),
+    (170, 170, 'The gas station footage shows me filling up. Im not violent at all.'),
+    (171, 171, 'I was taking my dog to the vet. I would never harm anyone.'),
+    (172, 172, 'Check my library card records. Im a peaceful citizen.'),
+    (173, 173, 'I was at a job training seminar. I couldnt have killed anyone.'),
+    (174, 174, 'My swimming pool membership shows I was there. Im not capable of murder.'),
+    (175, 175, 'I was at a family reunion then. Violence isnt in my character.'),
+    (176, 176, 'The bank cameras caught me making a deposit. I wouldnt take a life.'),
+    (177, 177, 'I was at my weekly prayer group. Im devoted to peace, not violence.'),
+    (178, 178, 'Check my parking garage ticket. I couldnt have done this.'),
+    (179, 179, 'I was getting a massage at that time. Im not a violent person.'),
+    (180, 180, 'My museum membership card was used then. I appreciate art, not violence.'),
+    (181, 181, 'I was at a language class that day. I couldnt have killed anyone.'),
+    (182, 182, 'The coffee shop cameras show me working. Im not capable of murder.'),
+    (183, 183, 'I was at a pottery workshop then. I create beauty, not destruction.'),
+    (184, 184, 'My theater ticket stub proves my location. I wouldnt hurt anyone.'),
+    (185, 185, 'I was at a community meeting. Violence isnt part of my nature.'),
+    (186, 186, 'Check my phones location history. Im innocent of this crime.'),
+    (187, 187, 'I was at a dance competition. I couldnt have committed murder.'),
+    (188, 188, 'My hotel receipt shows I was out of town. Im not a violent person.'),
+    (189, 189, 'I was at an art gallery opening. I appreciate life too much to take it.'),
+    (190, 190, 'The toll booth records show my car elsewhere. I wouldnt kill anyone.'),
+    (191, 191, 'I was at a charity fundraiser. I help people, not harm them.'),
+    (192, 192, 'Check my computer login records. I couldnt have done this.'),
+    (193, 193, 'I was at a yoga retreat that week. Im committed to non-violence.'),
+    (194, 194, 'My ski lift ticket proves I was on the slopes. Im not a murderer.'),
+    (195, 195, 'I was at a cooking competition then. I create dishes, not destruction.'),
+    (196, 196, 'The arcade security footage shows me playing. I wouldnt harm anyone.'),
+    (197, 197, 'I was at a meditation class. Violence goes against my beliefs.'),
+    (198, 198, 'Check my gym check-in records. I couldnt have killed anyone.'),
+    (199, 199, 'I was at a piano lesson that day. I make music, not mayhem.')
+  ;;
+
+CREATE TABLE vehicle_registry (
+    id INTEGER PRIMARY KEY,
+    person_id INTEGER,
+    plate_number TEXT,
+    car_make TEXT,
+    car_model TEXT,
+    FOREIGN KEY (person_id) REFERENCES person(id)
+  );;
+
+INSERT INTO vehicle_registry (id, person_id, plate_number, car_make, car_model) VALUES
+    (1, 156, 'ABVX7CD', 'Chevrolet', 'Impala'),
+    (2, 43, 'XYZ1234', 'Ford', 'Mustang'),
+    (3, 189, 'HN-CIV123', 'Honda', 'Civic'),
+    (4, 77, 'LMNOPQ', 'Toyota', 'Corolla'),
+    (5, 12, 'ABC123', 'Audi', '200'),
+    (6, 167, 'DEF456', 'Chevrolet', 'Camaro'),
+    (7, 34, 'GHI789', 'Pontiac', 'Firebird'),
+    (8, 198, 'JKL012', 'Toyota', 'Celica'),
+    (9, 89, 'MNO345', 'Porsche', '911'),
+    (10, 145, 'PQR678', 'Ferrari', '308 GTB'),
+    (11, 23, 'STU901', 'Lamborghini', 'Countach'),
+    (12, 178, 'VWX234', 'BMW', '635CSi'),
+    (13, 67, 'YZA567', 'Mercedes', '380SL'),
+    (14, 134, 'BCD890', 'Volkswagen', 'Golf GTI'),
+    (15, 92, 'EFG123', 'Audi', 'Quattro'),
+    (16, 156, 'HIJ456', 'Lamborghini', 'Countach'),
+    (17, 45, 'KLM789', 'DeLorean', 'DMC-12'),
+    (18, 189, 'NOP012', 'Datsun', '280ZX'),
+    (19, 123, 'QRS345', 'Chevrolet', 'Corvette'),
+    (20, 78, 'TUV678', 'Lamborghini', 'Countach'),
+    (21, 167, 'WXY901', 'Ford', 'Thunderbird'),
+    (22, 34, 'ZAB234', 'Mazda', 'RX-7'),
+    (23, 198, 'CDE567', 'Porsche', '944'),
+    (24, 89, 'FGH890', 'Lamborghini', 'Countach'),
+    (25, 145, 'IJK123', 'Ferrari', 'Testarossa'),
+    (26, 23, 'LMN456', 'BMW', 'M3'),
+    (27, 178, 'OPQ789', 'Mercedes', '560SEC'),
+    (28, 67, 'RST012', 'Lamborghini', 'Countach'),
+    (29, 134, 'UVW345', 'Alfa Romeo', 'Spider'),
+    (30, 92, 'XYZ678', 'Jaguar', 'XJS'),
+    (31, 156, 'ABC901', 'Lamborghini', 'Countach'),
+    (32, 45, 'DEF234', 'Aston Martin', 'V8 Vantage'),
+    (33, 189, 'GHI567', 'Maserati', 'Biturbo'),
+    (34, 123, 'JKL890', 'Lamborghini', 'Countach'),
+    (35, 78, 'MNO123', 'Lotus', 'Esprit'),
+    (36, 167, 'PQR456', 'Porsche', '928'),
+    (37, 34, 'STU789', 'Ferrari', '288 GTO'),
+    (38, 198, 'VWX012', 'Lamborghini', 'Countach'),
+    (39, 89, 'YZA345', 'BMW', 'M5'),
+    (40, 145, 'BCD678', 'Mercedes', '190E'),
+    (41, 97, 'EFG901', 'Lamborghini', 'Countach'),
+    (42, 178, 'HIJ234', 'Audi', '5000'),
+    (43, 67, 'KLM567', 'Volkswagen', 'Scirocco'),
+    (44, 134, 'NOP890', 'Toyota', 'Supra'),
+    (45, 92, 'QRS123', 'Nissan', '300ZX'),
+    (46, 156, 'TUV456', 'Chevrolet', 'Monte Carlo'),
+    (47, 45, 'WXY789', 'Buick', 'Grand National'),
+    (48, 189, 'ZAB012', 'Pontiac', 'Trans Am'),
+    (49, 123, 'CDE345', 'Ford', 'LTD'),
+    (50, 78, 'FGH678', 'Chrysler', 'New Yorker'),
+    (51, 167, 'IJK901', 'Dodge', 'Charger'),
+    (52, 34, 'LMN234', 'Plymouth', 'Gran Fury'),
+    (53, 198, 'OPQ567', 'Oldsmobile', 'Cutlass'),
+    (54, 89, 'RST890', 'Cadillac', 'DeVille'),
+    (55, 145, 'UVW123', 'Lincoln', 'Continental'),
+    (56, 23, 'XYZ456', 'Mercury', 'Grand Marquis'),
+    (57, 178, 'ABC789', 'Honda', 'Prelude'),
+    (58, 67, 'DEF012', 'Mazda', '626'),
+    (59, 134, 'GHI345', 'Subaru', 'XT'),
+    (60, 92, 'JKL678', 'Mitsubishi', 'Starion'),
+    (61, 156, 'MNO901', 'Isuzu', 'Impulse'),
+    (62, 45, 'PQR234', 'Saab', '900'),
+    (63, 189, 'STU567', 'Volvo', '240'),
+    (64, 123, 'VWX890', 'Peugeot', '505'),
+    (65, 78, 'YZA123', 'Renault', 'Fuego'),
+    (66, 167, 'BCD456', 'Fiat', 'X1/9'),
+    (67, 34, 'EFG789', 'Alfa Romeo', 'GTV6'),
+    (68, 198, 'HIJ012', 'Lancia', 'Delta'),
+    (69, 89, 'KLM345', 'BMW', '325i'),
+    (70, 145, 'NOP678', 'Mercedes', '190D'),
+    (71, 23, 'QRS901', 'Audi', '4000'),
+    (72, 178, 'TUV234', 'Volkswagen', 'Jetta'),
+    (73, 67, 'WXY567', 'Toyota', 'Cressida'),
+    (74, 134, 'ZAB890', 'Nissan', 'Maxima'),
+    (75, 92, 'CDE123', 'Honda', 'Accord'),
+    (76, 156, 'FGH456', 'Mazda', '929'),
+    (77, 45, 'IJK789', 'Subaru', 'GL'),
+    (78, 189, 'LMN012', 'Mitsubishi', 'Galant'),
+    (79, 123, 'OPQ345', 'Dodge', 'Diplomat'),
+    (80, 78, 'RST678', 'Plymouth', 'Caravelle'),
+    (81, 167, 'UVW901', 'Chrysler', 'Fifth Avenue'),
+    (82, 34, 'XYZ234', 'Buick', 'Century'),
+    (83, 198, 'ABC567', 'Oldsmobile', '88'),
+    (84, 89, 'DEF890', 'Pontiac', '6000'),
+    (85, 145, 'GHI123', 'Chevrolet', 'Celebrity'),
+    (86, 23, 'JKL456', 'Ford', 'Crown Victoria'),
+    (87, 178, 'MNO789', 'Mercury', 'Cougar'),
+    (88, 67, 'PQR012', 'Lincoln', 'Mark VII'),
+    (89, 134, 'STU345', 'Cadillac', 'Eldorado'),
+    (90, 92, 'VWX678', 'AMC', 'Eagle'),
+    (91, 156, 'YZA901', 'Jeep', 'Cherokee'),
+    (92, 45, 'BCD234', 'Toyota', 'Land Cruiser'),
+    (93, 189, 'EFG567', 'Nissan', 'Pathfinder'),
+    (94, 123, 'HIJ890', 'Mitsubishi', 'Montero'),
+    (95, 78, 'KLM123', 'Isuzu', 'Trooper'),
+    (96, 167, 'NOP456', 'Ford', 'Bronco'),
+    (97, 34, 'QRS789', 'Chevrolet', 'Blazer'),
+    (98, 198, 'TUV012', 'GMC', 'Jimmy'),
+    (99, 89, 'WXY345', 'Dodge', 'Ramcharger'),
+    (100, 145, 'ZAB678', 'Plymouth', 'Trail Duster'),
+    (101, 23, 'CDE901', 'International', 'Scout'),
+    (102, 178, 'FGH234', 'Land Rover', 'Range Rover'),
+    (103, 67, 'IJK567', 'Mercedes', 'G-Class'),
+    (104, 134, 'LMN890', 'Volvo', '760'),
+    (105, 92, 'OPQ123', 'Saab', '9000'),
+    (106, 156, 'RST456', 'Lamborghini', 'Countach'),
+    (107, 45, 'UVW789', 'Lamborghini', 'Countach'),
+    (108, 189, 'XYZ012', 'Lamborghini', 'Countach'),
+    (109, 123, 'ABC345', 'Lamborghini', 'Countach'),
+    (110, 78, 'DEF678', 'Lamborghini', 'Countach'),
+    (111, 167, 'GHI901', 'Lamborghini', 'Countach'),
+    (112, 34, 'JKL234', 'Lamborghini', 'Countach'),
+    (113, 198, 'MNO567', 'Lamborghini', 'Countach'),
+    (114, 89, 'PQR890', 'Lamborghini', 'Countach'),
+    (115, 145, 'STU123', 'Lamborghini', 'Countach'),
+    (116, 23, 'VWX456', 'Chevrolet', 'Camaro'),
+    (117, 178, 'YZA789', 'Pontiac', 'Firebird'),
+    (118, 67, 'BCD012', 'Ford', 'Mustang'),
+    (119, 134, 'EFG345', 'Chevrolet', 'Corvette'),
+    (120, 92, 'HIJ678', 'Porsche', '911'),
+    (121, 156, 'KLM901', 'Ferrari', 'Testarossa'),
+    (122, 45, 'NOP234', 'DeLorean', 'DMC-12'),
+    (123, 189, 'QRS567', 'Chevrolet', 'Monte Carlo'),
+    (124, 123, 'TUV890', 'Buick', 'Regal'),
+    (125, 78, 'WXY123', 'Cadillac', 'DeVille'),
+    (126, 167, 'ZAB456', 'Pontiac', 'Trans Am'),
+    (127, 34, 'CDE789', 'Dodge', 'Charger'),
+    (128, 198, 'FGH012', 'Plymouth', 'Gran Fury'),
+    (129, 89, 'IJK345', 'Chrysler', 'LeBaron'),
+    (130, 145, 'LMN678', 'Toyota', 'Celica'),
+    (131, 23, 'OPQ901', 'Datsun', '280ZX'),
+    (132, 178, 'RST234', 'Honda', 'CRX'),
+    (133, 67, 'UVW567', 'Mazda', 'RX-7'),
+    (134, 134, 'XYZ890', 'Nissan', '300ZX'),
+    (135, 92, 'ABC123', 'BMW', '635CSi'),
+    (136, 156, 'DEF456', 'Mercedes', '560SL'),
+    (137, 45, 'GHI789', 'Porsche', '944'),
+    (138, 189, 'JKL012', 'Audi', 'Quattro'),
+    (139, 123, 'MNO345', 'Volkswagen', 'Scirocco'),
+    (140, 78, 'PQR678', 'Alfa Romeo', 'Spider'),
+    (141, 167, 'STU901', 'Fiat', 'Spider'),
+    (142, 34, 'VWX234', 'Jaguar', 'XJS'),
+    (143, 198, 'YZA567', 'Maserati', 'Biturbo'),
+    (144, 89, 'BCD890', 'Ferrari', '308'),
+    (145, 145, 'EFG123', 'Lotus', 'Esprit'),
+    (146, 23, 'HIJ456', 'Chevrolet', 'El Camino'),
+    (147, 178, 'KLM789', 'Ford', 'Thunderbird'),
+    (148, 67, 'NOP012', 'Oldsmobile', 'Cutlass'),
+    (149, 134, 'QRS345', 'Buick', 'Grand National'),
+    (150, 92, 'TUV678', 'Pontiac', 'Fiero'),
+    (151, 156, 'WXY901', 'Dodge', 'Daytona'),
+    (152, 45, 'ZAB234', 'Plymouth', 'Laser'),
+    (153, 189, 'CDE567', 'Chrysler', 'Conquest'),
+    (154, 123, 'FGH890', 'Toyota', 'Supra'),
+    (155, 78, 'IJK123', 'Datsun', '200SX'),
+    (156, 167, 'LMN456', 'Honda', 'Civic'),
+    (157, 34, 'OPQ789', 'Mazda', 'RX-7'),
+    (158, 198, 'RST012', 'Nissan', 'Pulsar'),
+    (159, 89, 'UVW345', 'BMW', '535i'),
+    (160, 145, 'XYZ678', 'Mercedes', '190E'),
+    (161, 23, 'ABC901', 'Porsche', '928'),
+    (162, 178, 'DEF234', 'Audi', '5000'),
+    (163, 67, 'GHI567', 'Volkswagen', 'GTI'),
+    (164, 134, 'JKL890', 'Alfa Romeo', 'Milano'),
+    (165, 92, 'MNO123', 'Fiat', 'Strada'),
+    (166, 156, 'PQR456', 'Jaguar', 'XJ6'),
+    (167, 45, 'STU789', 'Maserati', 'Quattroporte'),
+    (168, 189, 'VWX012', 'Ferrari', 'Mondial'),
+    (169, 123, 'YZA345', 'Lotus', 'Turbo Esprit'),
+    (170, 78, 'BCD678', 'Chevrolet', 'IROC-Z'),
+    (171, 167, 'EFG901', 'Ford', 'LTD'),
+    (172, 34, 'HIJ234', 'Oldsmobile', 'Delta 88'),
+    (173, 198, 'KLM567', 'Buick', 'Riviera'),
+    (174, 89, 'NOP890', 'Pontiac', 'Bonneville'),
+    (175, 145, 'QRS123', 'Dodge', 'Aries'),
+    (176, 23, 'TUV456', 'Plymouth', 'Reliant'),
+    (177, 178, 'WXY789', 'Chrysler', 'New Yorker'),
+    (178, 67, 'ZAB012', 'Toyota', 'Corolla'),
+    (179, 134, 'CDE345', 'Datsun', '510'),
+    (180, 92, 'FGH678', 'Honda', 'Prelude'),
+    (181, 156, 'IJK901', 'Mazda', '626'),
+    (182, 45, 'LMN234', 'Nissan', 'Sentra'),
+    (183, 189, 'OPQ567', 'BMW', '733i'),
+    (184, 123, 'RST890', 'Mercedes', '300E'),
+    (185, 78, 'UVW123', 'Porsche', '924'),
+    (186, 167, 'XYZ456', 'Audi', 'Coupe GT'),
+    (187, 34, 'ABC789', 'Volkswagen', 'Quantum'),
+    (188, 198, 'DEF012', 'Alfa Romeo', 'GTV6'),
+    (189, 89, 'GHI345', 'Fiat', 'Brava'),
+    (190, 145, 'JKL678', 'Jaguar', 'Vanden Plas'),
+    (191, 23, 'MNO901', 'Maserati', 'Merak'),
+    (192, 178, 'PQR234', 'Ferrari', '400i'),
+    (193, 67, 'STU567', 'Lotus', 'Excel'),
+    (194, 134, 'VWX890', 'Chevrolet', 'Citation'),
+    (195, 92, 'YZA123', 'Ford', 'Granada'),
+    (196, 156, 'BCD456', 'Oldsmobile', 'Toronado'),
+    (197, 45, 'EFG789', 'Buick', 'Skyhawk'),
+    (198, 189, 'HIJ012', 'Pontiac', 'Phoenix'),
+    (199, 123, 'KLM345', 'Dodge', 'Omni'),
+    (200, 78, 'NOP678', 'Plymouth', 'Horizon'),
+    (201, 167, 'QRS901', 'Chrysler', 'Cordoba'),
+    (202, 34, 'TUV234', 'Toyota', 'Tercel'),
+    (203, 198, 'WXY567', 'Datsun', 'Maxima'),
+    (204, 89, 'ZAB890', 'Honda', 'Integra'),
+    (205, 145, 'CDE123', 'Mazda', 'GLC')
+  ;;
+
+CREATE TABLE catering_orders (
+    id INTEGER PRIMARY KEY,
+    person_id INTEGER,
+    order_date INTEGER,
+    item TEXT,
+    amount INTEGER,
+    FOREIGN KEY (person_id) REFERENCES person(id)
+  );;
+
+INSERT INTO catering_orders (id, person_id, order_date, item, amount) VALUES
+    (1, 23, 19871030, 'Dragons Breath cocktail', 1),
+    (2, 45, 19871030, 'Martini', 2),
+    (3, 17, 19871030, 'Old Fashioned', 1),
+    (4, 82, 19871030, 'Mojito', 2),
+    (5, 34, 19871030, 'Manhattan', 1),
+    (6, 91, 19871030, 'Cosmopolitan', 3),
+    (7, 15, 19871030, 'Margarita', 2),
+    (8, 67, 19871030, 'Daiquiri', 1),
+    (9, 28, 19871030, 'Negroni', 2),
+    (10, 53, 19871030, 'Whiskey Sour', 1),
+    (11, 76, 19871030, 'Moscow Mule', 2),
+    (12, 39, 19871030, 'Gin and Tonic', 1),
+    (13, 84, 19871030, 'Pina Colada', 3),
+    (14, 12, 19871030, 'Mai Tai', 1),
+    (15, 95, 19871030, 'Bloody Mary', 2),
+    (16, 43, 19871030, 'Aperol Spritz', 1),
+    (17, 68, 19871030, 'Dark n Stormy', 2),
+    (18, 31, 19871030, 'Sidecar', 1),
+    (19, 87, 19871030, 'French 75', 2),
+    (20, 24, 19871030, 'Espresso Martini', 1),
+    (21, 59, 19871030, 'Tom Collins', 2),
+    (22, 73, 19871030, 'White Russian', 1),
+    (23, 16, 19871030, 'Mint Julep', 3),
+    (24, 92, 19871030, 'Aviation', 1),
+    (25, 35, 19871030, 'Boulevardier', 2),
+    (26, 64, 19871030, 'Sazerac', 1),
+    (27, 27, 19871030, 'Irish Coffee', 2),
+    (28, 83, 19871030, 'Paloma', 1),
+    (29, 48, 19871030, 'Long Island Iced Tea', 2),
+    (30, 71, 19871030, 'Singapore Sling', 1),
+    (31, 19, 19871030, 'Caipirinha', 3),
+    (32, 56, 19871030, 'Gimlet', 1),
+    (33, 88, 19871030, 'Rob Roy', 2),
+    (34, 32, 19871030, 'Vesper', 1),
+    (35, 75, 19871030, 'Pisco Sour', 2),
+    (36, 44, 19871030, 'Cuba Libre', 1),
+    (37, 93, 19871030, 'Rusty Nail', 2),
+    (38, 26, 19871030, 'Harvey Wallbanger', 1),
+    (39, 61, 19871030, 'Grasshopper', 3),
+    (40, 85, 19871030, 'Brandy Alexander', 1),
+    (41, 38, 19871030, 'Last Word', 2),
+    (42, 79, 19871030, 'Champagne Cocktail', 1),
+    (43, 14, 19871030, 'Amaretto Sour', 2),
+    (44, 57, 19871030, 'B&B', 1),
+    (45, 96, 19871030, 'Bellini', 2),
+    (46, 33, 19871030, 'Black Russian', 1),
+    (47, 72, 19871030, 'Bronx', 3),
+    (48, 25, 19871030, 'Gibson', 1),
+    (49, 89, 19871030, 'Golden Dream', 2),
+    (50, 41, 19871030, 'Godfather', 1),
+    (51, 66, 19871030, 'Hemingway Daiquiri', 2),
+    (52, 18, 19871030, 'Horses Neck', 1),
+    (53, 94, 19871030, 'Jack Rose', 2),
+    (54, 37, 19871030, 'Kir Royale', 1),
+    (55, 81, 19871030, 'Lemon Drop', 3),
+    (56, 29, 19871030, 'Mary Pickford', 1),
+    (57, 63, 19871030, 'Monkey Gland', 2),
+    (58, 86, 19871030, 'Pink Lady', 1),
+    (59, 42, 19871030, 'Porto Flip', 2),
+    (60, 77, 19871030, 'Ramos Gin Fizz', 1),
+    (61, 21, 19871030, 'Rusty Nail', 2),
+    (62, 58, 19871030, 'Screwdriver', 1),
+    (63, 97, 19871030, 'Sex on the Beach', 3),
+    (64, 36, 19871030, 'Sidecar', 1),
+    (65, 69, 19871030, 'Stinger', 2),
+    (66, 13, 19871030, 'Tequila Sunrise', 1),
+    (67, 91, 19871030, 'Ward 8', 2),
+    (68, 47, 19871030, 'White Lady', 1),
+    (69, 74, 19871030, 'Yellow Bird', 2),
+    (70, 22, 19871030, 'Zombie', 1),
+    (71, 55, 19871030, 'Americano', 3),
+    (72, 88, 19871030, 'Between the Sheets', 1),
+    (73, 31, 19871030, 'Blue Hawaii', 2),
+    (74, 65, 19871030, 'Bramble', 1),
+    (75, 98, 19871030, 'Clover Club', 2),
+    (76, 43, 19871030, 'Corpse Reviver', 1),
+    (77, 78, 19871030, 'El Diablo', 2),
+    (78, 15, 19871030, 'French Connection', 1),
+    (79, 92, 19871030, 'Golden Cadillac', 3),
+    (80, 35, 19871030, 'Hanky Panky', 1),
+    (81, 61, 19871030, 'Irish Rose', 2),
+    (82, 84, 19871030, 'Japanese Slipper', 1),
+    (83, 27, 19871030, 'Kamikaze', 2),
+    (84, 73, 19871030, 'London Calling', 1),
+    (85, 16, 19871030, 'Mai Tai', 2),
+    (86, 95, 19871030, 'Navy Grog', 1),
+    (87, 38, 19871030, 'Orange Blossom', 3),
+    (88, 82, 19871030, 'Paradise', 1),
+    (89, 25, 19871030, 'Queen Elizabeth', 2),
+    (90, 67, 19871030, 'Red Lion', 1),
+    (91, 93, 19871030, 'Southside', 2),
+    (92, 41, 19871030, 'Ti Punch', 1),
+    (93, 76, 19871030, 'Vampiro', 2),
+    (94, 19, 19871030, 'Whiskey Mac', 1),
+    (95, 54, 19871030, 'XYZ', 3),
+    (96, 87, 19871030, 'Yellow Parrot', 1),
+    (97, 32, 19871030, 'Zaza', 2),
+    (98, 71, 19871030, 'Adonis', 1),
+    (99, 45, 19871030, 'Bamboo', 2),
+    (100, 89, 19871030, 'Casino', 1)
+  ;;
