@@ -78,7 +78,7 @@ sudo -u postgres psql -d users -c "ALTER TABLE users ADD COLUMN IF NOT EXISTS ti
 From project root:
 ```bash
 php -S 0.0.0.0:9000 -t public
-php -S 192.168.0.100:9000 -t public
+php -S 192.168.0.100:3000 -t public
 
 ```
 Clients open `http://<SERVER_IP>:9000`. If blocked, allow the port:
